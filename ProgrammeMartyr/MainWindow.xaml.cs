@@ -19,6 +19,10 @@ namespace ProgrammeMartyr
         public MainWindow()
         {
             InitializeComponent();
+
+            Personnage[] persos = new Personnage[10];
+
+            
         }
     }
 }
