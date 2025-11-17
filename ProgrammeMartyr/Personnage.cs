@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace ProgrammeMartyr
 {
@@ -10,21 +12,9 @@ namespace ProgrammeMartyr
     {
         // Attributs
         private string _nom, _role, _img;
-        private uint _rarete, _niveauMax, _PvMax, _PvGame;
+        private int _rarete, _niveauMax, _PvMax, _PvGame;
         double _niveauActuel;
 
-        // Constructeur
-        public Personnage(string nom, string role, uint rarete, uint niveauMax, uint PvMax, string img)
-        {
-            _nom = nom;
-            _role = role;
-            _rarete = rarete;
-            _niveauMax = niveauMax;
-            _PvMax = PvMax;
-            _PvGame = PvMax;
-            _niveauActuel = 0;
-            _img = img;
-        }
 
         // Propriétés
         public string Nom 
@@ -39,19 +29,19 @@ namespace ProgrammeMartyr
         {
             get { return _img; }
         }
-        public uint Rarete 
+        public int Rarete 
         {
             get { return _rarete; }
         }
-        public uint NiveauMax
+        public int NiveauMax
         {
             get { return _niveauMax; }
         }
-        public uint PvMax 
+        public int PvMax 
         {
             get { return _PvMax; }
         }
-        public uint PvGame 
+        public int PvGame 
         {
             get { return _PvGame; }
             set { _PvGame = value; }
@@ -62,5 +52,33 @@ namespace ProgrammeMartyr
             set { _niveauActuel = value; }
         }
 
+        // Constructeur
+        public Personnage(string nom, string role, int rarete, int niveauMax, int PvMax, string img)
+        {
+            _nom = nom;
+            _role = role;
+            _rarete = rarete;
+            _niveauMax = niveauMax;
+            _PvMax = PvMax;
+            _PvGame = PvMax;
+            _niveauActuel = 0;
+            _img = $"images/personnages/{img}";
+        }
+
+        // Méthodes
+        public StackPanel CardDesign()
+        {
+            // Logique pour concevoir la carte du personnage
+            StackPanel cardPanel = new StackPanel();
+            BitmapImage img = new BitmapImage();
+            img.BeginInit();
+            img.UriSource = new Uri(_img, UriKind.RelativeOrAbsolute);
+            img.EndInit();
+            Image ppPerso = new Image();
+            ppPerso.Source = img;
+            cardPanel.Children.Add(ppPerso);
+            //ajotuer d'autres éléments comme le nom, le rôle, etc.
+            return cardPanel;
+        }
     }
 }
