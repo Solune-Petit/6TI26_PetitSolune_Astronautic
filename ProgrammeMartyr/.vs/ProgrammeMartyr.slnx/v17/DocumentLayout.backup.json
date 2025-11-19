@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|c:\\users\\petitsolune\\desktop\\6ti26_petitsolune_astronautic\\programmemartyr\\fonctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|solutionrelative:fonctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|c:\\users\\petitsolune\\desktop\\6ti26_petitsolune_astronautic\\programmemartyr\\personnage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|solutionrelative:personnage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|c:\\users\\petitsolune\\desktop\\6ti26_petitsolune_astronautic\\programmemartyr\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|c:\\users\\petitsolune\\desktop\\6ti26_petitsolune_astronautic\\programmemartyr\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|c:\\users\\petitsolune\\desktop\\6ti26_petitsolune_astronautic\\programmemartyr\\fonctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCB10AAF-3B3F-8C62-0509-B191D43946EC}|ProgrammeMartyr.csproj|solutionrelative:fonctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -32,7 +36,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAcwEsAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAUwEsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T09:57:57.293Z",
               "IsPinned": true,
@@ -40,7 +44,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-19T07:45:13.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Fonctions.cs",
               "DocumentMoniker": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\Fonctions.cs",
               "RelativeDocumentMoniker": "Fonctions.cs",
@@ -53,13 +69,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Personnage.cs",
               "DocumentMoniker": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\Personnage.cs",
               "RelativeDocumentMoniker": "Personnage.cs",
-              "ToolTip": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\Personnage.cs",
-              "RelativeToolTip": "Personnage.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAIwFEAAAAJAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\Personnage.cs*",
+              "RelativeToolTip": "Personnage.cs*",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAowGMAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T09:58:31.143Z",
               "EditorCaption": ""
