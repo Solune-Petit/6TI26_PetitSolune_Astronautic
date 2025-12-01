@@ -18,11 +18,20 @@ namespace ProgrammeMartyr
     {
         public MainWindow()
         {
+            //infos pratiques :
+            //
+            //pour ouvrir la page qui affiches tous les personnages, décommentez la ligne ci-dessous
+            //func.OuvrirFenetreDetails(grdMain, persos);
+
+            //////////////////////////////////////////////
+            ///ne pas retirer ce qui est en dessous///
+
             InitializeComponent();
 
             Personnage[] persos = new Personnage[10];
             Fonctions func = new Fonctions();
 
+            //création de la liste des personnages
             func.CreerPersonnage(out string[,] listePersos);
 
             //initialisation des personnages
@@ -37,43 +46,8 @@ namespace ProgrammeMartyr
                         listePersos[i, 5]
                         );
                 }
+            ///////////////////////////////////////////////
 
-
-            //definition des colonnes
-            ColumnDefinition[] colDef = new ColumnDefinition[10];
-            for (int i = 0; i < 4; i++)
-            {
-                colDef[i] = new ColumnDefinition();
-                grdMain.ColumnDefinitions.Add(colDef[i]);
-            }
-
-            //definition des lignes
-            RowDefinition[] rowDef = new RowDefinition[10];
-            for (int i = 0; i < 4; i++)
-            {
-                rowDef[i] = new RowDefinition();
-                grdMain.RowDefinitions.Add(rowDef[i]);
-            }
-
-            int temp = 0;
-            int temp2 = 0;
-            //ajout des cartes de personnages
-            foreach (Personnage perso in persos)
-            {
-                if (perso != null)
-                {
-                    StackPanel card = perso.CardDesign();
-                    Grid.SetColumn(card, temp);
-                    Grid.SetRow(card, temp2);
-                    grdMain.Children.Add(card);
-                }
-                temp++;
-                if (temp > 3)
-                {
-                    temp = 0;
-                    temp2++;
-                }
-            }
         }
     }
 }
