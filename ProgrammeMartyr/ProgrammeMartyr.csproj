@@ -8,4 +8,49 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="images\personnages\Amixem.jpg" />
+    <None Remove="images\personnages\Charles_Leclerc.jpg" />
+    <None Remove="images\personnages\Mastu.jpg" />
+    <None Remove="images\personnages\Michou.jpg" />
+    <None Remove="images\personnages\MrBeast.jpg" />
+    <None Remove="images\personnages\Obelgix.jpg" />
+    <None Remove="images\personnages\Pikachu.jpg" />
+    <None Remove="images\personnages\Super_konar.jpg" />
+    <None Remove="images\personnages\Teddy_riner.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\personnages\Amixem.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Charles_Leclerc.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Freres_Lebruns.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Mastu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Michou.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\MrBeast.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Obelgix.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Pikachu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Super_konar.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\personnages\Teddy_riner.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>
