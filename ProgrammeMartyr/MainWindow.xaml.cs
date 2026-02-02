@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Misc;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -30,22 +32,26 @@ namespace ProgrammeMartyr
 
             Personnage[] persos = new Personnage[10];
             Fonctions func = new Fonctions();
+            BddManager bdd = new BddManager();
+
+            bdd.DownloadCharacters();
+
 
             //création de la liste des personnages
-            func.CreerPersonnage(out string[,] listePersos);
+            //func.StoquerPersonnage(out string[,] listePersos);
 
             //initialisation des personnages
-            for (int i = 0; i < 10; i++)
-                {
-                    persos[i] = new Personnage(
-                        listePersos[i, 0],
-                        listePersos[i, 1],
-                        int.Parse(listePersos[i, 2]),
-                        int.Parse(listePersos[i, 3]),
-                        int.Parse(listePersos[i, 4]),
-                        listePersos[i, 5]
-                        );
-                }
+            //for (int i = 0; i < 10; i++)
+            //    {
+            //        persos[i] = new Personnage(
+            //            listePersos[i, 0],
+            //            listePersos[i, 1],
+            //            int.Parse(listePersos[i, 2]),
+            //            int.Parse(listePersos[i, 3]),
+            //            int.Parse(listePersos[i, 4]),
+            //            listePersos[i, 5]
+            //            );
+            //    }
             ///////////////////////////////////////////////
 
         }
