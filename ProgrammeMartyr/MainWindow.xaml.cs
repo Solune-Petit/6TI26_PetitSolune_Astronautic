@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Misc;
+using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,30 +31,17 @@ namespace ProgrammeMartyr
 
             InitializeComponent();
 
-            Personnage[] persos = new Personnage[10];
-            Fonctions func = new Fonctions();
-            BddManager bdd = new BddManager();
+            //connexion aux fichiers
+            Fonctions func = new Fonctions();                   //Fichier des différentes fonctions du code
+            BddManager bdd = new BddManager();                  //Fichier de connexion/manipulation de la base de donnée
+            DataSet listePersos =  bdd.DownloadCharacters();    //variable qui contient les personnages
 
-            bdd.DownloadCharacters();
-
-
-            //création de la liste des personnages
-            //func.StoquerPersonnage(out string[,] listePersos);
-
-            //initialisation des personnages
-            //for (int i = 0; i < 10; i++)
-            //    {
-            //        persos[i] = new Personnage(
-            //            listePersos[i, 0],
-            //            listePersos[i, 1],
-            //            int.Parse(listePersos[i, 2]),
-            //            int.Parse(listePersos[i, 3]),
-            //            int.Parse(listePersos[i, 4]),
-            //            listePersos[i, 5]
-            //            );
-            //    }
-            ///////////////////////////////////////////////
-
+            //stoquage des personnages
+            for (int i = 0; i <= int.Parse(listePersos.Tables["personnage"].Rows.Count.ToString()); i++)
+            {
+                Personnage perso = new Personnage(listePersos.Tables["personnage"].Rows[i]["PersonnageNom"].ToString(), listePersos.Tables["personnage"].Rows[i]["PersonnageType"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageRarete"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageLvlMax"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnagePvMax"].ToString()), listePersos.Tables["personnage"].Rows[i]["PersonnageImg"].ToString());
+            }
+            
         }
     }
 }

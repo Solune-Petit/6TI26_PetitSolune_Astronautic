@@ -1,3 +1,5 @@
+#Creation des tables
+
 DROP TABLE IF EXISTS Personnage ;
 CREATE TABLE Personnage (PersonnageId INT AUTO_INCREMENT NOT NULL,
 PersonnageNom VARCHAR(25),
@@ -10,8 +12,11 @@ PRIMARY KEY (PersonnageId)) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS Attaque ;
 CREATE TABLE Attaque (AttaqueId INT AUTO_INCREMENT NOT NULL,
+AttaqueNom VARCHAR(40),
 AttaquePuissance INT(50),
+AttaqueDescription VARCHAR(255),
 Role INT(3),
+ModifyersId INT NOT NULL,
 PRIMARY KEY (AttaqueId)) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS User ;
@@ -38,12 +43,8 @@ PRIMARY KEY (ModifyerId)) ENGINE=InnoDB;
 DROP TABLE IF EXISTS Possede ;
 CREATE TABLE Possede (PossedeId INT AUTO_INCREMENT NOT NULL,
 AttaqueId INT NOT NULL,
+PersonnageId INT NOT NULL,
 PRIMARY KEY (PossedeId)) ENGINE=InnoDB;
-
-DROP TABLE IF EXISTS Appliques ;
-CREATE TABLE Appliques (AppliquesId INT AUTO_INCREMENT NOT NULL,
-ModifyerId INT NOT NULL,
-PRIMARY KEY (AppliquesId))ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS EstDeNiv ;
 CREATE TABLE EstDeNiv (EstDeNivId INT AUTO_INCREMENT NOT NULL,
@@ -58,9 +59,109 @@ ItemId INT NOT NULL,
 UserId INT NOT NULL,
 PRIMARY KEY (AppartiensId)) ENGINE=InnoDB;
 
-ALTER TABLE Possede ADD CONSTRAINT PossedeId FOREIGN KEY (PossedeId) REFERENCES Attaque (AttaqueId);
-ALTER TABLE Appliques ADD CONSTRAINT ModifyerId FOREIGN KEY (ModifyerId) REFERENCES Modifyer (ModifyerId);
+
+#Ajout des Foreign keys
+ALTER TABLE Possede ADD CONSTRAINT AttaqueId FOREIGN KEY (AttaqueId) REFERENCES Attaque (AttaqueId);
+ALTER TABLE Possede ADD CONSTRAINT PersonnageId FOREIGN KEY (PersonnageId) REFERENCES Personnage (PersonnageId);
 ALTER TABLE EstDeNiv ADD CONSTRAINT PersonnageId FOREIGN KEY (PersonnageId) REFERENCES Personnage (PersonnageId);
 ALTER TABLE EstDeNiv ADD CONSTRAINT UserItemId FOREIGN KEY (UserItemId) REFERENCES UserItem (UserItemId);
 ALTER TABLE Appartiens ADD CONSTRAINT UserId FOREIGN KEY (UserId) REFERENCES User (UserId);
 ALTER TABLE Appartiens ADD CONSTRAINT ItemId FOREIGN KEY (ItemId) REFERENCES UserItem (UserItemId);
+ALTER TABLE Attaque ADD CONSTRAINT ModifyersId FOREIGN KEY (ModifyersId) REFERENCES modifyer (modifyerId);
+
+#remplissage
+
+#Personnages
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Daniellou', 'Mastu.png', 'Attaquant', '1', '100', '50');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Charles_Leclerc', 'Charles_Leclerc.jpg', 'Support', '2', '250', '40');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Amixem', 'Amixem.png', 'Healer', '3', '500', '30');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Teddy Rinner', 'Teddy_riner.jpg', 'Tank', '4', '1000', '20');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Supper Konar', 'Super_konar.jpg', 'Attaquant', '5', '2500', '10');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Michou', 'Michou.png', 'Attaquant', '1', '100', '50');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Obelgix', 'Obelgix.png', 'Tank', '2', '250', '40');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Pikachou', 'Pikachou.png', 'Healer', '3', '500', '30');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Les Lebruns', 'Freres_Lebruns.jpg', 'Support', '4', '1000', '20');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('MrBeast', 'MrBeast.png', 'Healer', '5', '2500', '10');
+
+
+#Modifyers
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Exposition', 'l\'ennemi prendra plus de dégats', '1');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Stun', 'L\'ennemi ne pourra pas attaquer', '2');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Weakness', 'L\'ennemi aura plus de facilité à subir des malus', '1');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Slowed', 'L\'ennemi attaquera moins fort', '2');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Debuff', 'L\'ennemi perd toute ses modifiyers', '2');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Entrave', 'Ne pourra pas utiliser ses capacités spéciales', '1');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Incontournable', 'L\'ennemu ne pourra pas esquiver la prochaine attaque', '1');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Tanking', 'Les adversaires attaqueront le personnage avec l\'effet actif', '3');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Heal', 'A la fin du tour du personnage, celui-ci se soignes (15% des Pv actuels)', '0');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Shield', 'Les personnages gagneront un bouclier (-30% de dégats)', '2');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Invisibilité', 'Les personnages sont invisibles (sauf si tanking actif)', '1');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Anti Debuff', 'les personnages auront une résistance aux malus', '2');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Contre Attaque', 'Les personnages pourront contre-attaquer s\'il n\'ont pas esquivé l\'attaque', '1');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Invincible', 'Ne subis ni dégats, ni malus', '1');
+INSERT INTO `solune`.`modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Rien', 'N\'appliques aucun dégats', '0');
+
+#Attaques
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('10', '1', '1', 'infliges exposition', 't\'es gros naze');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('15', '2', '11', 'Confère Invisibilité', 'Cape du bataillon d\'exploration');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('20', '3', '13', 'Confère Contre Attaque', 'Crazy Town');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('20', '1', '12', 'Se soignes et confère anti debuff à un alié de son choix', 'BoxBox');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('120', '2', '2', 'Se stun lui même', 'I am stupid');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('40', '3', '12', 'Attaque un ennemi et dissipes ses effets négatifs', 'Siège plein d\'eau');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('30', '1', '9', 'Se soignes', 'Clap Bonjour');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('45', '2', '14', 'Confère invincibilité à tous', 'Red Box');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('60', '3', '1', 'Infliges exposition à l\'énnemi', '1000 couches de béton');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('40', '1', '6', 'Attaque un ennemi et confères entrave à l\'adversaire', 'Prise de judo');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('60', '2', '2', 'Stun l\'enemi attaqué', 'Finale des J.O');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('80', '3', '8', 'Attaque un ennemi et se confère Tanking', 'Uchi mata');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('50', '1', '12', 'Attaque l\'ennemi et confère anti-buff à l\'adversaire', 'kikikikikiki');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('75', '2', '4', 'Attaque l\'ennemi et confère Slowed à l\'adversaire', 'Ein Grenade');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('100', '3', '6', 'Attaque l\'ennemi et confère Entrave à l\'adversaire', 'Le st coquelicot');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('10', '1', '8', 'Attaque l\'ennemi et confère Tanking à l\'ennemi', 'Tripple edit fortnite');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('15', '2', '6', 'Attaque l\'ennemi et confère Entrave à l\'ennemi', 'Frappe de swiss ball');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('20', '3', '11', 'Attaque l\'ennemi et confère Invisibilité à un alié au choix', 'Team Crouton');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('20', '1', '2', 'Attaque l\'ennemi et confère Stun à l\'ennemi', 'Photo fans');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('30', '2', '8', 'Attaque l\'ennmei et confère Tanking à sois même', 'La remountada');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('40', '3', '14', 'Attaque l\'ennemi et confère Invincibilité à sois même', 'Bierre');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('30', '1', '5', 'Attaque l\'ennemi et confère Debuff à l\'ennemi', 'Voltage eclatant');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('45', '2', '15', 'Attaque l\'ennemi et lui vole sa vie pour la donner à un allié au choix', 'Defibrilateur');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('60', '3', '13', 'Attaque l\'ennemi et confère Contre Attaque à un allié au choix', 'Pika Pika');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('40', '1', '7', 'Attaque l\'ennemi et confère Incontournable', 'Double smatch');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('60', '2', '8', 'Attaque l\'ennemi et confère Tanking à un ennemi aléatoire', 'Vendange fort boyard');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('80', '3', '15', 'Attaque toute la team adverse', 'Prise porte plume');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('50', '1', '3', 'Attaque l\'ennemi et confère Weakness', 'Hitman engagé');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('75', '2', '9', 'Attaque l\'ennemi et confère Heal à un allié au choix', 'Remède à 1.000.000$');
+INSERT INTO `solune`.`attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('100', '3', '6', 'Attaque l\'ennemi et confère Entrave à toute la team adverse', 'Red Light');
+
+
+#possede
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('12', '11');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('13', '11');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('14', '11');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('15', '12');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('16', '12');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('17', '12');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('18', '13');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('19', '13');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('20', '13');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('21', '14');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('22', '14');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('23', '14');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('24', '15');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('25', '15');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('26', '15');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('27', '16');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('28', '16');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('29', '16');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('30', '17');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('31', '17');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('32', '17');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('33', '18');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('34', '18');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('35', '18');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('36', '19');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('37', '19');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('38', '19');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('39', '20');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('40', '20');
+INSERT INTO `solune`.`possede` (`AttaqueId`, `PersonnageId`) VALUES ('41', '20');

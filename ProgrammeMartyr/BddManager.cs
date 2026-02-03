@@ -41,7 +41,7 @@ namespace ProgrammeMartyr
             {
                 try
                 {
-                    connexionString = "server=192.168.0.96;database=astronautic;port=3306;UserId=root;password=root";
+                    connexionString = "server=192.168.0.96;database=solune;port=3306;UserId=root;password=root";
                     BddSolune = true;
                 }
                 catch (Exception ex)
@@ -66,17 +66,17 @@ namespace ProgrammeMartyr
             return connexionString;
         }
 
-        public string DownloadCharacters()
+        public DataSet DownloadCharacters()
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = "SELECT * FROM characters";
+            string query = "SELECT * FROM personnage";
             DataSet Persos = new DataSet();
 
             try
             {
                 connexion.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
-                da.Fill(Persos, "characters");
+                da.Fill(Persos, "personnage");
                 connexion.Close();
             }
             catch (Exception ex)
@@ -84,8 +84,9 @@ namespace ProgrammeMartyr
                 MessageBox.Show(ex.Message);
                 throw;
             }
-            MessageBox.Show(Persos.Tables["characters"].Rows[0]["Nom"].ToString());
-            return Persos.Tables["characters"].Rows.Count.ToString();
+            MessageBox.Show(Persos.Tables["personnage"].Rows[0]["PersonnageNom"].ToString());
+            MessageBox.Show(Persos.Tables["personnage"].Rows.Count.ToString());
+            return Persos;
         }
     }
 
