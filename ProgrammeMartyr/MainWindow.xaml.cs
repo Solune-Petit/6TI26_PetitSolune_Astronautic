@@ -31,6 +31,8 @@ namespace ProgrammeMartyr
 
             InitializeComponent();
 
+            grdMain.Background = new SolidColorBrush(Colors.Black);
+
             //connexion aux fichiers
             Fonctions func = new Fonctions();                   //Fichier des différentes fonctions du code
             BddManager bdd = new BddManager();                  //Fichier de connexion/manipulation de la base de donnée
@@ -44,6 +46,8 @@ namespace ProgrammeMartyr
                 perso = new Personnage(listePersos.Tables["personnage"].Rows[i]["PersonnageNom"].ToString(), listePersos.Tables["personnage"].Rows[i]["PersonnageType"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageRarete"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageLvlMax"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnagePvMax"].ToString()), listePersos.Tables["personnage"].Rows[i]["PersonnageImg"].ToString());
                 GList.ListePerso.Add(perso);
             }
+
+            func.OuvrirFenetreMenu(grdMain);
         }
     }
 }

@@ -46,9 +46,6 @@
     <Resource Include="images\personnages\Obelgix.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\personnages\Pikachu.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="images\personnages\Super_konar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
