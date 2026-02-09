@@ -84,8 +84,6 @@ namespace ProgrammeMartyr
                 MessageBox.Show(ex.Message);
                 throw;
             }
-            MessageBox.Show(Persos.Tables["personnage"].Rows[0]["PersonnageNom"].ToString());
-            MessageBox.Show(Persos.Tables["personnage"].Rows.Count.ToString());
             return Persos;
         }
     }

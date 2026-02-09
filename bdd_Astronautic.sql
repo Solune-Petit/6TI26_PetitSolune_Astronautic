@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS Personnage ;
 CREATE TABLE Personnage (PersonnageId INT AUTO_INCREMENT NOT NULL,
 PersonnageNom VARCHAR(25),
 PersonnageImg VARCHAR(25),
-Type VARCHAR(25),
+PersonnageType VARCHAR(25),
 PersonnageRarete INT(5),
 PersonnagePvMax INT,
 PersonnageLvlMax INT(50),

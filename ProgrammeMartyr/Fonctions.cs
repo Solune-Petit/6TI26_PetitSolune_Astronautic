@@ -15,7 +15,7 @@ namespace ProgrammeMartyr
         //}
 
         //appeler la fenêtre qui affiches les détails des personnages
-        public void OuvrirFenetreDetails(Grid grdMain, Personnage[] persos)
+        public void OuvrirFenetreDetails(Grid grdMain, List<Personnage> persos)
         {
             grdMain.Children.Clear();
             grdMain.RowDefinitions.Clear();

@@ -35,13 +35,15 @@ namespace ProgrammeMartyr
             Fonctions func = new Fonctions();                   //Fichier des différentes fonctions du code
             BddManager bdd = new BddManager();                  //Fichier de connexion/manipulation de la base de donnée
             DataSet listePersos =  bdd.DownloadCharacters();    //variable qui contient les personnages
+            ListeGenerale GList = new ListeGenerale();          //Fichier de stockage de toutes les listes (personnages, attaques, etc)
+            Personnage perso;                                   //Fichier de stockage d'un personnage
 
             //stoquage des personnages
-            for (int i = 0; i <= int.Parse(listePersos.Tables["personnage"].Rows.Count.ToString()); i++)
+            for (int i = 0; i < int.Parse(listePersos.Tables["personnage"].Rows.Count.ToString()); i++)
             {
-                Personnage perso = new Personnage(listePersos.Tables["personnage"].Rows[i]["PersonnageNom"].ToString(), listePersos.Tables["personnage"].Rows[i]["PersonnageType"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageRarete"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageLvlMax"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnagePvMax"].ToString()), listePersos.Tables["personnage"].Rows[i]["PersonnageImg"].ToString());
+                perso = new Personnage(listePersos.Tables["personnage"].Rows[i]["PersonnageNom"].ToString(), listePersos.Tables["personnage"].Rows[i]["PersonnageType"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageRarete"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageLvlMax"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnagePvMax"].ToString()), listePersos.Tables["personnage"].Rows[i]["PersonnageImg"].ToString());
+                GList.ListePerso.Add(perso);
             }
-            
         }
     }
 }
