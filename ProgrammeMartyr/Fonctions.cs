@@ -65,7 +65,7 @@ namespace ProgrammeMartyr
         /// la fenêtre de dev, la fenêtre de log-in et la fenêtre de création de compte
         /// </summary>
         /// <param name="grdMain"></param>
-        public void OuvrirFenetreMenu(Grid grdMain)
+        public void OuvrirFenetreMenu(Grid grdMain, ListeGenerale listeG)
         {
             grdMain.Children.Clear();
             grdMain.RowDefinitions.Clear();
@@ -93,10 +93,11 @@ namespace ProgrammeMartyr
             btnDev.BorderThickness = new System.Windows.Thickness(3);
             btnDev.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             btnDev.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain);
+            btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
             Grid.SetColumn(btnDev, 0);
             Grid.SetRow(btnDev, 0);
             grdMain.Children.Add(btnDev);
+            btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
 
             //bouton pour accéder à la page de log-in
             Button btnLogin = new Button();
@@ -137,9 +138,79 @@ namespace ProgrammeMartyr
         /// C'est une fenêtre qui est en cours de développement et qui n'est pas encore terminée. Elle n'est pas destinée à être utilisée par les utilisateurs finaux
         /// </summary>
         /// <param name="grdMain"></param>
-        public void OuvrirFenetreDev(Grid grdMain)
+        public void OuvrirFenetreDev(Grid grdMain, ListeGenerale listeG)
         {
+            grdMain.Children.Clear();
+            grdMain.RowDefinitions.Clear();
+            grdMain.ColumnDefinitions.Clear();
 
+            //deffinition des colonnes et lighes en 5X5
+            ColumnDefinition[] colDef = new ColumnDefinition[5];
+            for (int i = 0; i < 5; i++)
+            {
+                colDef[i] = new ColumnDefinition();
+                colDef[i].Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star);
+                grdMain.ColumnDefinitions.Add(colDef[i]);
+            }
+            RowDefinition[] rowDef = new RowDefinition[5];
+            for (int i = 0; i < 5; i++)
+            {
+                rowDef[i] = new RowDefinition();
+                rowDef[i].Height = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star);
+                grdMain.RowDefinitions.Add(rowDef[i]);
+            }
+
+            //ajout d'un bouton pour revenir au menu
+            Button btnMenu = new Button();
+            btnMenu.Content = "Retour au menu";
+            btnMenu.Foreground = new SolidColorBrush(Colors.White);
+            btnMenu.Background = new SolidColorBrush(Colors.Gray);
+            btnMenu.Height = 50;
+            btnMenu.Width = 200;
+            btnMenu.FontSize = 16;
+            btnMenu.FontWeight = System.Windows.FontWeights.Bold;
+            btnMenu.BorderThickness = new System.Windows.Thickness(3);
+            btnMenu.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnMenu.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnMenu, 0);
+            Grid.SetRow(btnMenu, 0);
+            grdMain.Children.Add(btnMenu);
+            btnMenu.Click += (s, e) => OuvrirFenetreMenu(grdMain, listeG);
+
+
+            //ajout d'une combo box pour selectionner un personnage et afficher ses informations
+            ComboBox cbPersonnages = new ComboBox();
+            for (int i = 0; i < listeG.ListePerso.Count; i++)
+            {
+                cbPersonnages.Items.Add(listeG.ListePerso[i].Nom);
+            }
+            cbPersonnages.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
+            cbPersonnages.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
+            cbPersonnages.Width = 200;
+            cbPersonnages.Height = 30;
+            cbPersonnages.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            cbPersonnages.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(cbPersonnages, 1);
+            Grid.SetRow(cbPersonnages, 0);
+            grdMain.Children.Add(cbPersonnages);
+
+            cbPersonnages.SelectionChanged += (s, e) =>
+            {
+                StackPanel card = null;
+                grdMain.Children.Remove(card);
+                int index = cbPersonnages.SelectedIndex;
+                if (index >= 0)
+                {
+                    Personnage perso = listeG.ListePerso[index];
+                    card = perso.GenInfoCardDesign();
+                    card.Background = new SolidColorBrush(Colors.LightGray);
+                    // centrer la carte dans la cellule
+                    Grid.SetColumn(card, 1);
+                    Grid.SetRow(card, 1);
+                    Grid.SetRowSpan(card, 2);
+                    grdMain.Children.Add(card);
+                }
+            };
         }
     }
 }
