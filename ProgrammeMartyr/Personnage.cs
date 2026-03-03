@@ -91,7 +91,7 @@ namespace ProgrammeMartyr
             ppPerso.Height = 100;
             cardPanel.Children.Add(ppPerso);
 
-            //ajouter le nom au centre de la carte
+            //ajouter le nom
             TextBlock txtNom = new TextBlock();
             txtNom.Text = _nom;
             txtNom.FontSize = 16;

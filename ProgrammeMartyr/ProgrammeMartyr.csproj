@@ -15,6 +15,7 @@
     <None Remove="images\personnages\Michou.jpg" />
     <None Remove="images\personnages\MrBeast.jpg" />
     <None Remove="images\personnages\Obelgix.jpg" />
+    <None Remove="images\personnages\Pikachou.jpg" />
     <None Remove="images\personnages\Pikachu.jpg" />
     <None Remove="images\personnages\Super_konar.jpg" />
     <None Remove="images\personnages\Teddy_riner.jpg" />
@@ -46,7 +47,7 @@
     <Resource Include="images\personnages\Obelgix.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\personnages\Pikachu.jpg">
+    <Resource Include="images\personnages\Pikachou.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\personnages\Super_konar.jpg">
