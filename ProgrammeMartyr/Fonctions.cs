@@ -10,6 +10,35 @@ namespace ProgrammeMartyr
 {
     internal class Fonctions
     {
+        /// <summary>
+        /// Cette fonction permet de nettoyer un grid en supprimant tous les éléments qu'il contient et en redéfinissant
+        /// le nombre de lignes et de colonnes du grid.
+        /// </summary>
+        /// <param name="grdMain"></param>
+        /// <param name="nbLignes"></param>
+        /// <param name="nbCollones"></param>
+        public void NettoyerGrid(Grid grdMain, int nbLignes, int nbCollones)
+        {
+            grdMain.Children.Clear();
+            grdMain.RowDefinitions.Clear();
+            grdMain.ColumnDefinitions.Clear();
+
+            //definition des colonnes
+            ColumnDefinition[] colDef = new ColumnDefinition[nbCollones];
+            for (int i = 0; i < nbCollones; i++)
+            {
+                colDef[i] = new ColumnDefinition();
+                grdMain.ColumnDefinitions.Add(colDef[i]);
+            }
+
+            //definition des lignes
+            RowDefinition[] rowDef = new RowDefinition[nbLignes];
+            for (int i = 0; i < nbLignes; i++)
+            {
+                rowDef[i] = new RowDefinition();
+                grdMain.RowDefinitions.Add(rowDef[i]);
+            }
+        }
 
         /// <summary>
         /// Cette fonction permet d'ouvrir la fenêtre de détails d'un personnage, qui affiche les informations du personnage sous forme de cartes.
@@ -18,26 +47,7 @@ namespace ProgrammeMartyr
         /// <param name="persos">La liste des personnages à afficher dans la fenêtre de détails</param>
         public void OuvrirFenetreDetails(Grid grdMain, List<Personnage> persos)
         {
-            grdMain.Children.Clear();
-            grdMain.RowDefinitions.Clear();
-            grdMain.ColumnDefinitions.Clear();
-
-
-            //definition des colonnes
-            ColumnDefinition[] colDef = new ColumnDefinition[10];
-            for (int i = 0; i < 4; i++)
-            {
-                colDef[i] = new ColumnDefinition();
-                grdMain.ColumnDefinitions.Add(colDef[i]);
-            }
-
-            //definition des lignes
-            RowDefinition[] rowDef = new RowDefinition[10];
-            for (int i = 0; i < 4; i++)
-            {
-                rowDef[i] = new RowDefinition();
-                grdMain.RowDefinitions.Add(rowDef[i]);
-            }
+            NettoyerGrid(grdMain, 10, 10);
 
             //ajout des cartes de personnages
             int temp = 0;
@@ -67,19 +77,7 @@ namespace ProgrammeMartyr
         /// <param name="grdMain"></param>
         public void OuvrirFenetreMenu(Grid grdMain, ListeGenerale listeG)
         {
-            grdMain.Children.Clear();
-            grdMain.RowDefinitions.Clear();
-            grdMain.ColumnDefinitions.Clear();
-            //definition des colonnes
-            ColumnDefinition[] colDef = new ColumnDefinition[3];
-            for (int i = 0; i < 3; i++)
-            {
-                colDef[i] = new ColumnDefinition();
-                grdMain.ColumnDefinitions.Add(colDef[i]);
-            }
-            //definition des lignes
-            RowDefinition rowDef = new RowDefinition();
-            grdMain.RowDefinitions.Add(rowDef);
+            NettoyerGrid(grdMain, 1, 3);
 
             //bouton pour accéder au mode DEV
             Button btnDev = new Button();
@@ -138,27 +136,10 @@ namespace ProgrammeMartyr
         /// C'est une fenêtre qui est en cours de développement et qui n'est pas encore terminée. Elle n'est pas destinée à être utilisée par les utilisateurs finaux
         /// </summary>
         /// <param name="grdMain"></param>
+        /// <param name="listeG"></param>
         public void OuvrirFenetreDev(Grid grdMain, ListeGenerale listeG)
         {
-            grdMain.Children.Clear();
-            grdMain.RowDefinitions.Clear();
-            grdMain.ColumnDefinitions.Clear();
-
-            //deffinition des colonnes et lighes en 5X5
-            ColumnDefinition[] colDef = new ColumnDefinition[5];
-            for (int i = 0; i < 5; i++)
-            {
-                colDef[i] = new ColumnDefinition();
-                colDef[i].Width = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star);
-                grdMain.ColumnDefinitions.Add(colDef[i]);
-            }
-            RowDefinition[] rowDef = new RowDefinition[5];
-            for (int i = 0; i < 5; i++)
-            {
-                rowDef[i] = new RowDefinition();
-                rowDef[i].Height = new System.Windows.GridLength(1, System.Windows.GridUnitType.Star);
-                grdMain.RowDefinitions.Add(rowDef[i]);
-            }
+            NettoyerGrid(grdMain, 5, 5);
 
             //ajout d'un bouton pour revenir au menu
             Button btnMenu = new Button();
@@ -211,6 +192,22 @@ namespace ProgrammeMartyr
                     grdMain.Children.Add(card);
                 }
             };
+
+            ///ajouter les autres choses voulues sur le menu dev en dessous
+        }
+
+        ///<summary>
+        ///Cette fonction permet d'ouvrir la fenêtre de log-in qui permet aux utilisateurs de se connecter à leur 
+        ///compte pour accéder à leurs personnages, leurs parties, etc.
+        ///</summary>
+        ///<param name="grdMain"></param>
+        public void OuvrirFenetreLogin(Grid grdMain)
+        {
+            NettoyerGrid(grdMain, 5, 1);
+
+            //ajout des éléments de la fenêtre de log-in en dessous
+
+
         }
     }
 }

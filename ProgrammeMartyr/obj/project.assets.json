@@ -594,23 +594,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\210225\\.nuget\\packages\\": {},
+    "C:\\Users\\PetitSolune\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\210225\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
+      "projectUniqueName": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
       "projectName": "ProgrammeMartyr",
-      "projectPath": "C:\\Users\\210225\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
-      "packagesPath": "C:\\Users\\210225\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\210225\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\obj\\",
+      "projectPath": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
+      "packagesPath": "C:\\Users\\PetitSolune\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\210225\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PetitSolune\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
