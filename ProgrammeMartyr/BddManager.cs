@@ -149,34 +149,32 @@ namespace ProgrammeMartyr
             try
             {
                 connexion.Open();
-                MySqlCommand da = new MySqlCommand(query, connexion);
-                da.ExecuteNonQuery();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
 
                 DataSet user = ConnectUser(mail, password);
-                DataSet inventaire;
+                DataSet inventaire = null;
 
                 query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserId) VALUES (0, 0, 0, {user.Tables[0].Rows[0]["UserID"]})";
                 try
                 {
-                    da = new MySqlCommand(query, connexion);
-                    da.ExecuteNonQuery();
+                    cmd = new MySqlCommand(query, connexion);
+                    cmd.ExecuteNonQuery();
 
 
                     try
                     {
 
-                        ///////changer le DA pour avoir un select pour les items du user
                         query = $"SELECT * FROM useritem WHERE UserId = {user.Tables[0].Rows[0]["UserId"]}";
-                        da = new MySqlCommand(query, connexion);
-                        );
-
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                        da.Fill(inventaire, "inventaire");
 
                         try
                         {
                             query = $"INSERT INTO appartiens (ItemId, UserId) VALUES ({user.Tables[0].Rows[0]["UserId"]})";
-                            da = new MySqlCommand(query, connexion);
-                            da.ExecuteNonQuery();
-
+                            cmd = new MySqlCommand(query, connexion);
+                            cmd.ExecuteNonQuery();
+                            connexion.Close();
                             
                         }
                         catch (Exception ex)

@@ -73,16 +73,16 @@ ALTER TABLE Attaque ADD CONSTRAINT ModifyersId FOREIGN KEY (ModifyersId) REFEREN
 #remplissage
 
 #Personnages
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Daniellou', 'Mastu.jpg', 'Attaquant', '1', '100', '50');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Charles_Leclerc', 'Charles_Leclerc.jpg', 'Support', '2', '250', '40');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Amixem', 'Amixem.jpg', 'Healer', '3', '500', '30');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Teddy Rinner', 'Teddy_riner.jpg', 'Tank', '4', '1000', '20');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Supper Konar', 'Super_konar.jpg', 'Attaquant', '5', '2500', '10');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Michou', 'Michou.jpg', 'Attaquant', '1', '100', '50');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Obelgix', 'Obelgix.jpg', 'Tank', '2', '250', '40');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Pikachou', 'Pikachou.jpg', 'Healer', '3', '500', '30');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Les Lebruns', 'Freres_Lebruns.jpg', 'Support', '4', '1000', '20');
-INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `Type`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('MrBeast', 'MrBeast.jpg', 'Healer', '5', '2500', '10');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Daniellou', 'Mastu.jpg', 'Attaquant', '1', '100', '50');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Charles_Leclerc', 'Charles_Leclerc.jpg', 'Support', '2', '250', '40');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Amixem', 'Amixem.jpg', 'Healer', '3', '500', '30');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Teddy Rinner', 'Teddy_riner.jpg', 'Tank', '4', '1000', '20');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Supper Konar', 'Super_konar.jpg', 'Attaquant', '5', '2500', '10');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Michou', 'Michou.jpg', 'Attaquant', '1', '100', '50');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Obelgix', 'Obelgix.jpg', 'Tank', '2', '250', '40');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Pikachou', 'Pikachou.jpg', 'Healer', '3', '500', '30');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('Les Lebruns', 'Freres_Lebruns.jpg', 'Support', '4', '1000', '20');
+INSERT INTO `solune`.`personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `PersonnageRarete`, `PersonnagePvMax`, `PersonnageLvlMax`) VALUES ('MrBeast', 'MrBeast.jpg', 'Healer', '5', '2500', '10');
 
 
 #Modifyers
