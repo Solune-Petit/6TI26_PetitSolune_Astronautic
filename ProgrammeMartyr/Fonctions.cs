@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -35,7 +36,6 @@ namespace ProgrammeMartyr
             Grid.SetColumn(btnDev, 0);
             Grid.SetRow(btnDev, 0);
             grdMain.Children.Add(btnDev);
-            btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
 
             //bouton pour accéder à la page de log-in
             Button btnLogin = new Button();
@@ -69,8 +69,9 @@ namespace ProgrammeMartyr
             Grid.SetColumn(btnCreate, 2);
             Grid.SetRow(btnCreate, 0);
             grdMain.Children.Add(btnCreate);
+            btnCreate.Click += (s, e) => OuvrirFenetreCreateAccount(grdMain);
         }
-        
+
         /// <summary>
         /// Cette fonction permet de nettoyer un grid en supprimant tous les éléments qu'il contient et en redéfinissant
         /// le nombre de lignes et de colonnes du grid.
@@ -204,31 +205,190 @@ namespace ProgrammeMartyr
         ///<param name="grdMain"></param>
         public void OuvrirFenetreLogin(Grid grdMain)
         {
-            NettoyerGrid(grdMain, 1, 1);
+            NettoyerGrid(grdMain, 4, 3);
 
-            //ajout des éléments de la fenêtre de log-in en dessous
-            StackPanel loginPanel = new StackPanel();
-            loginPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            loginPanel.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            loginPanel.Height = 400;
-            loginPanel.Width = 200;
-            loginPanel.Background = new SolidColorBrush(Colors.LightGray);
-            grdMain.Children.Add(loginPanel);
+            Button btnRetour = new Button();
+            btnRetour.Content = "Retour au menu";
+            btnRetour.Foreground = new SolidColorBrush(Colors.White);
+            btnRetour.Background = new SolidColorBrush(Colors.Gray);
+            btnRetour.Height = 50;
+            btnRetour.Width = 200;
+            btnRetour.FontSize = 16;
+            btnRetour.FontWeight = System.Windows.FontWeights.Bold;
+            btnRetour.BorderThickness = new System.Windows.Thickness(3);
+            btnRetour.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnRetour.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnRetour, 0);
+            Grid.SetRow(btnRetour, 0);
+            grdMain.Children.Add(btnRetour);
+            btnRetour.Click += (s, e) => OuvrirFenetreMenu(grdMain, new ListeGenerale());
 
+            TextBlock tblMail = new TextBlock();
+            tblMail.Text = "Adresse mail :";
+            tblMail.FontSize = 16;
+            tblMail.FontWeight = System.Windows.FontWeights.Bold;
+            tblMail.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblMail.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblMail, 0);
+            Grid.SetRow(tblMail, 1);
+            grdMain.Children.Add(tblMail);
 
             TextBox txtMail = new TextBox();
-            txtMail.Width = 100;
-            txtMail.Height = 30;
-            txtMail.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            txtMail.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            loginPanel.Children.Add(txtMail);
+            txtMail.Width = 300;
+            txtMail.Height = 20;
+            Grid.SetColumn(txtMail, 1);
+            Grid.SetRow(txtMail, 1);
+            grdMain.Children.Add(txtMail);
+
+            TextBlock tblPassword = new TextBlock();
+            tblPassword.Text = "Mot de passe :";
+            tblPassword.FontSize = 16;
+            tblPassword.FontWeight = System.Windows.FontWeights.Bold;
+            tblPassword.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblPassword.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblPassword, 0);
+            Grid.SetRow(tblPassword, 2);
+            grdMain.Children.Add(tblPassword);
 
             TextBox txtPassword = new TextBox();
-            txtPassword.Width = 100;
-            txtPassword.Height = 30;
-            txtPassword.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            txtPassword.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            loginPanel.Children.Add(txtPassword);
+            txtPassword.Width = 300;
+            txtPassword.Height = 20;
+            Grid.SetColumn(txtPassword, 1);
+            Grid.SetRow(txtPassword, 2);
+            grdMain.Children.Add(txtPassword);
+
+            Button btnSubmit = new Button();
+            btnSubmit.Content = "Se connecter";
+            btnSubmit.Foreground = new SolidColorBrush(Colors.White);
+            btnSubmit.Background = new SolidColorBrush(Colors.Red);
+            btnSubmit.Height = 30;
+            btnSubmit.Width = 150;
+            btnSubmit.FontSize = 16;
+            btnSubmit.FontWeight = System.Windows.FontWeights.Bold;
+            btnSubmit.BorderThickness = new System.Windows.Thickness(3);
+            btnSubmit.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnSubmit.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnSubmit, 1);
+            Grid.SetRow(btnSubmit, 3);
+            grdMain.Children.Add(btnSubmit);
+            btnSubmit.Click += (s, e) =>
+            {
+                string mail = txtMail.Text;
+                string password = txtPassword.Text;
+                BddManager bdd = new BddManager();
+                bdd.ConnectUser(mail, password);
+                //if (success)
+                //{
+                //    MessageBox.Show("Connexion réussie !");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Adresse mail ou mot de passe incorrect.");
+                //}
+            };
+        }
+
+        public void OuvrirFenetreCreateAccount(Grid grdMain)
+        {
+            NettoyerGrid(grdMain, 5, 3);
+
+            Button btnRetour = new Button();
+            btnRetour.Content = "Retour au menu";
+            btnRetour.Foreground = new SolidColorBrush(Colors.White);
+            btnRetour.Background = new SolidColorBrush(Colors.Gray);
+            btnRetour.Height = 50;
+            btnRetour.Width = 200;
+            btnRetour.FontSize = 16;
+            btnRetour.FontWeight = System.Windows.FontWeights.Bold;
+            btnRetour.BorderThickness = new System.Windows.Thickness(3);
+            btnRetour.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnRetour.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnRetour, 0);
+            Grid.SetRow(btnRetour, 0);
+            grdMain.Children.Add(btnRetour);
+            btnRetour.Click += (s, e) => OuvrirFenetreMenu(grdMain, new ListeGenerale());
+
+            TextBlock tblMail = new TextBlock();
+            tblMail.Text = "Adresse mail :";
+            tblMail.FontSize = 16;
+            tblMail.FontWeight = System.Windows.FontWeights.Bold;
+            tblMail.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblMail.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblMail, 0);
+            Grid.SetRow(tblMail, 1);
+            grdMain.Children.Add(tblMail);
+
+            TextBox txtMail = new TextBox();
+            txtMail.Width = 300;
+            txtMail.Height = 20;
+            Grid.SetColumn(txtMail, 1);
+            Grid.SetRow(txtMail, 1);
+            grdMain.Children.Add(txtMail);
+
+            TextBlock tblPassword = new TextBlock();
+            tblPassword.Text = "Mot de passe :";
+            tblPassword.FontSize = 16;
+            tblPassword.FontWeight = System.Windows.FontWeights.Bold;
+            tblPassword.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblPassword.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblPassword, 0);
+            Grid.SetRow(tblPassword, 2);
+            grdMain.Children.Add(tblPassword);
+
+            TextBox txtPassword = new TextBox();
+            txtPassword.Width = 300;
+            txtPassword.Height = 20;
+            Grid.SetColumn(txtPassword, 1);
+            Grid.SetRow(txtPassword, 2);
+            grdMain.Children.Add(txtPassword);
+
+            TextBox txtNom = new TextBox();
+            txtNom.Width = 300;
+            txtNom.Height = 20;
+            Grid.SetColumn(txtNom, 1);
+            Grid.SetRow(txtNom, 3);
+            grdMain.Children.Add(txtNom);
+
+            TextBlock tblNom = new TextBlock();
+            tblNom.Text = "Nom d'utilisateur :";
+            tblNom.FontSize = 16;
+            tblNom.FontWeight = System.Windows.FontWeights.Bold;
+            tblNom.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblNom.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblNom, 0);
+            Grid.SetRow(tblNom, 3);
+            grdMain.Children.Add(tblNom);
+
+            Button btnSubmit = new Button();
+            btnSubmit.Content = "Créer un compte";
+            btnSubmit.Foreground = new SolidColorBrush(Colors.White);
+            btnSubmit.Background = new SolidColorBrush(Colors.Red);
+            btnSubmit.Height = 30;
+            btnSubmit.Width = 150;
+            btnSubmit.FontSize = 16;
+            btnSubmit.FontWeight = System.Windows.FontWeights.Bold;
+            btnSubmit.BorderThickness = new System.Windows.Thickness(3);
+            btnSubmit.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnSubmit.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnSubmit, 1);
+            Grid.SetRow(btnSubmit, 4);
+            grdMain.Children.Add(btnSubmit);
+            btnSubmit.Click += (s, e) =>
+            {
+                string mail = txtMail.Text;
+                string password = txtPassword.Text;
+                string name = txtNom.Text;
+                BddManager bdd = new BddManager();
+                bool success = bdd.CreateUser(mail, password, name);
+                if (success)
+                {
+                    MessageBox.Show("Connexion réussie !");
+                }
+                else
+                {
+                    MessageBox.Show("Adresse mail ou mot de passe incorrect.");
+                }
+            };
         }
     }
 }
