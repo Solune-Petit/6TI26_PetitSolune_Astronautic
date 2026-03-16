@@ -1,14 +1,15 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Mysqlx.Connection;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using MySql.Data.MySqlClient;
-using System.Diagnostics;
-using ZstdSharp.Unsafe;
-using Mysqlx.Connection;
 using System.Windows;
+using ZstdSharp.Unsafe;
 
 namespace ProgrammeMartyr
 {
@@ -95,10 +96,10 @@ namespace ProgrammeMartyr
             return Persos;
         }
 
-        public DataSet ConnectUser(string mail, string mdp)
+        public bool UserExist(string mail)
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = $"SELECT * FROM user WHERE UserMail = '{mail}' AND UserPassword = '{mdp}'";
+            string query = $"SELECT * FROM user WHERE UserMail = '{mail}'";
             DataSet userData = new DataSet();
             try
             {
@@ -106,13 +107,13 @@ namespace ProgrammeMartyr
                 MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
                 da.Fill(userData, "user");
                 connexion.Close();
+                return userData.Tables[0].Rows.Count > 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw;
             }
-            return userData;
         }
 
         /// <summary>
@@ -142,8 +143,12 @@ namespace ProgrammeMartyr
             return Inventaire;
         }
 
-        public bool CreateUser(string mail, string password, string username)
+        public bool CreateUser(string mail, string password, string username, out DataSet userData)
         {
+            bool successfullAction;
+            userData = null;
+
+            //Ajout d'un nouvel utilisateur dans la base de donnée
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
             string query = $"INSERT INTO user (UserMail, UserPassword, UserName) VALUES ('{mail}', '{password}', '{username}')";
             try
@@ -151,54 +156,8 @@ namespace ProgrammeMartyr
                 connexion.Open();
                 MySqlCommand cmd = new MySqlCommand(query, connexion);
                 cmd.ExecuteNonQuery();
-
-                DataSet user = ConnectUser(mail, password);
-                DataSet inventaire = null;
-
-                query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserId) VALUES (0, 0, 0, {user.Tables[0].Rows[0]["UserID"]})";
-                try
-                {
-                    cmd = new MySqlCommand(query, connexion);
-                    cmd.ExecuteNonQuery();
-
-
-                    try
-                    {
-
-                        query = $"SELECT * FROM useritem WHERE UserId = {user.Tables[0].Rows[0]["UserId"]}";
-                        MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
-                        da.Fill(inventaire, "inventaire");
-
-                        try
-                        {
-                            query = $"INSERT INTO appartiens (ItemId, UserId) VALUES ({user.Tables[0].Rows[0]["UserId"]})";
-                            cmd = new MySqlCommand(query, connexion);
-                            cmd.ExecuteNonQuery();
-                            connexion.Close();
-                            
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            throw;
-
-                        }
-
-                        connexion.Close();
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        throw;
-                    }
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    throw;
-                }
+                connexion.Close();
+                successfullAction = true;
 
             }
             catch (Exception ex)
@@ -207,6 +166,94 @@ namespace ProgrammeMartyr
                 throw;
 
             }
+
+            //récupération de l'utilisateur nouvellement créé
+            if (successfullAction)
+            {
+                successfullAction = assignUser(mail, password, connexion, out userData);
+
+                //Création des liens entre l'utilisateur et les items de départ
+                if (successfullAction)
+                {
+                    successfullAction = false;
+                    query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserId) VALUES (0, 0, 0, {userData.Tables[0].Rows[0]["UserId"]})";
+
+                    try
+                    {
+                        connexion.Open();
+                        MySqlCommand cmd = new MySqlCommand(query, connexion);
+                        cmd.ExecuteNonQuery();
+                        successfullAction = true;
+                        connexion.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        throw;
+
+                    }
+                }
+
+            }
+            return successfullAction;
+        }
+
+        public bool ConnectUser(string mail, string password)
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = $"SELECT * FROM user WHERE UserMail = '{mail}' AND UserPassword = '{password}'";
+            DataSet userData = new DataSet();
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                da.Fill(userData, "user");
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            if (userData.Tables[0].Rows.Count > 0)
+            {
+                assignUser(mail, password, connexion, out userData);
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Identifiants incorrects. Veuillez réessayer.");
+                return false;
+            }
+        }
+
+        public bool assignUser(string mail, string password, MySqlConnection connexion, out DataSet userData)
+        {
+            bool successfullAction = false;
+
+            string query = $"SELECT * FROM user WHERE UserMail = '{mail}' AND UserPassword = '{password}'";
+
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                userData = new DataSet();
+                da.Fill(userData, "user");
+                connexion.Close();
+                if (userData.Tables[0].Rows.Count > 0)
+                {
+                    successfullAction = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            return successfullAction;
+
         }
     }
 }

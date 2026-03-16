@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -276,18 +277,17 @@ namespace ProgrammeMartyr
                 string mail = txtMail.Text;
                 string password = txtPassword.Text;
                 BddManager bdd = new BddManager();
-                bdd.ConnectUser(mail, password);
-                //if (success)
-                //{
-                //    MessageBox.Show("Connexion réussie !");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Adresse mail ou mot de passe incorrect.");
-                //}
+                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text))
+                {
+                    OuvrirFenetreJeu(grdMain);
+                }
             };
         }
 
+        /// <summary>
+        /// Ouvrir la fenêtre pour créer un compte
+        /// </summary>
+        /// <param name="grdMain"></param>
         public void OuvrirFenetreCreateAccount(Grid grdMain)
         {
             NettoyerGrid(grdMain, 5, 3);
@@ -379,16 +379,25 @@ namespace ProgrammeMartyr
                 string password = txtPassword.Text;
                 string name = txtNom.Text;
                 BddManager bdd = new BddManager();
-                bool success = bdd.CreateUser(mail, password, name);
+                bool success = bdd.CreateUser(mail, password, name, out DataSet userData);
                 if (success)
                 {
-                    MessageBox.Show("Connexion réussie !");
+                    Utilisateur utilisateur = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()));
+
+                    OuvrirFenetreJeu(grdMain);
                 }
                 else
                 {
                     MessageBox.Show("Adresse mail ou mot de passe incorrect.");
                 }
             };
+        }
+
+
+        public void OuvrirFenetreJeu(Grid grdMain)
+        {
+            NettoyerGrid(grdMain, 10, 10);
+            //ajouter les éléments de la fenêtre de jeu ici
         }
     }
 }

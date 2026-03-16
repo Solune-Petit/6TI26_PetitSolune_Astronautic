@@ -53,12 +53,13 @@ namespace ProgrammeMartyr
 			get { return _nom; }
 		}
 
-		public Utilisateur(string nom, string mail, string mdp)
+		public Utilisateur(string nom, string mail, string mdp, int id)
 		{
 			_nom = nom;
 			_mail = mail;
 			_mdp = mdp;
-			_persosPossede = new List<Personnage>();
+			_id = id;
+            _persosPossede = new List<Personnage>();
 			_inventaire = new Inventaire();
         }
 
