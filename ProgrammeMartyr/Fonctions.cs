@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -10,6 +12,67 @@ namespace ProgrammeMartyr
 {
     internal class Fonctions
     {
+        /// <summary>
+        /// Cette fonction permet d'ouvrir la fenêtre de menu qui s'affiche au début du programme et qui permet de choisir entre
+        /// la fenêtre de dev, la fenêtre de log-in et la fenêtre de création de compte
+        /// </summary>
+        /// <param name="grdMain"></param>
+        public void OuvrirFenetreMenu(Grid grdMain, ListeGenerale listeG)
+        {
+            NettoyerGrid(grdMain, 1, 3);
+
+            //bouton pour accéder au mode DEV
+            Button btnDev = new Button();
+            btnDev.Content = "Section Dev";
+            btnDev.Foreground = new SolidColorBrush(Colors.White);
+            btnDev.Background = new SolidColorBrush(Colors.Red);
+            btnDev.Height = 100;
+            btnDev.Width = 300;
+            btnDev.FontSize = 24;
+            btnDev.FontWeight = System.Windows.FontWeights.Bold;
+            btnDev.BorderThickness = new System.Windows.Thickness(3);
+            btnDev.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnDev.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
+            Grid.SetColumn(btnDev, 0);
+            Grid.SetRow(btnDev, 0);
+            grdMain.Children.Add(btnDev);
+
+            //bouton pour accéder à la page de log-in
+            Button btnLogin = new Button();
+            btnLogin.Content = "Log-in";
+            btnLogin.Foreground = new SolidColorBrush(Colors.White);
+            btnLogin.Background = new SolidColorBrush(Colors.Blue);
+            btnLogin.Height = 100;
+            btnLogin.Width = 300;
+            btnLogin.FontSize = 24;
+            btnLogin.FontWeight = System.Windows.FontWeights.Bold;
+            btnLogin.BorderThickness = new System.Windows.Thickness(3);
+            btnLogin.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnLogin.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnLogin, 1);
+            Grid.SetRow(btnLogin, 0);
+            grdMain.Children.Add(btnLogin);
+            btnLogin.Click += (s, e) => OuvrirFenetreLogin(grdMain);
+
+            //bouton pour accéder à la page de création de compte
+            Button btnCreate = new Button();
+            btnCreate.Content = "Créer un compte";
+            btnCreate.Foreground = new SolidColorBrush(Colors.White);
+            btnCreate.Background = new SolidColorBrush(Colors.Green);
+            btnCreate.Height = 100;
+            btnCreate.Width = 300;
+            btnCreate.FontSize = 24;
+            btnCreate.FontWeight = System.Windows.FontWeights.Bold;
+            btnCreate.BorderThickness = new System.Windows.Thickness(3);
+            btnCreate.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnCreate.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnCreate, 2);
+            Grid.SetRow(btnCreate, 0);
+            grdMain.Children.Add(btnCreate);
+            btnCreate.Click += (s, e) => OuvrirFenetreCreateAccount(grdMain);
+        }
+
         /// <summary>
         /// Cette fonction permet de nettoyer un grid en supprimant tous les éléments qu'il contient et en redéfinissant
         /// le nombre de lignes et de colonnes du grid.
@@ -68,66 +131,6 @@ namespace ProgrammeMartyr
                     temp2++;
                 }
             }
-        }
-
-        /// <summary>
-        /// Cette fonction permet d'ouvrir la fenêtre de menu qui s'affiche au début du programme et qui permet de choisir entre
-        /// la fenêtre de dev, la fenêtre de log-in et la fenêtre de création de compte
-        /// </summary>
-        /// <param name="grdMain"></param>
-        public void OuvrirFenetreMenu(Grid grdMain, ListeGenerale listeG)
-        {
-            NettoyerGrid(grdMain, 1, 3);
-
-            //bouton pour accéder au mode DEV
-            Button btnDev = new Button();
-            btnDev.Content = "Section Dev";
-            btnDev.Foreground = new SolidColorBrush(Colors.White);
-            btnDev.Background = new SolidColorBrush(Colors.Red);
-            btnDev.Height = 100;
-            btnDev.Width = 300;
-            btnDev.FontSize = 24;
-            btnDev.FontWeight = System.Windows.FontWeights.Bold;
-            btnDev.BorderThickness = new System.Windows.Thickness(3);
-            btnDev.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            btnDev.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
-            Grid.SetColumn(btnDev, 0);
-            Grid.SetRow(btnDev, 0);
-            grdMain.Children.Add(btnDev);
-            btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
-
-            //bouton pour accéder à la page de log-in
-            Button btnLogin = new Button();
-            btnLogin.Content = "Log-in";
-            btnLogin.Foreground = new SolidColorBrush(Colors.White);
-            btnLogin.Background = new SolidColorBrush(Colors.Blue);
-            btnLogin.Height = 100;
-            btnLogin.Width = 300;
-            btnLogin.FontSize = 24;
-            btnLogin.FontWeight = System.Windows.FontWeights.Bold;
-            btnLogin.BorderThickness = new System.Windows.Thickness(3);
-            btnLogin.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            btnLogin.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Grid.SetColumn(btnLogin, 1);
-            Grid.SetRow(btnLogin, 0);
-            grdMain.Children.Add(btnLogin);
-
-            //bouton pour accéder à la page de création de compte
-            Button btnCreate = new Button();
-            btnCreate.Content = "Créer un compte";
-            btnCreate.Foreground = new SolidColorBrush(Colors.White);
-            btnCreate.Background = new SolidColorBrush(Colors.Green);
-            btnCreate.Height = 100;
-            btnCreate.Width = 300;
-            btnCreate.FontSize = 24;
-            btnCreate.FontWeight = System.Windows.FontWeights.Bold;
-            btnCreate.BorderThickness = new System.Windows.Thickness(3);
-            btnCreate.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            btnCreate.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Grid.SetColumn(btnCreate, 2);
-            Grid.SetRow(btnCreate, 0);
-            grdMain.Children.Add(btnCreate);
         }
 
         /// <summary>
@@ -203,11 +206,198 @@ namespace ProgrammeMartyr
         ///<param name="grdMain"></param>
         public void OuvrirFenetreLogin(Grid grdMain)
         {
-            NettoyerGrid(grdMain, 5, 1);
+            NettoyerGrid(grdMain, 4, 3);
 
-            //ajout des éléments de la fenêtre de log-in en dessous
+            Button btnRetour = new Button();
+            btnRetour.Content = "Retour au menu";
+            btnRetour.Foreground = new SolidColorBrush(Colors.White);
+            btnRetour.Background = new SolidColorBrush(Colors.Gray);
+            btnRetour.Height = 50;
+            btnRetour.Width = 200;
+            btnRetour.FontSize = 16;
+            btnRetour.FontWeight = System.Windows.FontWeights.Bold;
+            btnRetour.BorderThickness = new System.Windows.Thickness(3);
+            btnRetour.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnRetour.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnRetour, 0);
+            Grid.SetRow(btnRetour, 0);
+            grdMain.Children.Add(btnRetour);
+            btnRetour.Click += (s, e) => OuvrirFenetreMenu(grdMain, new ListeGenerale());
+
+            TextBlock tblMail = new TextBlock();
+            tblMail.Text = "Adresse mail :";
+            tblMail.FontSize = 16;
+            tblMail.FontWeight = System.Windows.FontWeights.Bold;
+            tblMail.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblMail.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblMail, 0);
+            Grid.SetRow(tblMail, 1);
+            grdMain.Children.Add(tblMail);
+
+            TextBox txtMail = new TextBox();
+            txtMail.Width = 300;
+            txtMail.Height = 20;
+            Grid.SetColumn(txtMail, 1);
+            Grid.SetRow(txtMail, 1);
+            grdMain.Children.Add(txtMail);
+
+            TextBlock tblPassword = new TextBlock();
+            tblPassword.Text = "Mot de passe :";
+            tblPassword.FontSize = 16;
+            tblPassword.FontWeight = System.Windows.FontWeights.Bold;
+            tblPassword.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblPassword.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblPassword, 0);
+            Grid.SetRow(tblPassword, 2);
+            grdMain.Children.Add(tblPassword);
+
+            TextBox txtPassword = new TextBox();
+            txtPassword.Width = 300;
+            txtPassword.Height = 20;
+            Grid.SetColumn(txtPassword, 1);
+            Grid.SetRow(txtPassword, 2);
+            grdMain.Children.Add(txtPassword);
+
+            Button btnSubmit = new Button();
+            btnSubmit.Content = "Se connecter";
+            btnSubmit.Foreground = new SolidColorBrush(Colors.White);
+            btnSubmit.Background = new SolidColorBrush(Colors.Red);
+            btnSubmit.Height = 30;
+            btnSubmit.Width = 150;
+            btnSubmit.FontSize = 16;
+            btnSubmit.FontWeight = System.Windows.FontWeights.Bold;
+            btnSubmit.BorderThickness = new System.Windows.Thickness(3);
+            btnSubmit.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnSubmit.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnSubmit, 1);
+            Grid.SetRow(btnSubmit, 3);
+            grdMain.Children.Add(btnSubmit);
+            btnSubmit.Click += (s, e) =>
+            {
+                string mail = txtMail.Text;
+                string password = txtPassword.Text;
+                BddManager bdd = new BddManager();
+                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text))
+                {
+                    OuvrirFenetreJeu(grdMain);
+                }
+            };
+        }
+
+        /// <summary>
+        /// Ouvrir la fenêtre pour créer un compte
+        /// </summary>
+        /// <param name="grdMain"></param>
+        public void OuvrirFenetreCreateAccount(Grid grdMain)
+        {
+            NettoyerGrid(grdMain, 5, 3);
+
+            Button btnRetour = new Button();
+            btnRetour.Content = "Retour au menu";
+            btnRetour.Foreground = new SolidColorBrush(Colors.White);
+            btnRetour.Background = new SolidColorBrush(Colors.Gray);
+            btnRetour.Height = 50;
+            btnRetour.Width = 200;
+            btnRetour.FontSize = 16;
+            btnRetour.FontWeight = System.Windows.FontWeights.Bold;
+            btnRetour.BorderThickness = new System.Windows.Thickness(3);
+            btnRetour.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnRetour.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnRetour, 0);
+            Grid.SetRow(btnRetour, 0);
+            grdMain.Children.Add(btnRetour);
+            btnRetour.Click += (s, e) => OuvrirFenetreMenu(grdMain, new ListeGenerale());
+
+            TextBlock tblMail = new TextBlock();
+            tblMail.Text = "Adresse mail :";
+            tblMail.FontSize = 16;
+            tblMail.FontWeight = System.Windows.FontWeights.Bold;
+            tblMail.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblMail.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblMail, 0);
+            Grid.SetRow(tblMail, 1);
+            grdMain.Children.Add(tblMail);
+
+            TextBox txtMail = new TextBox();
+            txtMail.Width = 300;
+            txtMail.Height = 20;
+            Grid.SetColumn(txtMail, 1);
+            Grid.SetRow(txtMail, 1);
+            grdMain.Children.Add(txtMail);
+
+            TextBlock tblPassword = new TextBlock();
+            tblPassword.Text = "Mot de passe :";
+            tblPassword.FontSize = 16;
+            tblPassword.FontWeight = System.Windows.FontWeights.Bold;
+            tblPassword.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblPassword.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblPassword, 0);
+            Grid.SetRow(tblPassword, 2);
+            grdMain.Children.Add(tblPassword);
+
+            TextBox txtPassword = new TextBox();
+            txtPassword.Width = 300;
+            txtPassword.Height = 20;
+            Grid.SetColumn(txtPassword, 1);
+            Grid.SetRow(txtPassword, 2);
+            grdMain.Children.Add(txtPassword);
+
+            TextBox txtNom = new TextBox();
+            txtNom.Width = 300;
+            txtNom.Height = 20;
+            Grid.SetColumn(txtNom, 1);
+            Grid.SetRow(txtNom, 3);
+            grdMain.Children.Add(txtNom);
+
+            TextBlock tblNom = new TextBlock();
+            tblNom.Text = "Nom d'utilisateur :";
+            tblNom.FontSize = 16;
+            tblNom.FontWeight = System.Windows.FontWeights.Bold;
+            tblNom.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            tblNom.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(tblNom, 0);
+            Grid.SetRow(tblNom, 3);
+            grdMain.Children.Add(tblNom);
+
+            Button btnSubmit = new Button();
+            btnSubmit.Content = "Créer un compte";
+            btnSubmit.Foreground = new SolidColorBrush(Colors.White);
+            btnSubmit.Background = new SolidColorBrush(Colors.Red);
+            btnSubmit.Height = 30;
+            btnSubmit.Width = 150;
+            btnSubmit.FontSize = 16;
+            btnSubmit.FontWeight = System.Windows.FontWeights.Bold;
+            btnSubmit.BorderThickness = new System.Windows.Thickness(3);
+            btnSubmit.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnSubmit.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnSubmit, 1);
+            Grid.SetRow(btnSubmit, 4);
+            grdMain.Children.Add(btnSubmit);
+            btnSubmit.Click += (s, e) =>
+            {
+                string mail = txtMail.Text;
+                string password = txtPassword.Text;
+                string name = txtNom.Text;
+                BddManager bdd = new BddManager();
+                bool success = bdd.CreateUser(mail, password, name, out DataSet userData);
+                if (success)
+                {
+                    Utilisateur utilisateur = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()));
+
+                    OuvrirFenetreJeu(grdMain);
+                }
+                else
+                {
+                    MessageBox.Show("Adresse mail ou mot de passe incorrect.");
+                }
+            };
+        }
 
 
+        public void OuvrirFenetreJeu(Grid grdMain)
+        {
+            NettoyerGrid(grdMain, 10, 10);
+            //ajouter les éléments de la fenêtre de jeu ici
         }
     }
 }

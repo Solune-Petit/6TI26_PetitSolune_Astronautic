@@ -31,7 +31,7 @@ namespace ProgrammeMartyr
 
             InitializeComponent();
 
-            grdMain.Background = new SolidColorBrush(Colors.Black);
+            grdMain.Background = new SolidColorBrush(Colors.DarkGray);
 
             //connexion aux fichiers
             Fonctions func = new Fonctions();                   //Fichier des différentes fonctions du code
