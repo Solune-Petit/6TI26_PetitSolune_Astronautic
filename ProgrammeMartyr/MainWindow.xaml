@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgrammeMartyr"
         mc:Ignorable="d"
-        Title="MainWindow" Height="880" Width="1280">
+        WindowStartupLocation="centerscreen"
+        Title="MainWindow" Height="880" Width="1280"
+        AllowsTransparency="True"
+        >
     <Grid x:Name="grdMain">
     
     </Grid>

@@ -3,6 +3,7 @@ using Mysqlx.Connection;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -25,11 +26,14 @@ namespace ProgrammeMartyr
         {
             bool BddClasse = false;
             bool BddSolune = false;
-            string connexionString;
+            string connexionString = "";
 
             try
             {
                 connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                MySqlConnection testConnexion = new MySqlConnection(connexionString);
+                testConnexion.Open();
+                testConnexion.Close();
                 BddClasse = true;
             }
             catch (Exception ex)
@@ -64,6 +68,13 @@ namespace ProgrammeMartyr
                     throw;
                 }
             }
+
+            if (connexionString == "")
+            {
+                throw new Exception("Aucune base de donnée accessible. Veuillez vérifier votre connexion internet ou contacter l'administrateur du programme.");
+                Application.Current.Shutdown();
+            }
+
             return connexionString;
         }
 
