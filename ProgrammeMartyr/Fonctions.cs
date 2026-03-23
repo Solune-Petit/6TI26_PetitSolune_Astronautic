@@ -398,26 +398,14 @@ namespace ProgrammeMartyr
         {
             NettoyerGrid(grdMain, 3, 5);
 
-            //ajouter les éléments de la fenêtre de jeu ici
+            //ouvrir la fenêtre MenuJeu qui permet d'accéder à la fenêtre de création de personnage, à la fenêtre de sélection de partie, etc.
 
-            //titre du jeu
-            TextBlock tblTitre = new TextBlock();
-            tblTitre.Text = "Astronautic";
-            tblTitre.FontSize = 64;
-            tblTitre.FontWeight = System.Windows.FontWeights.Bold;
-            tblTitre.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            tblTitre.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Grid.SetColumn(tblTitre, 1);
-            Grid.SetColumnSpan(tblTitre, 3);
-            Grid.SetRow(tblTitre, 0);
-            grdMain.Children.Add(tblTitre);
-
-            //menu hamburger pour choisir si on veut quitter le jeu ou se déconnecter
-            ControlTemplate ctrMenu = new ControlTemplate(typeof(Button));
-            
-            Grid.SetColumn(ctrMenu, 0);
-            Grid.SetRow(ctrMenu, 0);
-            grdMain.Children.Add(ctrMenu);
+            MenuJeu menuJeu = new MenuJeu();
+            Grid.SetColumn(menuJeu, 0);
+            Grid.SetRow(menuJeu, 0);
+            Grid.SetColumnSpan(menuJeu, 5);
+            Grid.SetRowSpan(menuJeu, 3);
+            grdMain.Children.Add(menuJeu);
         }
     }
 }

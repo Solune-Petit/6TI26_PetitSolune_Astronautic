@@ -9,10 +9,10 @@
       Title="MenuJeu">
 
     <Grid x:Name="grdJeu">
-        <!--// menu hamburger //-->
+        <!--// menu hamburger
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
             <Button x:Name="btnMenuHamburger" Content="☰" FontSize="24" Width="50" Height="50" Click="btnMenuHamburger_Click"/>
-        </StackPanel>
+        </StackPanel>  //-->
         
         
     </Grid>
