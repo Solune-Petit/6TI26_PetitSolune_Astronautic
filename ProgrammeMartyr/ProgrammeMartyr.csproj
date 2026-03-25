@@ -9,6 +9,62 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\img_about.jpg" />
+    <None Remove="Assets\img_about.png" />
+    <None Remove="Assets\img_acoustic.jpg" />
+    <None Remove="Assets\img_acoustic.png" />
+    <None Remove="Assets\img_album.jpg" />
+    <None Remove="Assets\img_album.png" />
+    <None Remove="Assets\img_arrow.jpg" />
+    <None Remove="Assets\img_arrow.png" />
+    <None Remove="Assets\img_artist.jpg" />
+    <None Remove="Assets\img_artist.png" />
+    <None Remove="Assets\img_electronic.jpg" />
+    <None Remove="Assets\img_electronic.png" />
+    <None Remove="Assets\img_exit.jpg" />
+    <None Remove="Assets\img_exit.png" />
+    <None Remove="Assets\img_folder.jpg" />
+    <None Remove="Assets\img_folder.png" />
+    <None Remove="Assets\img_genre.jpg" />
+    <None Remove="Assets\img_genre.png" />
+    <None Remove="Assets\img_hiphop.jpg" />
+    <None Remove="Assets\img_hiphop.png" />
+    <None Remove="Assets\img_history.jpg" />
+    <None Remove="Assets\img_history.png" />
+    <None Remove="Assets\img_home.jpg" />
+    <None Remove="Assets\img_home.png" />
+    <None Remove="Assets\img_hotkey.jpg" />
+    <None Remove="Assets\img_hotkey.png" />
+    <None Remove="Assets\img_input.jpg" />
+    <None Remove="Assets\img_input.png" />
+    <None Remove="Assets\img_jazz.jpg" />
+    <None Remove="Assets\img_jazz.png" />
+    <None Remove="Assets\img_metal.jpg" />
+    <None Remove="Assets\img_metal.png" />
+    <None Remove="Assets\img_movies.jpg" />
+    <None Remove="Assets\img_movies.png" />
+    <None Remove="Assets\img_music.jpg" />
+    <None Remove="Assets\img_music.png" />
+    <None Remove="Assets\img_playlist.jpg" />
+    <None Remove="Assets\img_playlist.png" />
+    <None Remove="Assets\img_pop.jpg" />
+    <None Remove="Assets\img_pop.png" />
+    <None Remove="Assets\img_rock.jpg" />
+    <None Remove="Assets\img_rock.png" />
+    <None Remove="Assets\img_search.jpg" />
+    <None Remove="Assets\img_search.png" />
+    <None Remove="Assets\img_setting.jpg" />
+    <None Remove="Assets\img_setting.png" />
+    <None Remove="Assets\img_songs.jpg" />
+    <None Remove="Assets\img_songs.png" />
+    <None Remove="Assets\max_def.jpg" />
+    <None Remove="Assets\max_def.png" />
+    <None Remove="Assets\max_mo.jpg" />
+    <None Remove="Assets\max_mo.png" />
+    <None Remove="Assets\shutdown_def.jpg" />
+    <None Remove="Assets\shutdown_def.png" />
+    <None Remove="Assets\shutdown_mo.jpg" />
+    <None Remove="Assets\shutdown_mo.png" />
     <None Remove="images\personnages\Amixem.jpg" />
     <None Remove="images\personnages\Charles_Leclerc.jpg" />
     <None Remove="images\personnages\Mastu.jpg" />
@@ -26,6 +82,90 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\img_about.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_acoustic.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_album.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_arrow.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_artist.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_electronic.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_exit.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_folder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_genre.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_hiphop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_history.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_home.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_hotkey.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_input.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_jazz.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_metal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_movies.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_music.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_playlist.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_pop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_rock.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_search.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_setting.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\img_songs.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\max_def.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\max_mo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\shutdown_def.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\shutdown_mo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\personnages\Amixem.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

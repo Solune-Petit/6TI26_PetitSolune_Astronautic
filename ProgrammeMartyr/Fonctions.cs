@@ -398,14 +398,10 @@ namespace ProgrammeMartyr
         {
             NettoyerGrid(grdMain, 3, 5);
 
-            //ouvrir la fenêtre MenuJeu qui permet d'accéder à la fenêtre de création de personnage, à la fenêtre de sélection de partie, etc.
+            //ouvrir la fenêtre de jeu
+             Jeu jeu = new Jeu();
+             jeu.Show();
 
-            MenuJeu menuJeu = new MenuJeu();
-            Grid.SetColumn(menuJeu, 0);
-            Grid.SetRow(menuJeu, 0);
-            Grid.SetColumnSpan(menuJeu, 5);
-            Grid.SetRowSpan(menuJeu, 3);
-            grdMain.Children.Add(menuJeu);
         }
     }
 }

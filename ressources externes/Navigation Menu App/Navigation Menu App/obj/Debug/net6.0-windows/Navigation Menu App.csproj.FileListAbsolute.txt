@@ -1,0 +1,70 @@
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.exe
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.deps.json
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.runtimeconfig.json
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.dll
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\ref\Navigation Menu App.dll
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.pdb
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Templates.baml
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App_MarkupCompile.cache
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App_MarkupCompile.lref
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\App.baml
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.g.resources
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.AssemblyInfoInputs.cache
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.AssemblyInfo.cs
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.csproj.CoreCompileInputs.cache
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.dll
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\ref\Navigation Menu App.dll
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.pdb
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.genruntimeconfig.cache
+C:\Users\Arun\source\repos\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.csproj.AssemblyReference.cache
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.exe
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.deps.json
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.runtimeconfig.json
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.dll
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.pdb
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.csproj.AssemblyReference.cache
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Templates.baml
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App_MarkupCompile.cache
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App_MarkupCompile.lref
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\App.baml
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.g.resources
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.AssemblyInfoInputs.cache
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.AssemblyInfo.cs
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.csproj.CoreCompileInputs.cache
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.dll
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\refint\Navigation Menu App.dll
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.pdb
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.genruntimeconfig.cache
+C:\Users\PetitSolune\Downloads\WPF---Navigation-Menu-With-Sub-Menu-main\Navigation Menu App\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\ref\Navigation Menu App.dll
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.exe
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.deps.json
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.runtimeconfig.json
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.dll
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\bin\Debug\net6.0-windows\Navigation Menu App.pdb
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.csproj.AssemblyReference.cache
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Templates.baml
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App_MarkupCompile.cache
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App_MarkupCompile.lref
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\App.baml
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.g.resources
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.AssemblyInfoInputs.cache
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.AssemblyInfo.cs
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.csproj.CoreCompileInputs.cache
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.sourcelink.json
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.dll
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\refint\Navigation Menu App.dll
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.pdb
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\Navigation Menu App.genruntimeconfig.cache
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ressources externes\Navigation Menu App\Navigation Menu App\obj\Debug\net6.0-windows\ref\Navigation Menu App.dll

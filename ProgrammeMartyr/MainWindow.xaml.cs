@@ -36,7 +36,7 @@ namespace ProgrammeMartyr
             //connexion aux fichiers
             Fonctions func = new Fonctions();                   //Fichier des différentes fonctions du code
             BddManager bdd = new BddManager();                  //Fichier de connexion/manipulation de la base de donnée
-            DataSet listePersos =  bdd.DownloadCharacters();    //variable qui contient les personnages
+            DataSet listePersos = bdd.DownloadCharacters();    //variable qui contient les personnages
             ListeGenerale GList = new ListeGenerale();          //Fichier de stockage de toutes les listes (personnages, attaques, etc)
             Personnage perso;                                   //Fichier de stockage d'un personnage
 
