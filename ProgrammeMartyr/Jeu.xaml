@@ -14,156 +14,79 @@
 
     <!--// Background Grid //-->
 
-    <Grid Background="#23262B">
+    <Grid x:Name="GrdJeu"
+          Background="DarkGray">
 
-        <!--// Menu Panel //-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Background="#2E333A"
-                    Width="230"
-                    Orientation="Vertical"
-                    HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <!--// Channel Name //-->
 
-            <Grid Height="50"
-                  VerticalAlignment="Top"
-                  Margin="0,30,0,0">
+        <!--// Main Menu //-->
 
-            </Grid>
+        <Menu   Background="Transparent"
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
 
-            <!--// Main Menu //-->
 
-            <Menu Height="450"
-                  Background="Transparent"
-                  Margin="0,40,0,0">
+            <Menu.ItemsPanel>
 
-                <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
 
-                    <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical" />
 
-                        <VirtualizingStackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
 
-                    </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
 
-                </Menu.ItemsPanel>
+            <!--// Main Menu - Menu //-->
 
-                <!--// Main Menu - Music //-->
+            <MenuItem   Header="☰"
+                        FontSize="25">
 
-                <MenuItem Header="Music"
-                          Template="{StaticResource Menu_SubMenu_Template}">
+                <!--// Menu Submenu - Home//-->
 
-                    <MenuItem.Icon>
+                <MenuItem Header="🏠︎"
+                          Click="MenuBtn_Click"/>
 
-                        <Image Source="Assets/img_music.jpg"
-                               Stretch="None" />
+                <!--// menu submenu - Settings //-->
 
-                    </MenuItem.Icon>
-
-                    <!--// Music Submenu - All Songs //-->
-
-                    <MenuItem Header="All Songs"
-                              Template="{StaticResource Item_Template}">
-
-                        <MenuItem.Icon>
-
-                            <Image Source="Assets/img_songs.jpg"
-                                   Stretch="None" />
-
-                        </MenuItem.Icon>
-
-                    </MenuItem>
-
-                    <!--// Music Submenu - Albums //-->
-
-                    <MenuItem Header="Albums"
-                              Template="{StaticResource Item_Template}">
-
-                        <MenuItem.Icon>
-
-                            <Image Source="Assets/img_album.jpg"
-                                   Stretch="None" />
-
-                        </MenuItem.Icon>
-
-                    </MenuItem>
-
-                    <!--// Music Submenu - Artists //-->
-
-                    <MenuItem Header="Artists"
-                              Template="{StaticResource Item_Template}">
-
-                        <MenuItem.Icon>
-
-                            <Image Source="Assets/img_artist.jpg"
-                                   Stretch="None" />
-
-                        </MenuItem.Icon>
-
-                    </MenuItem>
-
-                    <!--// Music Submenu - Playlists //-->
-
-                    <MenuItem Header="Playlists"
-                              Template="{StaticResource Item_Template}">
-
-                        <MenuItem.Icon>
-
-                            <Image Source="Assets/img_playlist.jpg"
-                                   Stretch="None" />
-
-                        </MenuItem.Icon>
-
-                    </MenuItem>
-
-                </MenuItem>
-
-                <!--// Main Menu - Settings //-->
-
-                <MenuItem Header="Settings"
-                          Template="{StaticResource Menu_SubMenu_Template}">
+                <MenuItem Header="Settings">
 
                     <MenuItem.Icon>
 
                         <Image Source="Assets/img_setting.jpg"
-                               Stretch="None" />
+                                   Stretch="None" />
 
                     </MenuItem.Icon>
 
-                    <!--// Settings Submenu - Input / Codecs //-->
+                    <MenuItem Header="Color Mode"
+                              Click="ColorModeBtn_Click"/>
 
-                    <MenuItem Header="Input / Codecs"
-                              Template="{StaticResource Item_Template}">
-
-                        <MenuItem.Icon>
-
-                            <Image Source="Assets/img_input.jpg"
-                                   Stretch="None" />
-
-                        </MenuItem.Icon>
-
-                    </MenuItem>
-
-                    <!--// Settings Submenu - Exit //-->
-
-                    <MenuItem Header="Exit"
-                              Template="{StaticResource Item_Template}"
-                              Click="CloseBtn_Click">
-
-                        <MenuItem.Icon>
-
-                            <Image Source="Assets/img_exit.jpg"
-                                   Stretch="None" />
-
-                        </MenuItem.Icon>
-
-                    </MenuItem>
+                    <MenuItem   Header="Profile"
+                                Click="ProfileBtn_Click"/>
 
                 </MenuItem>
 
-            </Menu>
+                <!--// Settings Submenu - Exit //-->
 
-        </StackPanel>
+                <MenuItem Header="Exit"
+                                Click="CloseBtn_Click"/>
 
+            </MenuItem>
+
+
+        </Menu>
+
+        
     </Grid>
 
 </Window>

@@ -47,6 +47,7 @@ namespace ProgrammeMartyr
                 GList.ListePerso.Add(perso);
             }
 
+            func.OuvrirFenetreJeu(grdMain);
             func.OuvrirFenetreMenu(grdMain, GList);
         }
     }

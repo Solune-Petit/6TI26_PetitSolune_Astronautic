@@ -19,7 +19,23 @@ namespace ProgrammeMartyr
         /// <param name="grdMain"></param>
         public void OuvrirFenetreMenu(Grid grdMain, ListeGenerale listeG)
         {
-            NettoyerGrid(grdMain, 1, 3);
+            NettoyerGrid(grdMain, 1, 5);
+
+            //bouton pour quitter le programme
+            Button btnQuitter = new Button();
+            btnQuitter.Content = "Quitter";
+            btnQuitter.Foreground = new SolidColorBrush(Colors.White);
+            btnQuitter.Background = new SolidColorBrush(Colors.Gray);
+            btnQuitter.Height = 100;
+            btnQuitter.Width = 300;
+            btnQuitter.FontSize = 24;
+            btnQuitter.FontWeight = System.Windows.FontWeights.Bold;
+            btnQuitter.BorderThickness = new System.Windows.Thickness(3);
+            btnQuitter.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnQuitter.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnQuitter, 0);
+            Grid.SetRow(btnQuitter, 0);
+            grdMain.Children.Add(btnQuitter);
 
             //bouton pour accéder au mode DEV
             Button btnDev = new Button();
@@ -34,7 +50,7 @@ namespace ProgrammeMartyr
             btnDev.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             btnDev.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
-            Grid.SetColumn(btnDev, 0);
+            Grid.SetColumn(btnDev, 1);
             Grid.SetRow(btnDev, 0);
             grdMain.Children.Add(btnDev);
 
@@ -50,7 +66,7 @@ namespace ProgrammeMartyr
             btnLogin.BorderThickness = new System.Windows.Thickness(3);
             btnLogin.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             btnLogin.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Grid.SetColumn(btnLogin, 1);
+            Grid.SetColumn(btnLogin, 2);
             Grid.SetRow(btnLogin, 0);
             grdMain.Children.Add(btnLogin);
             btnLogin.Click += (s, e) => OuvrirFenetreLogin(grdMain);
@@ -67,7 +83,7 @@ namespace ProgrammeMartyr
             btnCreate.BorderThickness = new System.Windows.Thickness(3);
             btnCreate.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             btnCreate.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Grid.SetColumn(btnCreate, 2);
+            Grid.SetColumn(btnCreate, 3);
             Grid.SetRow(btnCreate, 0);
             grdMain.Children.Add(btnCreate);
             btnCreate.Click += (s, e) => OuvrirFenetreCreateAccount(grdMain);
@@ -400,6 +416,7 @@ namespace ProgrammeMartyr
 
             //ouvrir la fenêtre de jeu
              Jeu jeu = new Jeu();
+             Application.Current.MainWindow.Close();
              jeu.Show();
 
         }
