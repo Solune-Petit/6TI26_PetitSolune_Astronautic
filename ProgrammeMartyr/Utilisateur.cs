@@ -60,7 +60,7 @@ namespace ProgrammeMartyr
 			_mdp = mdp;
 			_id = id;
             _persosPossede = new List<Personnage>();
-			_inventaire = new Inventaire();
+			_inventaire = new Inventaire(new int[3]);
         }
 
 		public void RecupererDonnees()

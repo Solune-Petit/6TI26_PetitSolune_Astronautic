@@ -95,3 +95,4 @@ C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\D
 C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\ProgrammeMartyr.pdb
 C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\ProgrammeMartyr.genruntimeconfig.cache
 C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\ref\ProgrammeMartyr.dll
+C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\PageInventaire.g.cs

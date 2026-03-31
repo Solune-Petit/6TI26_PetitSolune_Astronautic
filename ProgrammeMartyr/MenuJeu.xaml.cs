@@ -20,7 +20,7 @@ namespace ProgrammeMartyr
     /// </summary>
     public partial class MenuJeu : UserControl
     {
-        public MenuJeu()
+        public MenuJeu(Utilisateur user)
         {
             InitializeComponent();
         }
@@ -38,7 +38,8 @@ namespace ProgrammeMartyr
         private void InventaireBtn_Click(object sender, RoutedEventArgs e)
         {
             var parent = Window.GetWindow(this) as Jeu;
-            parent.GrdJeu.Children.Remove(parent.GrdJeu.Children.OfType<UIElement>().Where();
+            parent.RemoveChildrenAt(1,1);
+            PageInventaire pageInv = new PageInventaire(user);
         }
 
         private void ShopBtn_Click(object sender, RoutedEventArgs e)

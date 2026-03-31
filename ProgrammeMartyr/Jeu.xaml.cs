@@ -25,6 +25,27 @@ namespace ProgrammeMartyr
             OuvrirePageMenu();
         }
 
+        public void RemoveChildrenAt(int row, int column, bool removeAll = true)
+        {
+            // Faire une copie pour éviter InvalidOperationException lors de la suppression pendant l'itération
+            var toRemove = GrdJeu
+                .Children
+                .OfType<UIElement>()
+                .Where(el => Grid.GetRow(el) == row && Grid.GetColumn(el) == column)
+                .ToList();
+
+            if (!removeAll)
+            {
+                if (toRemove.Count > 0)
+                    GrdJeu.Children.Remove(toRemove[0]);
+            }
+            else
+            {
+                foreach (var el in toRemove)
+                    GrdJeu.Children.Remove(el);
+            }
+        }
+
         public void OuvrirePageMenu()
         {
             MenuJeu pageMenu = new MenuJeu();
