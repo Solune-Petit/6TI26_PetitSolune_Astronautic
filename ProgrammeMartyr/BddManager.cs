@@ -71,8 +71,8 @@ namespace ProgrammeMartyr
 
             if (connexionString == "")
             {
-                throw new Exception("Aucune base de donnée accessible. Veuillez vérifier votre connexion internet ou contacter l'administrateur du programme.");
                 Application.Current.Shutdown();
+                throw new Exception("Aucune base de donnée accessible. Veuillez vérifier votre connexion internet ou contacter l'administrateur du programme.");
             }
 
             return connexionString;
@@ -154,10 +154,10 @@ namespace ProgrammeMartyr
             return Inventaire;
         }
 
-        public bool CreateUser(string mail, string password, string username, out DataSet userData)
+        public bool CreateUser(string mail, string password, string username, ListeGenerale GList, out Utilisateur user)
         {
             bool successfullAction;
-            userData = null;
+            user = null;
 
             //Ajout d'un nouvel utilisateur dans la base de donnée
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
@@ -181,13 +181,15 @@ namespace ProgrammeMartyr
             //récupération de l'utilisateur nouvellement créé
             if (successfullAction)
             {
-                successfullAction = assignUser(mail, password, connexion, out userData);
+                ConnectUser(mail, password, GList, out user);
+
+                successfullAction = assignUser(mail, password, connexion, GList, out user);
 
                 //Création des liens entre l'utilisateur et les items de départ
                 if (successfullAction)
                 {
                     successfullAction = false;
-                    query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserId) VALUES (0, 0, 0, {userData.Tables[0].Rows[0]["UserId"]})";
+                    query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserId, UserItemPersonnagesId) VALUES (0, 0, 0, {user.Id}, 11)"; 
 
                     try
                     {
@@ -209,8 +211,10 @@ namespace ProgrammeMartyr
             return successfullAction;
         }
 
-        public bool ConnectUser(string mail, string password)
+        public bool ConnectUser(string mail, string password, ListeGenerale listeG, out Utilisateur user)
         {
+            user = null;
+
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
             string query = $"SELECT * FROM user WHERE UserMail = '{mail}' AND UserPassword = '{password}'";
             DataSet userData = new DataSet();
@@ -229,7 +233,7 @@ namespace ProgrammeMartyr
 
             if (userData.Tables[0].Rows.Count > 0)
             {
-                assignUser(mail, password, connexion, out userData);
+                assignUser(mail, password, connexion, listeG, out user);
                 return true;
             }
             else
@@ -239,21 +243,23 @@ namespace ProgrammeMartyr
             }
         }
 
-        public bool assignUser(string mail, string password, MySqlConnection connexion, out DataSet userData)
+        public bool assignUser(string mail, string password, MySqlConnection connexion, ListeGenerale GList, out Utilisateur user)
         {
             bool successfullAction = false;
 
             string query = $"SELECT * FROM user WHERE UserMail = '{mail}' AND UserPassword = '{password}'";
 
+            user = null;
             try
             {
                 connexion.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
-                userData = new DataSet();
+                DataSet userData = new DataSet();
                 da.Fill(userData, "user");
                 connexion.Close();
                 if (userData.Tables[0].Rows.Count > 0)
                 {
+                    user = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), GList);
                     successfullAction = true;
                 }
             }

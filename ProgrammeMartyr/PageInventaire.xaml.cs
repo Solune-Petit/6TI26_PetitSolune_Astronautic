@@ -20,13 +20,18 @@ namespace ProgrammeMartyr
     /// </summary>
     public partial class PageInventaire : UserControl
     {
-        public PageInventaire(Utilisateur user)
+        private Utilisateur user;
+
+        public PageInventaire()
         {
             InitializeComponent();
+            //récupérer l'utilisateur connecté pour lui afficher les bonnes infos (inventaire, personnages possédés, etc)
+            var parent = Window.GetWindow(this) as Jeu;
+            user = parent.User;
             AfficherPersos(user);
         }
 
-        public void AfficherPersos(Utilisateur user)
+        internal void AfficherPersos(Utilisateur user)
         {
             //récupérer la liste des personnages dans la classe Utilisateurs
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgrammeMartyr
 {
-    internal class Inventaire
+    public class Inventaire
     {
 		private int[] _items;
 

@@ -43,11 +43,10 @@ namespace ProgrammeMartyr
             //stoquage des personnages
             for (int i = 0; i < int.Parse(listePersos.Tables["personnage"].Rows.Count.ToString()); i++)
             {
-                perso = new Personnage(listePersos.Tables["personnage"].Rows[i]["PersonnageNom"].ToString(), listePersos.Tables["personnage"].Rows[i]["PersonnageType"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageRarete"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageLvlMax"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnagePvMax"].ToString()), listePersos.Tables["personnage"].Rows[i]["PersonnageImg"].ToString());
+                perso = new Personnage(listePersos.Tables["personnage"].Rows[i]["PersonnageNom"].ToString(), listePersos.Tables["personnage"].Rows[i]["PersonnageType"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageRarete"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageLvlMax"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnagePvMax"].ToString()), listePersos.Tables["personnage"].Rows[i]["PersonnageImg"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageId"].ToString()));
                 GList.ListePerso.Add(perso);
             }
 
-            func.OuvrirFenetreJeu(grdMain);
             func.OuvrirFenetreMenu(grdMain, GList);
         }
     }

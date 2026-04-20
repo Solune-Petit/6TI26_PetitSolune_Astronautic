@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Bcpg;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,25 @@ namespace ProgrammeMartyr
     /// </summary>
     public partial class Jeu : Window
     {
+        private Utilisateur _user;
+
+        public Utilisateur User
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
+
+
         public Jeu()
         {
             InitializeComponent();
+
             OuvrirePageMenu();
+        }
+
+        internal void AssignUser(Utilisateur user)
+        {
+            _user = user;
         }
 
         public void RemoveChildrenAt(int row, int column, bool removeAll = true)
@@ -49,6 +65,7 @@ namespace ProgrammeMartyr
         public void OuvrirePageMenu()
         {
             MenuJeu pageMenu = new MenuJeu();
+            //pageMenu.User = _user;
             Grid.SetColumn(pageMenu, 1);
             Grid.SetRow(pageMenu, 1);
             GrdJeu.Children.Add(pageMenu);
@@ -89,6 +106,8 @@ namespace ProgrammeMartyr
                 return true;
             }
         }
+
+        
 
         private void ProfileBtn_Click(object sender, RoutedEventArgs e)
         {

@@ -20,10 +20,20 @@ namespace ProgrammeMartyr
     /// </summary>
     public partial class MenuJeu : UserControl
     {
-        public MenuJeu(Utilisateur user)
+        private Utilisateur _user;
+
+        public Utilisateur User
         {
+            get { return _user; }
+        }
+
+        public MenuJeu()
+        {
+            //assigner l'utilisateur connecté
+            _user = (Window.GetWindow(this) as Jeu).User;
             InitializeComponent();
         }
+
 
         private void CheatBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -39,7 +49,7 @@ namespace ProgrammeMartyr
         {
             var parent = Window.GetWindow(this) as Jeu;
             parent.RemoveChildrenAt(1,1);
-            PageInventaire pageInv = new PageInventaire(user);
+            PageInventaire pageInv = new PageInventaire();
         }
 
         private void ShopBtn_Click(object sender, RoutedEventArgs e)
