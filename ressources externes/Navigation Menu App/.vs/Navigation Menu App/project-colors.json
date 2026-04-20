@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c53a5571-f02c-4c87-baf3-8e2ee708e9fe": {
+      "ProjectGuid": "c53a5571-f02c-4c87-baf3-8e2ee708e9fe",
+      "DisplayName": "Navigation Menu App",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

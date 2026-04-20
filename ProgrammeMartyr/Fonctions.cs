@@ -19,7 +19,23 @@ namespace ProgrammeMartyr
         /// <param name="grdMain"></param>
         public void OuvrirFenetreMenu(Grid grdMain, ListeGenerale listeG)
         {
-            NettoyerGrid(grdMain, 1, 3);
+            NettoyerGrid(grdMain, 1, 5);
+
+            //bouton pour quitter le programme
+            Button btnQuitter = new Button();
+            btnQuitter.Content = "Quitter";
+            btnQuitter.Foreground = new SolidColorBrush(Colors.White);
+            btnQuitter.Background = new SolidColorBrush(Colors.Gray);
+            btnQuitter.Height = 100;
+            btnQuitter.Width = 300;
+            btnQuitter.FontSize = 24;
+            btnQuitter.FontWeight = System.Windows.FontWeights.Bold;
+            btnQuitter.BorderThickness = new System.Windows.Thickness(3);
+            btnQuitter.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            btnQuitter.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Grid.SetColumn(btnQuitter, 0);
+            Grid.SetRow(btnQuitter, 0);
+            grdMain.Children.Add(btnQuitter);
 
             //bouton pour accéder au mode DEV
             Button btnDev = new Button();
@@ -34,7 +50,7 @@ namespace ProgrammeMartyr
             btnDev.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             btnDev.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             btnDev.Click += (s, e) => OuvrirFenetreDev(grdMain, listeG);
-            Grid.SetColumn(btnDev, 0);
+            Grid.SetColumn(btnDev, 1);
             Grid.SetRow(btnDev, 0);
             grdMain.Children.Add(btnDev);
 
@@ -50,10 +66,10 @@ namespace ProgrammeMartyr
             btnLogin.BorderThickness = new System.Windows.Thickness(3);
             btnLogin.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             btnLogin.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Grid.SetColumn(btnLogin, 1);
+            Grid.SetColumn(btnLogin, 2);
             Grid.SetRow(btnLogin, 0);
             grdMain.Children.Add(btnLogin);
-            btnLogin.Click += (s, e) => OuvrirFenetreLogin(grdMain);
+            btnLogin.Click += (s, e) => OuvrirFenetreLogin(grdMain, listeG);
 
             //bouton pour accéder à la page de création de compte
             Button btnCreate = new Button();
@@ -67,10 +83,10 @@ namespace ProgrammeMartyr
             btnCreate.BorderThickness = new System.Windows.Thickness(3);
             btnCreate.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             btnCreate.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Grid.SetColumn(btnCreate, 2);
+            Grid.SetColumn(btnCreate, 3);
             Grid.SetRow(btnCreate, 0);
             grdMain.Children.Add(btnCreate);
-            btnCreate.Click += (s, e) => OuvrirFenetreCreateAccount(grdMain);
+            btnCreate.Click += (s, e) => OuvrirFenetreCreateAccount(grdMain, listeG);
         }
 
         /// <summary>
@@ -204,7 +220,7 @@ namespace ProgrammeMartyr
         ///compte pour accéder à leurs personnages, leurs parties, etc.
         ///</summary>
         ///<param name="grdMain"></param>
-        public void OuvrirFenetreLogin(Grid grdMain)
+        public void OuvrirFenetreLogin(Grid grdMain, ListeGenerale listeG)
         {
             NettoyerGrid(grdMain, 4, 3);
 
@@ -277,9 +293,9 @@ namespace ProgrammeMartyr
                 string mail = txtMail.Text;
                 string password = txtPassword.Text;
                 BddManager bdd = new BddManager();
-                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text))
+                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text, listeG, out Utilisateur user))
                 {
-                    OuvrirFenetreJeu(grdMain);
+                    OuvrirFenetreJeu(grdMain, user);
                 }
             };
         }
@@ -288,7 +304,7 @@ namespace ProgrammeMartyr
         /// Ouvrir la fenêtre pour créer un compte
         /// </summary>
         /// <param name="grdMain"></param>
-        public void OuvrirFenetreCreateAccount(Grid grdMain)
+        public void OuvrirFenetreCreateAccount(Grid grdMain, ListeGenerale GList)
         {
             NettoyerGrid(grdMain, 5, 3);
 
@@ -379,12 +395,10 @@ namespace ProgrammeMartyr
                 string password = txtPassword.Text;
                 string name = txtNom.Text;
                 BddManager bdd = new BddManager();
-                bool success = bdd.CreateUser(mail, password, name, out DataSet userData);
+                bool success = bdd.CreateUser(mail, password, name, GList, out Utilisateur user);
                 if (success)
                 {
-                    Utilisateur utilisateur = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()));
-
-                    OuvrirFenetreJeu(grdMain);
+                    OuvrirFenetreJeu(grdMain, user);
                 }
                 else
                 {
@@ -394,10 +408,15 @@ namespace ProgrammeMartyr
         }
 
 
-        public void OuvrirFenetreJeu(Grid grdMain)
+        public void OuvrirFenetreJeu(Grid grdMain, Utilisateur user)
         {
-            NettoyerGrid(grdMain, 10, 10);
-            //ajouter les éléments de la fenêtre de jeu ici
+            NettoyerGrid(grdMain, 3, 5);
+
+            //ouvrir la fenêtre de jeu
+            Jeu jeu = new Jeu();
+            Application.Current.MainWindow.Close();
+            jeu.Show();
+
         }
         public void plateau(MainWindow plateau)
         {

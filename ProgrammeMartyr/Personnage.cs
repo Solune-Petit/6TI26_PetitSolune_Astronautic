@@ -8,11 +8,11 @@ using System.Windows.Media.Imaging;
 
 namespace ProgrammeMartyr
 {
-    internal class Personnage
+    public class Personnage
     {
         // Attributs
         private string _nom, _role, _img;
-        private int _rarete, _niveauMax, _PvMax, _PvGame;
+        private int _rarete, _niveauMax, _PvMax, _PvGame, _id;
         double _niveauActuel;
 
 
@@ -46,6 +46,10 @@ namespace ProgrammeMartyr
             get { return _PvGame; }
             set { _PvGame = value; }
         }
+        public int Id
+        {
+            get { return _id; }
+        }
         public double NiveauActuel
         {
             get { return _niveauActuel; }
@@ -53,7 +57,7 @@ namespace ProgrammeMartyr
         }
 
         // Constructeur
-        public Personnage(string nom, string role, int rarete, int niveauMax, int PvMax, string img)
+        public Personnage(string nom, string role, int rarete, int niveauMax, int PvMax, string img, int Id)
         {
             _nom = nom;
             _role = role;
@@ -63,6 +67,7 @@ namespace ProgrammeMartyr
             _PvGame = PvMax;
             _niveauActuel = 0;
             _img = $"images/personnages/{img}";
+            _id = Id;
         }
 
         // Méthodes

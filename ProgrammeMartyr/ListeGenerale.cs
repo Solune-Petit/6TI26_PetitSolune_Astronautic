@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgrammeMartyr
 {
-    internal class ListeGenerale
+    public class ListeGenerale
     {
 		private List <Personnage> _listePerso;
 
