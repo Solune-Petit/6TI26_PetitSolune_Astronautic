@@ -29,16 +29,11 @@ namespace ProgrammeMartyr
         }
 
 
-        public Jeu()
+        public Jeu(Utilisateur user)
         {
             InitializeComponent();
-
-            OuvrirePageMenu();
-        }
-
-        internal void AssignUser(Utilisateur user)
-        {
             _user = user;
+            OuvrirePageMenu();
         }
 
         public void RemoveChildrenAt(int row, int column, bool removeAll = true)
@@ -64,7 +59,7 @@ namespace ProgrammeMartyr
 
         public void OuvrirePageMenu()
         {
-            MenuJeu pageMenu = new MenuJeu();
+            MenuJeu pageMenu = new MenuJeu(_user, GrdJeu);
             //pageMenu.User = _user;
             Grid.SetColumn(pageMenu, 1);
             Grid.SetRow(pageMenu, 1);
@@ -78,12 +73,13 @@ namespace ProgrammeMartyr
 
         private void MenuBtn_Click(Object sender, RoutedEventArgs e)
         {
+            RemoveChildrenAt(1, 1);
             OuvrirePageMenu();
         }
 
         private void ColorModeBtn_Click(object sender, RoutedEventArgs e)
         {
-            Jeu jeu = new Jeu();
+            Jeu jeu = new Jeu(_user);
 
             if (isDarkModeOn())
             {

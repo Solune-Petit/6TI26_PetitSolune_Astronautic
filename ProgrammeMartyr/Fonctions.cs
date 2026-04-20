@@ -414,7 +414,7 @@ namespace ProgrammeMartyr
             NettoyerGrid(grdMain, 3, 5);
 
             //ouvrir la fenêtre de jeu
-            Jeu jeu = new Jeu();
+            Jeu jeu = new Jeu(user);
             Application.Current.MainWindow.Close();
             jeu.Show();
 
