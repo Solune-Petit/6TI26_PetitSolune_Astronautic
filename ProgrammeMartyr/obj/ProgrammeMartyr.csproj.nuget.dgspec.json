@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj": {}
+    "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj": {
+    "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
+        "projectUniqueName": "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
         "projectName": "ProgrammeMartyr",
-        "projectPath": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
-        "packagesPath": "C:\\Users\\PetitSolune\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PetitSolune\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\obj\\",
+        "projectPath": "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
+        "packagesPath": "C:\\Users\\tinti\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PetitSolune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tinti\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
