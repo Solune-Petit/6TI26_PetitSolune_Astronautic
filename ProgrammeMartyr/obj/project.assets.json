@@ -594,23 +594,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tinti\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\240400\\.nuget\\packages\\": {},
+    "d:\\soft\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
+      "projectUniqueName": "C:\\Users\\240400\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
       "projectName": "ProgrammeMartyr",
-      "projectPath": "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
-      "packagesPath": "C:\\Users\\tinti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tinti\\OneDrive\\astraunotic\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\obj\\",
+      "projectPath": "C:\\Users\\240400\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\ProgrammeMartyr.csproj",
+      "packagesPath": "C:\\Users\\240400\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\240400\\Desktop\\6TI26_PetitSolune_Astronautic\\ProgrammeMartyr\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "d:\\soft\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\tinti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\240400\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -619,6 +619,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
