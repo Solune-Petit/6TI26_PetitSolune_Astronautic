@@ -28,39 +28,24 @@ namespace ProgrammeMartyr
             //récupérer l'utilisateur connecté pour lui afficher les bonnes infos (inventaire, personnages possédés, etc)
             var parent = Window.GetWindow(this) as Jeu;
             _user = user;
-            AfficherPersos(user, out Grid gridPersos);
-            gridPersos.HorizontalAlignment = HorizontalAlignment.Left;
-            gridPersos.VerticalAlignment = VerticalAlignment.Top;
-            gridPersos.ShowGridLines = true;
-            Grid.SetColumn(gridPersos, 1);
-            Grid.SetRow(gridPersos, 1);
-            grdJeu.Children.Add(gridPersos);
+
+
+            AfficherPersos(user);
         }
 
-        internal void AfficherPersos(Utilisateur user, out Grid gridPersos)
+        internal void AfficherPersos(Utilisateur user)
         {
             //récupérer la liste des personnages dans la classe Utilisateurs
             int i = 0; 
             int j = 0;
-            gridPersos = new Grid();
-            for (i = 0;i < 10; i++)
-            {
-                ColumnDefinition col = new ColumnDefinition();
-                gridPersos.ColumnDefinitions.Add(col);
-            }
-             for (j = 0; j < 10; j++)
-            {
-                RowDefinition row = new RowDefinition();
-                gridPersos.RowDefinitions.Add(row);
-            }
 
             foreach (Personnage persos in user.PersosPossede)
             {
                 StackPanel card = persos.GenInfoCardDesign();
                 card.HorizontalAlignment = HorizontalAlignment.Left;
                 card.VerticalAlignment = VerticalAlignment.Top;
-                Grid.SetRow(card, i);
-                Grid.SetColumn(card, j);
+                Grid.SetRow(card, j);
+                Grid.SetColumn(card, i);
                 gridPersos.Children.Add(card);
                 i++;
                     if (i == 10)

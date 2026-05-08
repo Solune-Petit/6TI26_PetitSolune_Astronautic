@@ -295,8 +295,9 @@ namespace ProgrammeMartyr
                 string mail = txtMail.Text;
                 string password = txtPassword.Text;
                 BddManager bdd = new BddManager();
-                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text, listeG, out Utilisateur user))
+                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text, listeG, out DataSet userData))
                 {
+                    bdd.assignUser(userData, listeG, out Utilisateur user);
                     OuvrirFenetreJeu(grdMain, user);
                 }
             };

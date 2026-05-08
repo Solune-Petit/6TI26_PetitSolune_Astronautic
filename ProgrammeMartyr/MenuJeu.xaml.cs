@@ -49,7 +49,10 @@ namespace ProgrammeMartyr
             var parent = Window.GetWindow(this) as Jeu;
             parent.RemoveChildrenAt(1,1);
             PageInventaire pageInv = new PageInventaire(_user, _grdJeu);
-            
+            Grid.SetRow(pageInv, 1);
+            Grid.SetColumn(pageInv, 1);
+            //_grdJeu.ShowGridLines = true;
+            _grdJeu.Children.Add(pageInv);
         }
 
         private void ShopBtn_Click(object sender, RoutedEventArgs e)
