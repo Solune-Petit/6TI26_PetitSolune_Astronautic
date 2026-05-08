@@ -64,6 +64,9 @@ namespace ProgrammeMartyr
             Grid.SetColumn(pageMenu, 1);
             Grid.SetRow(pageMenu, 1);
             GrdJeu.Children.Add(pageMenu);
+            TxtMoney.Text = _user.Inventaire.Items[1].ToString();
+            TxtCrystal.Text = _user.Inventaire.Items[2].ToString();
+            TxtUpgrade.Text = _user.Inventaire.Items[3].ToString();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
