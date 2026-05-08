@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,49 +25,24 @@ namespace ProgrammeMartyr
         ///</parametres>
         public string ConnexionBdd()
         {
-            bool BddClasse = false;
-            bool BddSolune = false;
+            bool BddFound = false;
             string connexionString = "";
 
             try
             {
-                connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                //connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                connexionString = "server=192.168.129.3;database=solune;port=3306;UserId=PC_Ecole;password=root";
+                //connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
+
                 MySqlConnection testConnexion = new MySqlConnection(connexionString);
                 testConnexion.Open();
                 testConnexion.Close();
-                BddClasse = true;
+                BddFound = true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 throw;
-            }
-
-            if (BddClasse == false)
-            {
-                try
-                {
-                    connexionString = "server=192.168.0.96;database=solune;port=3306;UserId=root;password=root";
-                    BddSolune = true;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    throw;
-                }
-            }
-
-            if (BddClasse == false && BddSolune == false)
-            {
-                try
-                {
-                    connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    throw;
-                }
             }
 
             if (connexionString == "")
@@ -128,6 +104,56 @@ namespace ProgrammeMartyr
         }
 
         /// <summary>
+        /// Générer un iventaire pour le novel utilisateur en lui attribuant les items de départ
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="perso"></param>
+        public void CreateInventaire(int userId, Personnage perso)
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserItemPersonnagesId) VALUES (0, 0, 0, {perso.Id})"; 
+            try
+            {
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            int lastInsertedId;
+            query = $"SELECT LAST_INSERT_ID()";
+            try { 
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                lastInsertedId = Convert.ToInt32(cmd.ExecuteScalar());
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            query = $"UPDATE user SET UserUserItemId = {lastInsertedId} WHERE UserId = {userId}";
+            try
+            {
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Retrieves the inventory data for the specified user from the database.
         /// </summary>
         /// <param name="userID">The unique identifier of the user whose inventory is to be downloaded. Must correspond to a valid user in
@@ -137,7 +163,7 @@ namespace ProgrammeMartyr
         public DataSet DownloadInventaire(int userID)
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = $"select * from useritem where UserId = {userID}";
+            string query = $"select * from useritem where UserItemId like (select UserUserItemId from user where userId = {userID})";
             DataSet Inventaire = new DataSet();
             try
             {
@@ -146,6 +172,7 @@ namespace ProgrammeMartyr
                 da.Fill(Inventaire, "inventaire");
                 connexion.Close();
             }
+            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -154,7 +181,7 @@ namespace ProgrammeMartyr
             return Inventaire;
         }
 
-        public bool CreateUser(string mail, string password, string username, ListeGenerale GList, out Utilisateur user)
+        public bool CreateUser(string mail, string password, string username, ListeGenerale Glist, out Utilisateur user)
         {
             bool successfullAction;
             user = null;
@@ -169,55 +196,35 @@ namespace ProgrammeMartyr
                 cmd.ExecuteNonQuery();
                 connexion.Close();
                 successfullAction = true;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw;
-
             }
+
 
             //récupération de l'utilisateur nouvellement créé
             if (successfullAction)
             {
-                ConnectUser(mail, password, GList, out user);
-
-                successfullAction = assignUser(mail, password, connexion, GList, out user);
-
-                //Création des liens entre l'utilisateur et les items de départ
-                if (successfullAction)
+                if(ConnectUser(mail, password, Glist, out DataSet userData))
                 {
-                    successfullAction = false;
-                    query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserId, UserItemPersonnagesId) VALUES (0, 0, 0, {user.Id}, 11)"; 
+                    CreateInventaire(int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), Glist.ListePerso[0]);
 
-                    try
-                    {
-                        connexion.Open();
-                        MySqlCommand cmd = new MySqlCommand(query, connexion);
-                        cmd.ExecuteNonQuery();
-                        successfullAction = true;
-                        connexion.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        throw;
-
-                    }
                 }
+
+                assignUser(userData, Glist, out user);
 
             }
             return successfullAction;
         }
 
-        public bool ConnectUser(string mail, string password, ListeGenerale listeG, out Utilisateur user)
+        public bool ConnectUser(string mail, string password, ListeGenerale Glist, out DataSet userData)
         {
-            user = null;
 
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
             string query = $"SELECT * FROM user WHERE UserMail = '{mail}' AND UserPassword = '{password}'";
-            DataSet userData = new DataSet();
+            userData = new DataSet();
             try
             {
                 connexion.Open();
@@ -233,7 +240,6 @@ namespace ProgrammeMartyr
 
             if (userData.Tables[0].Rows.Count > 0)
             {
-                assignUser(mail, password, connexion, listeG, out user);
                 return true;
             }
             else
@@ -243,33 +249,9 @@ namespace ProgrammeMartyr
             }
         }
 
-        public bool assignUser(string mail, string password, MySqlConnection connexion, ListeGenerale GList, out Utilisateur user)
+        public void assignUser(DataSet userData, ListeGenerale Glist, out Utilisateur user)
         {
-            bool successfullAction = false;
-
-            string query = $"SELECT * FROM user WHERE UserMail = '{mail}' AND UserPassword = '{password}'";
-
-            user = null;
-            try
-            {
-                connexion.Open();
-                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
-                DataSet userData = new DataSet();
-                da.Fill(userData, "user");
-                connexion.Close();
-                if (userData.Tables[0].Rows.Count > 0)
-                {
-                    user = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), GList);
-                    successfullAction = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-
-            return successfullAction;
+            user = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), Glist);
 
         }
     }

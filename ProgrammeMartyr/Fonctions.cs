@@ -37,6 +37,7 @@ namespace ProgrammeMartyr
             Grid.SetColumn(btnQuitter, 0);
             Grid.SetRow(btnQuitter, 0);
             grdMain.Children.Add(btnQuitter);
+            btnQuitter.Click += (s, e) => Application.Current.Shutdown();
 
             //bouton pour accéder au mode DEV
             Button btnDev = new Button();
@@ -294,8 +295,9 @@ namespace ProgrammeMartyr
                 string mail = txtMail.Text;
                 string password = txtPassword.Text;
                 BddManager bdd = new BddManager();
-                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text, listeG, out Utilisateur user))
+                if (bdd.ConnectUser(txtMail.Text, txtPassword.Text, listeG, out DataSet userData))
                 {
+                    bdd.assignUser(userData, listeG, out Utilisateur user);
                     OuvrirFenetreJeu(grdMain, user);
                 }
             };
@@ -414,7 +416,7 @@ namespace ProgrammeMartyr
             NettoyerGrid(grdMain, 3, 5);
 
             //ouvrir la fenêtre de jeu
-            Jeu jeu = new Jeu();
+            Jeu jeu = new Jeu(user);
             Application.Current.MainWindow.Close();
             jeu.Show();
 

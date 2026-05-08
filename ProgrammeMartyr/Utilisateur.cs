@@ -68,7 +68,7 @@ namespace ProgrammeMartyr
 		{
 			BddManager bdd = new BddManager();
 
-			DataSet temp = bdd.DownloadInventaire(_id);
+            DataSet temp = bdd.DownloadInventaire(_id);
 
 			ConvertPersoIds(temp, GList);
 

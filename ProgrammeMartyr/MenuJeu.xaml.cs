@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,15 +23,13 @@ namespace ProgrammeMartyr
     {
         private Utilisateur _user;
 
-        public Utilisateur User
-        {
-            get { return _user; }
-        }
+        private Grid _grdJeu;
 
-        public MenuJeu()
+        public MenuJeu(Utilisateur user, Grid grdJeu)
         {
             //assigner l'utilisateur connecté
-            _user = (Window.GetWindow(this) as Jeu).User;
+            _user = user;
+            _grdJeu = grdJeu;
             InitializeComponent();
         }
 
@@ -49,7 +48,11 @@ namespace ProgrammeMartyr
         {
             var parent = Window.GetWindow(this) as Jeu;
             parent.RemoveChildrenAt(1,1);
-            PageInventaire pageInv = new PageInventaire();
+            PageInventaire pageInv = new PageInventaire(_user, _grdJeu);
+            Grid.SetRow(pageInv, 1);
+            Grid.SetColumn(pageInv, 1);
+            //_grdJeu.ShowGridLines = true;
+            _grdJeu.Children.Add(pageInv);
         }
 
         private void ShopBtn_Click(object sender, RoutedEventArgs e)
