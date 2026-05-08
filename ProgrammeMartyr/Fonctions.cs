@@ -37,6 +37,7 @@ namespace ProgrammeMartyr
             Grid.SetColumn(btnQuitter, 0);
             Grid.SetRow(btnQuitter, 0);
             grdMain.Children.Add(btnQuitter);
+            btnQuitter.Click += (s, e) => Application.Current.Shutdown();
 
             //bouton pour accéder au mode DEV
             Button btnDev = new Button();

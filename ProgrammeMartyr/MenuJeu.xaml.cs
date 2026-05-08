@@ -49,6 +49,7 @@ namespace ProgrammeMartyr
             var parent = Window.GetWindow(this) as Jeu;
             parent.RemoveChildrenAt(1,1);
             PageInventaire pageInv = new PageInventaire(_user, _grdJeu);
+            
         }
 
         private void ShopBtn_Click(object sender, RoutedEventArgs e)

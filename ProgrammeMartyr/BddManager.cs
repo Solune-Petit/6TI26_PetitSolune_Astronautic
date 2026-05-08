@@ -24,49 +24,24 @@ namespace ProgrammeMartyr
         ///</parametres>
         public string ConnexionBdd()
         {
-            bool BddClasse = false;
-            bool BddSolune = false;
+            bool BddFound = false;
             string connexionString = "";
 
             try
             {
-                connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                //connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                connexionString = "server=192.168.129.3;database=solune;port=3306;UserId=PC_Ecole;password=root";
+                //connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
+
                 MySqlConnection testConnexion = new MySqlConnection(connexionString);
                 testConnexion.Open();
                 testConnexion.Close();
-                BddClasse = true;
+                BddFound = true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 throw;
-            }
-
-            if (BddClasse == false)
-            {
-                try
-                {
-                    connexionString = "server=192.168.0.96;database=solune;port=3306;UserId=root;password=root";
-                    BddSolune = true;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    throw;
-                }
-            }
-
-            if (BddClasse == false && BddSolune == false)
-            {
-                try
-                {
-                    connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    throw;
-                }
             }
 
             if (connexionString == "")
@@ -128,6 +103,56 @@ namespace ProgrammeMartyr
         }
 
         /// <summary>
+        /// Générer un iventaire pour le novel utilisateur en lui attribuant les items de départ
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="perso"></param>
+        public void CreateInventaire(int userId, Personnage perso)
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserItemPersonnagesId) VALUES (0, 0, 0, {perso.Id})"; 
+            try
+            {
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            int lastInsertedId;
+            query = $"SELECT LAST_INSERT_ID()";
+            try { 
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                lastInsertedId = Convert.ToInt32(cmd.ExecuteScalar());
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            query = $"UPDATE user SET UserUserItemId = {lastInsertedId} WHERE UserId = {userId}";
+            try
+            {
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Retrieves the inventory data for the specified user from the database.
         /// </summary>
         /// <param name="userID">The unique identifier of the user whose inventory is to be downloaded. Must correspond to a valid user in
@@ -137,7 +162,7 @@ namespace ProgrammeMartyr
         public DataSet DownloadInventaire(int userID)
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = $"select * from useritem where UserId = {userID}";
+            string query = $"select * from useritem where UserItemId = LAST_INSERT_ID()";
             DataSet Inventaire = new DataSet();
             try
             {
@@ -146,6 +171,7 @@ namespace ProgrammeMartyr
                 da.Fill(Inventaire, "inventaire");
                 connexion.Close();
             }
+            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -189,7 +215,7 @@ namespace ProgrammeMartyr
                 if (successfullAction)
                 {
                     successfullAction = false;
-                    query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserId, UserItemPersonnagesId) VALUES (0, 0, 0, {user.Id}, 11)"; 
+                    query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserItemPersonnagesId) VALUES (0, 0, 0, {GList.ListePerso[0].Id})"; 
 
                     try
                     {
