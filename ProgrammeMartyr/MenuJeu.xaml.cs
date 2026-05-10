@@ -25,11 +25,14 @@ namespace ProgrammeMartyr
 
         private Grid _grdJeu;
 
-        public MenuJeu(Utilisateur user, Grid grdJeu)
+        private ListeGenerale _Glist;
+
+        public MenuJeu(Utilisateur user, Grid grdJeu, ListeGenerale Glist)
         {
             //assigner l'utilisateur connecté
             _user = user;
             _grdJeu = grdJeu;
+            _Glist = Glist;
             InitializeComponent();
         }
 
@@ -41,7 +44,12 @@ namespace ProgrammeMartyr
 
         private void MatchBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var parent = Window.GetWindow(this) as Jeu;
+            parent.RemoveChildrenAt(1, 1);
+            PagePrep pagePrepMatch = new PagePrep(_user, _grdJeu, _Glist);
+            Grid.SetRow(pagePrepMatch, 1);
+            Grid.SetColumn(pagePrepMatch, 1);
+            _grdJeu.Children.Add(pagePrepMatch);
         }
 
         private void InventaireBtn_Click(object sender, RoutedEventArgs e)

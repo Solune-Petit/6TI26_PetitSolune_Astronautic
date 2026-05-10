@@ -22,17 +22,14 @@ namespace ProgrammeMartyr
     {
         private Utilisateur _user;
 
-        public Utilisateur User
-        {
-            get { return _user; }
-            set { _user = value; }
-        }
+        private ListeGenerale _Glist;
 
 
-        public Jeu(Utilisateur user)
+        public Jeu(Utilisateur user, ListeGenerale Glist)
         {
             InitializeComponent();
             _user = user;
+            _Glist = Glist;
             OuvrirePageMenu();
         }
 
@@ -59,14 +56,14 @@ namespace ProgrammeMartyr
 
         public void OuvrirePageMenu()
         {
-            MenuJeu pageMenu = new MenuJeu(_user, GrdJeu);
+            MenuJeu pageMenu = new MenuJeu(_user, GrdJeu, _Glist);
             //pageMenu.User = _user;
             Grid.SetColumn(pageMenu, 1);
             Grid.SetRow(pageMenu, 1);
             GrdJeu.Children.Add(pageMenu);
-            TxtMoney.Text = _user.Inventaire.Items[1].ToString();
-            TxtCrystal.Text = _user.Inventaire.Items[2].ToString();
-            TxtUpgrade.Text = _user.Inventaire.Items[3].ToString();
+            TxtMoney.Text = _user.Inventaire.Items[0].ToString();
+            TxtCrystal.Text = _user.Inventaire.Items[1].ToString();
+            TxtUpgrade.Text = _user.Inventaire.Items[2].ToString();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -82,7 +79,7 @@ namespace ProgrammeMartyr
 
         private void ColorModeBtn_Click(object sender, RoutedEventArgs e)
         {
-            Jeu jeu = new Jeu(_user);
+            Jeu jeu = new Jeu(_user, _Glist);
 
             if (isDarkModeOn())
             {

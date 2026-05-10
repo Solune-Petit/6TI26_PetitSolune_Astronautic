@@ -298,7 +298,7 @@ namespace ProgrammeMartyr
                 if (bdd.ConnectUser(txtMail.Text, txtPassword.Text, listeG, out DataSet userData))
                 {
                     bdd.assignUser(userData, listeG, out Utilisateur user);
-                    OuvrirFenetreJeu(grdMain, user);
+                    OuvrirFenetreJeu(grdMain, user, listeG);
                 }
             };
         }
@@ -401,7 +401,7 @@ namespace ProgrammeMartyr
                 bool success = bdd.CreateUser(mail, password, name, GList, out Utilisateur user);
                 if (success)
                 {
-                    OuvrirFenetreJeu(grdMain, user);
+                    OuvrirFenetreJeu(grdMain, user, GList);
                 }
                 else
                 {
@@ -411,12 +411,12 @@ namespace ProgrammeMartyr
         }
 
 
-        public void OuvrirFenetreJeu(Grid grdMain, Utilisateur user)
+        public void OuvrirFenetreJeu(Grid grdMain, Utilisateur user, ListeGenerale Glist)
         {
             NettoyerGrid(grdMain, 3, 5);
 
             //ouvrir la fenêtre de jeu
-            Jeu jeu = new Jeu(user);
+            Jeu jeu = new Jeu(user, Glist);
             Application.Current.MainWindow.Close();
             jeu.Show();
 

@@ -11,5 +11,11 @@
     <Compile Update="PageInventaire.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="PageMatch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PagePrep.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
