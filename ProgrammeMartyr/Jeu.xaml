@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:ProgrammeMartyr"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="700"
-        Width="900"
+        Height="900"
+        Width="1200"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">

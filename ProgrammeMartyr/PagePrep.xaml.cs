@@ -115,7 +115,7 @@ namespace ProgrammeMartyr
 
                 var parent = Window.GetWindow(this) as Jeu;
                 parent.RemoveChildrenAt(1, 1);
-                PageMatch pageMatch = new PageMatch(_listeEnemis, _listPerso);
+                Match pageMatch = new Match(_listeEnemis, _listPerso, _Glist);
                 Grid.SetColumn(pageMatch, 1);
                 Grid.SetRow(pageMatch, 1);
                 _grdJeu.Children.Add(pageMatch);

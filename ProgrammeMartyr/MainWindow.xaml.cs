@@ -39,6 +39,7 @@ namespace ProgrammeMartyr
             DataSet listePersos = bdd.DownloadCharacters();    //variable qui contient les personnages
             ListeGenerale GList = new ListeGenerale();          //Fichier de stockage de toutes les listes (personnages, attaques, etc)
             Personnage perso;                                   //Fichier de stockage d'un personnage
+            DataSet listeMods = bdd.DownloadModifiers();        //variable qui contient les modifiers
 
             //stoquage des personnages
             for (int i = 0; i < int.Parse(listePersos.Tables["personnage"].Rows.Count.ToString()); i++)
@@ -46,6 +47,13 @@ namespace ProgrammeMartyr
                 perso = new Personnage(listePersos.Tables["personnage"].Rows[i]["PersonnageNom"].ToString(), listePersos.Tables["personnage"].Rows[i]["PersonnageType"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageRarete"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageLvlMax"].ToString()), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnagePvMax"].ToString()), listePersos.Tables["personnage"].Rows[i]["PersonnageImg"].ToString(), int.Parse(listePersos.Tables["personnage"].Rows[i]["PersonnageId"].ToString()));
                 GList.ListePerso.Add(perso);
             }
+
+            for (int i = 0; i < int.Parse(listeMods.Tables["modifyer"].Rows.Count.ToString()); i++)
+            {
+                Modifiers mod = new Modifiers(listeMods.Tables["modifyer"].Rows[i]["ModifierNom"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifierImg"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifierDef"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifierEffect"].ToString());
+                GList.Modifiers.Add(mod);
+            }
+
 
             func.OuvrirFenetreMenu(grdMain, GList);
         }

@@ -30,8 +30,8 @@ namespace ProgrammeMartyr
 
             try
             {
-                //connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
-                connexionString = "server=192.168.129.3;database=solune;port=3306;UserId=PC_Ecole;password=root";
+                connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                //connexionString = "server=192.168.129.3;database=solune;port=3306;UserId=PC_Ecole;password=root";
                 //connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
 
                 MySqlConnection testConnexion = new MySqlConnection(connexionString);
@@ -111,7 +111,7 @@ namespace ProgrammeMartyr
         public void CreateInventaire(int userId, Personnage perso)
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserItemPersonnagesId) VALUES (0, 0, 0, {perso.Id})"; 
+            string query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserItemPersonnagesId) VALUES (0, 0, 0, {perso.Id})";
             try
             {
                 connexion.Open();
@@ -126,7 +126,8 @@ namespace ProgrammeMartyr
             }
             int lastInsertedId;
             query = $"SELECT LAST_INSERT_ID()";
-            try { 
+            try
+            {
                 connexion.Open();
                 MySqlCommand cmd = new MySqlCommand(query, connexion);
                 lastInsertedId = Convert.ToInt32(cmd.ExecuteScalar());
@@ -172,7 +173,7 @@ namespace ProgrammeMartyr
                 da.Fill(Inventaire, "inventaire");
                 connexion.Close();
             }
-            
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -207,7 +208,7 @@ namespace ProgrammeMartyr
             //récupération de l'utilisateur nouvellement créé
             if (successfullAction)
             {
-                if(ConnectUser(mail, password, Glist, out DataSet userData))
+                if (ConnectUser(mail, password, Glist, out DataSet userData))
                 {
                     CreateInventaire(int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), Glist.ListePerso[0]);
 
@@ -253,6 +254,26 @@ namespace ProgrammeMartyr
         {
             user = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), Glist);
 
+        }
+
+        public DataSet DownloadModifiers()
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = "SELECT * FROM modifyer";
+            DataSet Modifiers = new DataSet();
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                da.Fill(Modifiers, "modifyer");
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            return Modifiers;
         }
     }
 }
