@@ -14,6 +14,7 @@ namespace ProgrammeMartyr
         private string _nom, _role, _img;
         private int _rarete, _niveauMax, _PvMax, _PvGame, _id;
         double _niveauActuel;
+        List<Attaque> _listeAttaque;
 
 
         // Propriétés
@@ -54,6 +55,12 @@ namespace ProgrammeMartyr
         {
             get { return _niveauActuel; }
             set { _niveauActuel = value; }
+        }
+
+        public List<Attaque> ListeAttaque
+        {
+            get { return _listeAttaque; }
+            set { _listeAttaque = value; }
         }
 
         // Constructeur

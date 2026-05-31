@@ -53,7 +53,7 @@ namespace ProgrammeMartyr {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;V1.0.0.0;component/menujeu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;component/menujeu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MenuJeu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

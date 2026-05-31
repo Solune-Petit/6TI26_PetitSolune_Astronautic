@@ -85,7 +85,7 @@ namespace ProgrammeMartyr {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;V1.0.0.0;component/jeu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;component/jeu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Jeu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

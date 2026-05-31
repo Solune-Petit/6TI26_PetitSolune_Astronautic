@@ -106,7 +106,7 @@ namespace ProgrammeMartyr
                 {
                     for(int j = 0; j < _Glist.ListePerso.Count; j++)
                     {
-                        if(listChoix[i] == _Glist.ListePerso[j].Nom)
+                        if(listChoix[i] == _Glist.ListePerso[j].Id.ToString())
                         {
                             _listPerso.Add(_Glist.ListePerso[j]);
                         }

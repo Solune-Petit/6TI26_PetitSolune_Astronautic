@@ -53,7 +53,7 @@ namespace ProgrammeMartyr {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;V1.0.0.0;component/pagematch.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;component/pagematch.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PageMatch.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

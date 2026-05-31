@@ -13,7 +13,6 @@ namespace ProgrammeMartyr
 		public string Nom
 		{
 			get { return _nom; }
-			set { _nom = value; }
 		}
 
 		private string _image;
@@ -21,7 +20,6 @@ namespace ProgrammeMartyr
 		public string Image
 		{
 			get { return _image; }
-			set { _image = value; }
 		}
 
 		private string _def;
@@ -29,23 +27,21 @@ namespace ProgrammeMartyr
 		public string Def
 		{
 			get { return _def; }
-			set { _def = value; }
 		}
 
-		private string _effect;
+		private int _duree;
 
-		public string Effect
+		public int Duree
 		{
-			get { return _effect; }
-			set { _effect = value; }
+			get { return _duree; }
 		}
 
-		public Modifiers(string nom, string image, string def, string effect)
+		public Modifiers(string nom, string image, string def, int duree)
 		{
 			_nom = nom;
 			_image = image;
 			_def = def;
-			_effect = effect;
-        }
-    }
+			_duree = duree;
+		}
+	}
 }

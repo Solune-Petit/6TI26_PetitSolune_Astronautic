@@ -50,7 +50,7 @@ namespace ProgrammeMartyr
 
             for (int i = 0; i < int.Parse(listeMods.Tables["modifyer"].Rows.Count.ToString()); i++)
             {
-                Modifiers mod = new Modifiers(listeMods.Tables["modifyer"].Rows[i]["ModifierNom"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifierImg"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifierDef"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifierEffect"].ToString());
+                Modifiers mod = new Modifiers(listeMods.Tables["modifyer"].Rows[i]["ModifyerNom"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifyerImage"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifyerDescription"].ToString(), int.Parse(listeMods.Tables["modifyer"].Rows[i]["ModifyerDuree"].ToString()));
                 GList.Modifiers.Add(mod);
             }
 

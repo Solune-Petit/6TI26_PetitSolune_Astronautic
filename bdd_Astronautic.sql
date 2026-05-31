@@ -33,7 +33,6 @@ UserItemMoney BIGINT,
 UserItemCrystal BIGINT,
 UserItemUpgradeAbility BIGINT,
 UserItemPersonnagesId INT NULL,
-UserItemPersonnagesId VARCHAR(20),
 PRIMARY KEY (UserItemId)) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS Modifyer ;

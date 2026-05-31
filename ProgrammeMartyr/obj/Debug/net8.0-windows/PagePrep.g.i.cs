@@ -109,7 +109,7 @@ namespace ProgrammeMartyr {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;V1.0.0.0;component/pageprep.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;component/pageprep.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PagePrep.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

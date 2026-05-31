@@ -30,9 +30,9 @@ namespace ProgrammeMartyr
 
             try
             {
-                connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                //connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
                 //connexionString = "server=192.168.129.3;database=solune;port=3306;UserId=PC_Ecole;password=root";
-                //connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
+                connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
 
                 MySqlConnection testConnexion = new MySqlConnection(connexionString);
                 testConnexion.Open();
@@ -274,6 +274,47 @@ namespace ProgrammeMartyr
                 throw;
             }
             return Modifiers;
+        }
+
+        public DataSet DownloadAttacks()
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = "SELECT * FROM attaque";
+            DataSet Attacks = new DataSet();
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                da.Fill(Attacks, "attaque");
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            return Attacks;
+        }
+
+        public DataSet DownloadPossede()
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = "SELECT * FROM possede";
+            DataSet Possede = new DataSet();
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                da.Fill(Possede, "possede");
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            
+            return Possede;
         }
     }
 }

@@ -77,7 +77,7 @@ namespace ProgrammeMartyr {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;V1.0.0.0;component/pageinventaire.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgrammeMartyr;component/pageinventaire.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PageInventaire.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

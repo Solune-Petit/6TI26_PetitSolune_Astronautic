@@ -198,4 +198,8 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="images\attaques\" />
+  </ItemGroup>
+
 </Project>
