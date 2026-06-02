@@ -48,7 +48,7 @@ namespace ProgrammeMartyr
 		public Modifiers(string nom, string image, string def, int duree, int id)
 		{
 			_nom = nom;
-			_image = image;
+			_image = $"images/buff-debuff/{image}.png";
 			_def = def;
 			_duree = duree;
 			_id = id;

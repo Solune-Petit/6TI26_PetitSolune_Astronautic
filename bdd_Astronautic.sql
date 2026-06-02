@@ -92,8 +92,8 @@ INSERT INTO `personnage` (`PersonnageNom`, `PersonnageImg`, `PersonnageType`, `P
 
 
 #Modifyers
-INSERT INTO `modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Exposition', 'l\'ennemi prendra plus de dégats', '1');
-INSERT INTO `modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Stun', 'L\'ennemi ne pourra pas attaquer', '2');
+INSERT INTO `modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`, `ModifyerImage`) VALUES ('Exposition', 'l\'ennemi prendra plus de dégats', '1');
+INSERT INTO `modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`, `ModifyerImage`) VALUES ('Stun', 'L\'ennemi ne pourra pas attaquer', '2');
 INSERT INTO `modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Weakness', 'L\'ennemi aura plus de facilité à subir des malus', '1');
 INSERT INTO `modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Slowed', 'L\'ennemi attaquera moins fort', '2');
 INSERT INTO `modifyer` (`ModifyerNom`, `ModifyerDescription`, `ModifyerDuree`) VALUES ('Debuff', 'L\'ennemi perd toute ses modifiyers', '2');
