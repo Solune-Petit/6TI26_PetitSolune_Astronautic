@@ -40,6 +40,8 @@ namespace ProgrammeMartyr
             ListeGenerale GList = new ListeGenerale();          //Fichier de stockage de toutes les listes (personnages, attaques, etc)
             Personnage perso;                                   //Fichier de stockage d'un personnage
             DataSet listeMods = bdd.DownloadModifiers();        //variable qui contient les modifiers
+            DataSet listeAttaques = bdd.DownloadAttacks();    //variable qui contient les attaques
+
 
             //stoquage des personnages
             for (int i = 0; i < int.Parse(listePersos.Tables["personnage"].Rows.Count.ToString()); i++)
@@ -50,8 +52,26 @@ namespace ProgrammeMartyr
 
             for (int i = 0; i < int.Parse(listeMods.Tables["modifyer"].Rows.Count.ToString()); i++)
             {
-                Modifiers mod = new Modifiers(listeMods.Tables["modifyer"].Rows[i]["ModifyerNom"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifyerImage"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifyerDescription"].ToString(), int.Parse(listeMods.Tables["modifyer"].Rows[i]["ModifyerDuree"].ToString()));
+                Modifiers mod = new Modifiers(listeMods.Tables["modifyer"].Rows[i]["ModifyerNom"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifyerImage"].ToString(), listeMods.Tables["modifyer"].Rows[i]["ModifyerDescription"].ToString(), int.Parse(listeMods.Tables["modifyer"].Rows[i]["ModifyerDuree"].ToString()), int.Parse(listeMods.Tables["modifyer"].Rows[i]["ModifyerId"].ToString()));
                 GList.Modifiers.Add(mod);
+            }
+
+            for (int i = 0; i < int.Parse(listeAttaques.Tables["attaque"].Rows.Count.ToString()); i++)
+            {
+                List<Modifiers> listModAttaque = new List<Modifiers>();
+                for (int j = 0; j < int.Parse(listeAttaques.Tables["attaque"].Rows[i]["ModifyersId"].ToString()); j++)
+                {
+                    for (int k = 0; k < GList.Modifiers.Count; k++)
+                    {
+                        if (GList.Modifiers[k].Id == (int)listeAttaques.Tables["attaque"].Rows[i]["ModifyersId"])
+                        {
+                            listModAttaque.Add(GList.Modifiers[k]);
+                        }
+                    }
+                }
+                Attaque att = new Attaque(int.Parse(listeAttaques.Tables["attaque"].Rows[i]["AttaqueId"].ToString()), listeAttaques.Tables["attaque"].Rows[i]["AttaqueNom"].ToString(), int.Parse(listeAttaques.Tables["attaque"].Rows[i]["AttaquePuissance"].ToString()), listeAttaques.Tables["attaque"].Rows[i]["AttaqueDescription"].ToString(), int.Parse(listeAttaques.Tables["attaque"].Rows[i]["Role"].ToString()), listModAttaque, GList, out int[] attaquePerso);
+                GList.ListeAttaque.Add(att);
+                GList.ListePerso[attaquePerso[0]-1].ListeAttaque.Add(att);
             }
 
 

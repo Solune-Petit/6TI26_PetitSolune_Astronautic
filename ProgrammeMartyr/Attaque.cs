@@ -56,7 +56,7 @@ namespace ProgrammeMartyr
 			get { return _listeModifier; }
 		}
 
-		public Attaque(int id, string nom, int puissance, string description, int role, List<Modifiers> listeModifier)
+		public Attaque(int id, string nom, int puissance, string description, int role, List<Modifiers> listeModifier, ListeGenerale GList, out int[] attaquePerso)
 		{
 			_id = id;
 			_nom = nom;
@@ -64,25 +64,30 @@ namespace ProgrammeMartyr
 			_description = description;
 			_role = role;
 			_listeModifier = listeModifier;
-        }
+			attaquePerso = AssignAttaqueToPersonnage(GList);
+		}
 
 		public void AssignerModifier(Modifiers Modifier)
 		{
 			_listeModifier.Add(Modifier);
 		}
 
-		public void AssignAttaqueToPersonnage(ListeGenerale Glist)
+		public int[] AssignAttaqueToPersonnage(ListeGenerale Glist)
 		{
 			BddManager bdd = new BddManager();
 			DataSet dataPossede = bdd.DownloadPossede();
 
+			int[] idPerso = new int[2];
 			foreach (DataRow row in dataPossede.Tables[0].Rows)
 			{
 				if(Convert.ToInt32(row["AttaqueId"]) == _id)
 				{
-					Glist.ListePerso[Convert.ToInt32(row["PersonnageId"])].ListeAttaque.Add(this);
+					idPerso[0] = Convert.ToInt32(row["PersonnageId"]);
+					idPerso[1] = _id;
+					break;
                 }
             }
+			return idPerso;
         }
     }
 }

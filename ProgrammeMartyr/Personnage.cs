@@ -75,6 +75,7 @@ namespace ProgrammeMartyr
             _niveauActuel = 0;
             _img = $"images/personnages/{img}";
             _id = Id;
+            _listeAttaque = new List<Attaque>();
         }
 
         // Méthodes
@@ -180,6 +181,11 @@ namespace ProgrammeMartyr
             cardPanel.Children.Add(txtPv);
 
             return cardPanel;
+        }
+
+        public void AssignAttaques(List<Attaque> listeAttaques)
+        {
+            
         }
     }
 }

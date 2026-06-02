@@ -63,23 +63,23 @@ namespace ProgrammeMartyr
             {
                 if (i == 0 && CmbPerso1.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso1.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso1.SelectedValue.ToString());
                 }
                 else if (i == 1 && CmbPerso2.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso2.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso2.SelectedValue.ToString());
                 }
                 else if (i == 2 && CmbPerso3.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso3.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso3.SelectedValue.ToString());
                 }
                 else if (i == 3 && CmbPerso4.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso4.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso4.SelectedValue.ToString());
                 }
                 else if (i == 4 && CmbPerso5.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso5.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso5.SelectedValue.ToString());
                 }
             }
 
@@ -106,7 +106,7 @@ namespace ProgrammeMartyr
                 {
                     for(int j = 0; j < _Glist.ListePerso.Count; j++)
                     {
-                        if(listChoix[i] == _Glist.ListePerso[j].Id.ToString())
+                        if(listChoix[i] == _Glist.ListePerso[j].Nom.ToString())
                         {
                             _listPerso.Add(_Glist.ListePerso[j]);
                         }
@@ -146,7 +146,7 @@ namespace ProgrammeMartyr
             int nbrEnemis = rand.Next(1, 6);
             for (int i = 0; i < nbrEnemis; i++)
             {
-                int enemi = rand.Next(0, Glist.ListePerso.Count);
+                int enemi = rand.Next(1, Glist.ListePerso.Count);
                 _listeEnemis.Add(Glist.ListePerso[enemi]);
                 TextBlock Perso = new TextBlock();
                 Perso.Text = Glist.ListePerso[enemi].Nom;

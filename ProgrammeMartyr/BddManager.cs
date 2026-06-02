@@ -164,7 +164,7 @@ namespace ProgrammeMartyr
         public DataSet DownloadInventaire(int userID)
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = $"select * from useritem where UserItemId like (select UserUserItemId from user where userId = {userID})";
+            string query = $"select * from useritem where UserItemId like (select UserItemId from user where userId = {userID})";
             DataSet Inventaire = new DataSet();
             try
             {

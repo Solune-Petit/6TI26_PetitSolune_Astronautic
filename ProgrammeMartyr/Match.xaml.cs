@@ -45,17 +45,158 @@ namespace ProgrammeMartyr
 
         public void PrepBoard()
         {
-            stckEnemi1 = _listeEnemis[0].CombatCardDesign();
-            stckEnemi2 = _listeEnemis[1].CombatCardDesign();
-            stckEnemi3 = _listeEnemis[2].CombatCardDesign();
-            stckEnemi4 = _listeEnemis[3].CombatCardDesign();
-            stckEnemi5 = _listeEnemis[4].CombatCardDesign();
 
-            stckPerso1 = _listePersos[0].CombatCardDesign();
-            stckPerso2 = _listePersos[1].CombatCardDesign();
-            stckPerso3 = _listePersos[2].CombatCardDesign();
-            stckPerso4 = _listePersos[3].CombatCardDesign();
-            stckPerso5 = _listePersos[4].CombatCardDesign();
+            StackPanel stckEnemi1 = _listeEnemis[0].CombatCardDesign();
+            Grid.SetRow(stckEnemi1, 0);
+            Grid.SetColumn(stckEnemi1, 4);
+            grdMatch.Children.Add(stckEnemi1);
+            bool fin = false;
+
+            if(_listeEnemis.Count == 1)
+            {
+                fin = true;
+            }
+
+            if (_listeEnemis.Count < 3 && _listeEnemis.Count > 1 && !fin)
+            {
+                StackPanel stckEnemi2 = _listeEnemis[1].CombatCardDesign();
+                Grid.SetRow(stckEnemi2, 1);
+                Grid.SetColumn(stckEnemi2, 3);
+                grdMatch.Children.Add(stckEnemi2);
+                fin = true;
+            }
+            if(_listeEnemis.Count < 4 && !fin)
+            {
+                StackPanel stckEnemi2 = _listeEnemis[1].CombatCardDesign();
+                Grid.SetRow(stckEnemi2, 1);
+                Grid.SetColumn(stckEnemi2, 3);
+                grdMatch.Children.Add(stckEnemi2);
+
+                StackPanel stckEnemi3 = _listeEnemis[2].CombatCardDesign();
+                Grid.SetRow(stckEnemi3, 2);
+                Grid.SetColumn(stckEnemi3, 4);
+                grdMatch.Children.Add(stckEnemi3);
+                fin = true;
+            }
+            if(_listeEnemis.Count < 5 && !fin)
+            {
+                StackPanel stckEnemi2 = _listeEnemis[1].CombatCardDesign();
+                Grid.SetRow(stckEnemi2, 1);
+                Grid.SetColumn(stckEnemi2, 3);
+                grdMatch.Children.Add(stckEnemi2);
+
+                StackPanel stckEnemi3 = _listeEnemis[2].CombatCardDesign();
+                Grid.SetRow(stckEnemi3, 2);
+                Grid.SetColumn(stckEnemi3, 4);
+                grdMatch.Children.Add(stckEnemi3);
+
+                StackPanel stckEnemi4 = _listeEnemis[3].CombatCardDesign();
+                Grid.SetRow(stckEnemi4, 3);
+                Grid.SetColumn(stckEnemi4, 3);
+                grdMatch.Children.Add(stckEnemi4);
+                fin = true;
+            }
+            if(_listeEnemis.Count < 6 && !fin)
+            {
+                StackPanel stckEnemi2 = _listeEnemis[1].CombatCardDesign();
+                Grid.SetRow(stckEnemi2, 1);
+                Grid.SetColumn(stckEnemi2, 3);
+                grdMatch.Children.Add(stckEnemi2);
+
+                StackPanel stckEnemi3 = _listeEnemis[2].CombatCardDesign();
+                Grid.SetRow(stckEnemi3, 2);
+                Grid.SetColumn(stckEnemi3, 4);
+                grdMatch.Children.Add(stckEnemi3);
+
+                StackPanel stckEnemi4 = _listeEnemis[3].CombatCardDesign();
+                Grid.SetRow(stckEnemi4, 3);
+                Grid.SetColumn(stckEnemi4, 3);
+                grdMatch.Children.Add(stckEnemi4);
+                StackPanel stckEnemi5 = _listeEnemis[4].CombatCardDesign();
+                Grid.SetRow(stckEnemi5, 4);
+                Grid.SetColumn(stckEnemi5, 4);
+                grdMatch.Children.Add(stckEnemi5);
+                fin = true;
+            }
+
+            StackPanel stckPerso1 = _listePersos[0].CombatCardDesign();
+            Grid.SetRow(stckPerso1, 0);
+            Grid.SetColumn(stckPerso1, 0);
+            grdMatch.Children.Add(stckPerso1);
+
+            fin = false;
+            if(_listePersos.Count == 1)
+            {
+                fin = true;
+            }
+
+            if (_listePersos.Count < 3 && _listePersos.Count > 1 && !fin)
+            {
+                StackPanel stckPerso2 = _listePersos[1].CombatCardDesign();
+                Grid.SetRow(stckPerso2, 1);
+                Grid.SetColumn(stckPerso2, 1);
+                grdMatch.Children.Add(stckPerso2);
+                fin = true;
+            }
+            if (_listePersos.Count < 4 && !fin)
+            {
+                StackPanel stckPerso2 = _listePersos[1].CombatCardDesign();
+                Grid.SetRow(stckPerso2, 1);
+                Grid.SetColumn(stckPerso2, 1);
+                grdMatch.Children.Add(stckPerso2);
+
+                StackPanel stckPerso3 = _listePersos[2].CombatCardDesign();
+                Grid.SetRow(stckPerso3, 2);
+                Grid.SetColumn(stckPerso3, 0);
+                grdMatch.Children.Add(stckPerso3);
+
+                fin = true;
+            }
+            if (_listePersos.Count < 5 && !fin)
+            {
+                StackPanel stckPerso2 = _listePersos[1].CombatCardDesign();
+                Grid.SetRow(stckPerso2, 1);
+                Grid.SetColumn(stckPerso2, 1);
+                grdMatch.Children.Add(stckPerso2);
+
+                StackPanel stckPerso3 = _listePersos[2].CombatCardDesign();
+                Grid.SetRow(stckPerso3, 2);
+                Grid.SetColumn(stckPerso3, 0);
+                grdMatch.Children.Add(stckPerso3);
+
+                StackPanel stckPerso4 = _listePersos[3].CombatCardDesign();
+                Grid.SetRow(stckPerso4, 3);
+                Grid.SetColumn(stckPerso4, 1);
+                grdMatch.Children.Add(stckPerso4);
+
+                fin = true;
+            }
+            if (_listePersos.Count < 6 && !fin)
+            {
+                StackPanel stckPerso2 = _listePersos[1].CombatCardDesign();
+                Grid.SetRow(stckPerso2, 1);
+                Grid.SetColumn(stckPerso2, 1);
+                grdMatch.Children.Add(stckPerso2);
+
+                StackPanel stckPerso3 = _listePersos[2].CombatCardDesign();
+                Grid.SetRow(stckPerso3, 2);
+                Grid.SetColumn(stckPerso3, 0);
+                grdMatch.Children.Add(stckPerso3);
+
+                StackPanel stckPerso4 = _listePersos[3].CombatCardDesign();
+                Grid.SetRow(stckPerso4, 3);
+                Grid.SetColumn(stckPerso4, 1);
+                grdMatch.Children.Add(stckPerso4);
+
+                StackPanel stckPerso5 = _listePersos[4].CombatCardDesign();
+                Grid.SetRow(stckPerso5, 4);
+                Grid.SetColumn(stckPerso5, 0);
+                grdMatch.Children.Add(stckPerso5);
+
+                fin = true;
+            }
+
+
         }
 
         public void PrepNextTurn()
@@ -68,14 +209,18 @@ namespace ProgrammeMartyr
 
                 }
             }
+
+            BtnAttaque1.Content = _listePersos[_turnSelector].ListeAttaque[0].Nom;
+            BtnAttaque1.IsEnabled = true;
+            BtnAttaque2.Content = _listePersos[_turnSelector].ListeAttaque[1].Nom;
+            BtnAttaque2.IsEnabled = true;
+            BtnAttaque3.Content = _listePersos[_turnSelector].ListeAttaque[2].Nom;
+            BtnAttaque3.IsEnabled = true;
             
             switch (_turnSelector)
             {
                 case 0:
                     //tour du personnage 1
-                    BtnAttaque1.Content = _listePersos[0].ListeAttaque[0].Nom;
-                    BtnAttaque2.Content = _listePersos[0].ListeAttaque[1].Nom;
-                    BtnAttaque3.Content = _listePersos[0].ListeAttaque[2].Nom;
 
                     if (_listePersos[0].ListeAttaque[1].Cooldown != 0)
                     {
@@ -87,6 +232,8 @@ namespace ProgrammeMartyr
                         _listePersos[0].ListeAttaque[2].Cooldown--;
                         BtnAttaque3.IsEnabled = false;
                     }
+
+
 
 
                     break;

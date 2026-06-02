@@ -36,12 +36,22 @@ namespace ProgrammeMartyr
 			get { return _duree; }
 		}
 
-		public Modifiers(string nom, string image, string def, int duree)
+		private int _id;
+
+		public int Id
+		{
+			get { return _id; }
+			set { _id = value; }
+		}
+
+
+		public Modifiers(string nom, string image, string def, int duree, int id)
 		{
 			_nom = nom;
 			_image = image;
 			_def = def;
 			_duree = duree;
+			_id = id;
 		}
 	}
 }
