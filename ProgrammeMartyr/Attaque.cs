@@ -56,7 +56,7 @@ namespace ProgrammeMartyr
 			get { return _listeModifier; }
 		}
 
-		public Attaque(int id, string nom, int puissance, string description, int role, List<Modifiers> listeModifier, ListeGenerale GList, out int[] attaquePerso)
+		public Attaque(int id, string nom, int puissance, string description, int role, List<Modifiers> listeModifier, ListeGenerale GList)
 		{
 			_id = id;
 			_nom = nom;
@@ -64,7 +64,6 @@ namespace ProgrammeMartyr
 			_description = description;
 			_role = role;
 			_listeModifier = listeModifier;
-			attaquePerso = AssignAttaqueToPersonnage(GList);
 		}
 
 		public void AssignerModifier(Modifiers Modifier)
@@ -72,22 +71,38 @@ namespace ProgrammeMartyr
 			_listeModifier.Add(Modifier);
 		}
 
-		public int[] AssignAttaqueToPersonnage(ListeGenerale Glist)
-		{
-			BddManager bdd = new BddManager();
-			DataSet dataPossede = bdd.DownloadPossede();
+        public int[] AssignAttaqueToPersonnage(List<Personnage> perso)
+        {
+            BddManager bdd = new BddManager();
+            DataSet dataPossede = bdd.DownloadPossede();
 
-			int[] idPerso = new int[2];
-			foreach (DataRow row in dataPossede.Tables[0].Rows)
-			{
-				if(Convert.ToInt32(row["AttaqueId"]) == _id)
-				{
-					idPerso[0] = Convert.ToInt32(row["PersonnageId"]);
-					idPerso[1] = _id;
-					break;
+            int[] idPerso = new int[2];
+
+            foreach (DataRow row in dataPossede.Tables[0].Rows)
+            {
+                if (row["AttaqueId"] == DBNull.Value) continue;
+                if (Convert.ToInt32(row["AttaqueId"]) != _id) continue;
+
+                if (row["PersonnageId"] == DBNull.Value) continue;
+                int pid = Convert.ToInt32(row["PersonnageId"]);
+
+                
+                var target = perso.FirstOrDefault(p => p.Id == pid);
+
+                if (target != null)
+                {
+                    target.ListeAttaque.Add(this);
+                    idPerso[0] = pid;
                 }
+                else
+                {
+                    // optional: log missing mapping or handle gracefully
+                }
+
+                break;
             }
-			return idPerso;
+
+            return idPerso;
         }
     }
 }

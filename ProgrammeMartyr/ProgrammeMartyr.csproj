@@ -81,6 +81,8 @@
     <None Remove="images\buff-debuff\tanking.jpg" />
     <None Remove="images\buff-debuff\vitesse.jpg" />
     <None Remove="images\buff-debuff\weakness.jpg" />
+    <None Remove="images\credit.PNG" />
+    <None Remove="images\cristal.PNG" />
     <None Remove="images\personnages\Amixem.jpg" />
     <None Remove="images\personnages\Charles_Leclerc.jpg" />
     <None Remove="images\personnages\Mastu.jpg" />
@@ -228,6 +230,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\buff-debuff\weakness.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\credit.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\cristal.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\personnages\Amixem.jpg">

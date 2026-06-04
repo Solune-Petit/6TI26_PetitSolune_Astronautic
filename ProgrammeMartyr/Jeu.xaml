@@ -89,27 +89,36 @@
         <StackPanel     Grid.Row="0"
                         Grid.Column="1"
                         HorizontalAlignment="Right"
-                        Width="300"
+                        Width="400"
                         Height="39"
                         Orientation="Horizontal">
             
+            <Image Source="\images\credit.PNG"
+                   Stretch="Uniform"
+                   Height="30"
+                   Width="30"/>
+            
             <TextBlock  Name="TxtMoney"
                         FontSize="26"
-                        Margin="10,0,10,0"
+                        Margin="15,0,15,0"
                         Width="80"
                         />
-            
+
+            <Image Source="\images\cristal.PNG"
+                   Stretch="Uniform"
+                   Height="30"
+                   Width="30"/>
+
             <TextBlock  Name="TxtCrystal"
                         FontSize="26"
-                        Margin="10,0,10,0"
+                        Margin="15,0,15,0"
                         Width="80"/>
-            
+
+
             <TextBlock  Name="TxtUpgrade"
                         FontSize="26"
-                        Margin="10,0,10,0"
+                        Margin="15,0,0,0"
                         Width="80"/>
-
-
         </StackPanel>
         
     </Grid>

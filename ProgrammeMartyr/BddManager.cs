@@ -30,8 +30,8 @@ namespace ProgrammeMartyr
 
             try
             {
-                connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
-                //connexionString = "server=192.168.129.3;database=solune;port=3306;UserId=PC_Ecole;password=root";
+                //connexionString = "server=10.10.51.98;database=solune;port=3306;UserId=solune;password=root";
+                connexionString = "server=192.168.129.3;database=solune;port=3306;UserId=PC_Ecole;password=root";
                 //connexionString = "server=localhost;database=astronautic;port=3306;UserId=root;password=root";
 
                 MySqlConnection testConnexion = new MySqlConnection(connexionString);
@@ -313,8 +313,26 @@ namespace ProgrammeMartyr
                 MessageBox.Show(ex.Message);
                 throw;
             }
-            
+
             return Possede;
+        }
+
+        public void UpdateInventaire(int userId, int money, int crystal, int upgrade)
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = $"UPDATE useritem SET UserItemMoney = {money}, UserItemCrystal = {crystal}, UserItemUpgradeAbility = {upgrade} WHERE UserItemId = (select UserUserItemId from user where UserId = {userId})";
+            try
+            {
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
     }
 }

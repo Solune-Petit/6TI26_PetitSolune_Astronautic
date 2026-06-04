@@ -113,7 +113,7 @@ INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescri
 INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('15', '2', '11', 'Confère Invisibilité', 'Cape du bataillon d\'exploration');
 INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('20', '3', '13', 'Confère Contre Attaque', 'Crazy Town');
 INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('20', '1', '12', 'Se soignes et confère anti debuff à un alié de son choix', 'BoxBox');
-INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('120', '2', '2', 'Se stun lui même', 'I am stupid');
+INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('30', '2', '2', 'Se stun lui même', 'I am stupid');
 INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('40', '3', '12', 'Attaque un ennemi et dissipes ses effets négatifs', 'Siège plein d\'eau');
 INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('30', '1', '9', 'Se soignes', 'Clap Bonjour');
 INSERT INTO `attaque` (`AttaquePuissance`, `Role`, `ModifyersId`, `AttaqueDescription`, `AttaqueNom`) VALUES ('45', '2', '14', 'Confère invincibilité à tous', 'Red Box');

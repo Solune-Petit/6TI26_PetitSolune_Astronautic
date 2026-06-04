@@ -24,19 +24,9 @@ namespace ProgrammeMartyr
 
         private List<Personnage> _listeEnemis;
 
-        public List<Personnage> ListeEnemis
-        {
-            get { return _listeEnemis; }
-        }
-
         private List<Personnage> _listPerso;
 
-        public List<Personnage> ListPerso
-        {
-            get { return _listPerso; }
-            set { _listPerso = value; }
-        }
-
+        private Utilisateur _user;
 
         private Grid _grdJeu;
 
@@ -48,6 +38,7 @@ namespace ProgrammeMartyr
             ChoisirEnemis(Glist);
             _Glist = Glist;
             _grdJeu = grdJeu;
+            _user = user;
             RemplireCmb(user);
         }
 
@@ -115,7 +106,7 @@ namespace ProgrammeMartyr
 
                 var parent = Window.GetWindow(this) as Jeu;
                 parent.RemoveChildrenAt(1, 1);
-                Match pageMatch = new Match(_listeEnemis, _listPerso, _Glist);
+                Match pageMatch = new Match(_listeEnemis, _listPerso, _Glist, _user);
                 Grid.SetColumn(pageMatch, 1);
                 Grid.SetRow(pageMatch, 1);
                 _grdJeu.Children.Add(pageMatch);

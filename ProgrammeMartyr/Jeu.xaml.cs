@@ -63,7 +63,7 @@ namespace ProgrammeMartyr
             GrdJeu.Children.Add(pageMenu);
             TxtMoney.Text = _user.Inventaire.Items[0].ToString();
             TxtCrystal.Text = _user.Inventaire.Items[1].ToString();
-            TxtUpgrade.Text = _user.Inventaire.Items[2].ToString();
+            TxtUpgrade.Text = $"{_user.Inventaire.Items[2].ToString()} UP";
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
