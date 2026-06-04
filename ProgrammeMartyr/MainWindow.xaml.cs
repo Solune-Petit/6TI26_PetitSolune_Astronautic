@@ -71,7 +71,7 @@ namespace ProgrammeMartyr
                 }
                 Attaque att = new Attaque(int.Parse(listeAttaques.Tables["attaque"].Rows[i]["AttaqueId"].ToString()), listeAttaques.Tables["attaque"].Rows[i]["AttaqueNom"].ToString(), int.Parse(listeAttaques.Tables["attaque"].Rows[i]["AttaquePuissance"].ToString()), listeAttaques.Tables["attaque"].Rows[i]["AttaqueDescription"].ToString(), int.Parse(listeAttaques.Tables["attaque"].Rows[i]["Role"].ToString()), listModAttaque, GList, out int[] attaquePerso);
                 GList.ListeAttaque.Add(att);
-                GList.ListePerso[attaquePerso[0]-1].ListeAttaque.Add(att);
+                GList.ListePerso[attaquePerso[0]].ListeAttaque.Add(att);
             }
 
 

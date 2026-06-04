@@ -62,15 +62,22 @@ namespace ProgrammeMartyr
                 Grid.SetRow(stckEnemi2, 1);
                 Grid.SetColumn(stckEnemi2, 3);
                 grdMatch.Children.Add(stckEnemi2);
+                RadioButton rdbAttaque2 = new RadioButton();
+                Grid.SetRow(rdbAttaque2, 1);
+                Grid.SetColumn(rdbAttaque2, 3);
+                grdMatch.Children.Add(rdbAttaque2);
 
-
-                if(_listeEnemis.Count > 2)
+                if (_listeEnemis.Count > 2)
                 {
                     StackPanel stckEnemi3 = _listeEnemis[2].CombatCardDesign();
                     Grid.SetRow(stckEnemi3, 2);
                     Grid.SetColumn(stckEnemi3, 4);
                     grdMatch.Children.Add(stckEnemi3);
 
+                    RadioButton rdbAttaque3 = new RadioButton();
+                    Grid.SetRow(rdbAttaque3, 2);
+                    Grid.SetColumn(rdbAttaque3, 4);
+                    grdMatch.Children.Add(rdbAttaque3);
 
                     if (_listeEnemis.Count > 3)
                     {
@@ -79,7 +86,11 @@ namespace ProgrammeMartyr
                         Grid.SetRow(stckEnemi4, 3);
                         Grid.SetColumn(stckEnemi4, 3);
                         grdMatch.Children.Add(stckEnemi4);
-
+                        
+                        RadioButton rdbAttaque4 = new RadioButton();
+                        Grid.SetRow(rdbAttaque4, 3);
+                        Grid.SetColumn(rdbAttaque4, 3);
+                        grdMatch.Children.Add(rdbAttaque4);
 
                         if(_listeEnemis.Count > 4)
                         {
@@ -87,6 +98,11 @@ namespace ProgrammeMartyr
                             Grid.SetRow(stckEnemi5, 4);
                             Grid.SetColumn(stckEnemi5, 4);
                             grdMatch.Children.Add(stckEnemi5);
+
+                            RadioButton rdbAttaque5 = new RadioButton();
+                            Grid.SetRow(rdbAttaque5, 4);
+                            Grid.SetColumn(rdbAttaque5, 4);
+                            grdMatch.Children.Add(rdbAttaque5);
                         }
                     }
                 }
