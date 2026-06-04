@@ -135,9 +135,13 @@ namespace ProgrammeMartyr
             _listeEnemis = new List<Personnage>();
             Random rand = new Random();
             int nbrEnemis = rand.Next(1, 6);
+            int enemi = 0;
             for (int i = 0; i < nbrEnemis; i++)
             {
-                int enemi = rand.Next(1, Glist.ListePerso.Count);
+                do
+                {
+                    enemi = rand.Next(1, Glist.ListePerso.Count);
+                } while (enemi == 10);
                 _listeEnemis.Add(Glist.ListePerso[enemi]);
                 TextBlock Perso = new TextBlock();
                 Perso.Text = Glist.ListePerso[enemi].Nom;

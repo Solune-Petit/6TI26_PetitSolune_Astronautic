@@ -35,6 +35,10 @@ namespace ProgrammeMartyr
 
         private Utilisateur _user;
 
+        private bool[] isCharacterAlive;
+
+        private bool _isPlayerTurn;
+
         private RadioButton rdbAttaque1;
         private RadioButton rdbAttaque2;
         private RadioButton rdbAttaque3;
@@ -44,8 +48,7 @@ namespace ProgrammeMartyr
         public Match(List<Personnage> listeEnemis, List<Personnage> listePersos, ListeGenerale Glist, Utilisateur user)
         {
             InitializeComponent();
-            _listePersos = listePersos;
-            _listeEnemis = listeEnemis;
+            GetPersos(listeEnemis, listePersos);
             _listG = Glist;
             _user = user;
             BtnAttaque1.Click += new RoutedEventHandler(BtnAttaque1_Click);
@@ -56,105 +59,234 @@ namespace ProgrammeMartyr
             PrepNextTurn();
         }
 
+        private void GetPersos(List<Personnage> listeEnemis, List<Personnage> listePersos)
+        {
+            _listeEnemis = new List<Personnage>();
+            foreach (var ennemi in listeEnemis)
+            {
+                string[] img = ennemi.Img.ToString().Split('/');
+                Personnage ennemiCopy = new Personnage(ennemi.Nom, ennemi.Role, ennemi.Rarete, ennemi.NiveauMax, ennemi.PvMax, img[2], ennemi.Id);
+                ennemiCopy.ListeAttaque = ennemi.ListeAttaque;
+                _listeEnemis.Add(ennemiCopy);
+            }
+
+            _listePersos = new List<Personnage>();
+            foreach(var perso in listePersos)
+            {
+                string[] img = perso.Img.ToString().Split('/');
+                Personnage persoCopy = new Personnage(perso.Nom, perso.Role, perso.Rarete, perso.NiveauMax, perso.PvMax, img[2], perso.Id);
+                persoCopy.ListeAttaque = perso.ListeAttaque;
+                _listePersos.Add(persoCopy);
+            }
+        }
+
         public void PrepBoard()
         {
-
-            StackPanel stckEnemi1 = _listeEnemis[0].CombatCardDesign();
-            Grid.SetRow(stckEnemi1, 0);
-            Grid.SetColumn(stckEnemi1, 4);
-            grdMatch.Children.Add(stckEnemi1);
-            rdbAttaque1 = new RadioButton();
-            
-            Grid.SetRow(rdbAttaque1, 0);
-            Grid.SetColumn(rdbAttaque1, 4);
-            grdMatch.Children.Add(rdbAttaque1);
+            //Affichage des ennemis
+            if (_listeEnemis[0].PvGame > 0)
+            {
+                StackPanel stckEnemi1 = _listeEnemis[0].CombatCardDesign();
+                Grid.SetRow(stckEnemi1, 0);
+                Grid.SetColumn(stckEnemi1, 4);
+                grdMatch.Children.Add(stckEnemi1);
+                rdbAttaque1 = new RadioButton();
+                
+                Grid.SetRow(rdbAttaque1, 0);
+                Grid.SetColumn(rdbAttaque1, 4);
+                grdMatch.Children.Add(rdbAttaque1);
+            }
 
             if (_listeEnemis.Count > 1)
             {
-                StackPanel stckEnemi2 = _listeEnemis[1].CombatCardDesign();
-                Grid.SetRow(stckEnemi2, 1);
-                Grid.SetColumn(stckEnemi2, 3);
-                grdMatch.Children.Add(stckEnemi2);
-                rdbAttaque2 = new RadioButton();
-                Grid.SetRow(rdbAttaque2, 1);
-                Grid.SetColumn(rdbAttaque2, 3);
-                grdMatch.Children.Add(rdbAttaque2);
+                if (_listeEnemis[1].PvGame > 0)
+                {
+                    StackPanel stckEnemi2 = _listeEnemis[1].CombatCardDesign();
+                    Grid.SetRow(stckEnemi2, 1);
+                    Grid.SetColumn(stckEnemi2, 3);
+                    grdMatch.Children.Add(stckEnemi2);
+                    rdbAttaque2 = new RadioButton();
+                    Grid.SetRow(rdbAttaque2, 1);
+                    Grid.SetColumn(rdbAttaque2, 3);
+                    grdMatch.Children.Add(rdbAttaque2);
+                }
 
                 if (_listeEnemis.Count > 2)
                 {
-                    StackPanel stckEnemi3 = _listeEnemis[2].CombatCardDesign();
-                    Grid.SetRow(stckEnemi3, 2);
-                    Grid.SetColumn(stckEnemi3, 4);
-                    grdMatch.Children.Add(stckEnemi3);
+                    if (_listeEnemis[2].PvGame > 0)
+                    {
+                        StackPanel stckEnemi3 = _listeEnemis[2].CombatCardDesign();
+                        Grid.SetRow(stckEnemi3, 2);
+                        Grid.SetColumn(stckEnemi3, 4);
+                        grdMatch.Children.Add(stckEnemi3);
 
-                    rdbAttaque3 = new RadioButton();
-                    Grid.SetRow(rdbAttaque3, 2);
-                    Grid.SetColumn(rdbAttaque3, 4);
-                    grdMatch.Children.Add(rdbAttaque3);
+                        rdbAttaque3 = new RadioButton();
+                        Grid.SetRow(rdbAttaque3, 2);
+                        Grid.SetColumn(rdbAttaque3, 4);
+                        grdMatch.Children.Add(rdbAttaque3);
+                    }
 
                     if (_listeEnemis.Count > 3)
                     {
-
-                        StackPanel stckEnemi4 = _listeEnemis[3].CombatCardDesign();
-                        Grid.SetRow(stckEnemi4, 3);
-                        Grid.SetColumn(stckEnemi4, 3);
-                        grdMatch.Children.Add(stckEnemi4);
-                        
-                        rdbAttaque4 = new RadioButton();
-                        Grid.SetRow(rdbAttaque4, 3);
-                        Grid.SetColumn(rdbAttaque4, 3);
-                        grdMatch.Children.Add(rdbAttaque4);
-
-                        if(_listeEnemis.Count > 4)
+                        if (_listeEnemis[3].PvGame > 0)
                         {
-                            StackPanel stckEnemi5 = _listeEnemis[4].CombatCardDesign();
-                            Grid.SetRow(stckEnemi5, 4);
-                            Grid.SetColumn(stckEnemi5, 4);
-                            grdMatch.Children.Add(stckEnemi5);
+                            StackPanel stckEnemi4 = _listeEnemis[3].CombatCardDesign();
+                            Grid.SetRow(stckEnemi4, 3);
+                            Grid.SetColumn(stckEnemi4, 3);
+                            grdMatch.Children.Add(stckEnemi4);
 
-                            rdbAttaque5 = new RadioButton();
-                            Grid.SetRow(rdbAttaque5, 4);
-                            Grid.SetColumn(rdbAttaque5, 4);
-                            grdMatch.Children.Add(rdbAttaque5);
+                            rdbAttaque4 = new RadioButton();
+                            Grid.SetRow(rdbAttaque4, 3);
+                            Grid.SetColumn(rdbAttaque4, 3);
+                            grdMatch.Children.Add(rdbAttaque4);
+                        }
+
+                        if (_listeEnemis.Count > 4)
+                        {
+                            if (_listeEnemis[4].PvGame > 0)
+                            {
+                                StackPanel stckEnemi5 = _listeEnemis[4].CombatCardDesign();
+                                Grid.SetRow(stckEnemi5, 4);
+                                Grid.SetColumn(stckEnemi5, 4);
+                                grdMatch.Children.Add(stckEnemi5);
+
+                                rdbAttaque5 = new RadioButton();
+                                Grid.SetRow(rdbAttaque5, 4);
+                                Grid.SetColumn(rdbAttaque5, 4);
+                                grdMatch.Children.Add(rdbAttaque5);
+                            }
                         }
                     }
                 }
             }
 
-            StackPanel stckPerso1 = _listePersos[0].CombatCardDesign();
-            Grid.SetRow(stckPerso1, 0);
-            Grid.SetColumn(stckPerso1, 0);
-            grdMatch.Children.Add(stckPerso1);
+            rdbAttaque1.IsChecked = false;
+            if (_listeEnemis.Count > 1)
+            {
+                rdbAttaque2.IsChecked = false;
+                if (_listeEnemis.Count > 2)
+                {
+                    rdbAttaque3.IsChecked = false;
+                    if (_listeEnemis.Count > 3)
+                    {
+                        rdbAttaque4.IsChecked = false;
+                        if (_listeEnemis.Count > 4)
+                        {
+                            rdbAttaque5.IsChecked = false;
+                        }
+                    }
+                }
+            }
+
+
+            //Affichage des personnages
+            isCharacterAlive = new bool[_listePersos.Count];
+            foreach (var perso in _listePersos)
+            {
+                if (perso.PvGame > 0)
+                {
+                    isCharacterAlive[_listePersos.IndexOf(perso)] = true;
+                }
+                else
+                {
+                    isCharacterAlive[_listePersos.IndexOf(perso)] = false;
+                }
+            }
+
+
+            if (_listePersos[0].PvGame <= 0)
+            {
+                TextBlock txtDefaite = new TextBlock();
+                txtDefaite.Text = "Ce personnage est vaincu !";
+                txtDefaite.FontSize = 16;
+                txtDefaite.TextAlignment = System.Windows.TextAlignment.Center;
+                Grid.SetRow(txtDefaite, 0);
+                Grid.SetColumn(txtDefaite, 0);
+                grdMatch.Children.Add(txtDefaite);
+            }
+            else
+            {
+                StackPanel stckPerso1 = _listePersos[0].CombatCardDesign();
+                Grid.SetRow(stckPerso1, 0);
+                Grid.SetColumn(stckPerso1, 0);
+                grdMatch.Children.Add(stckPerso1);
+            }
 
             if (_listePersos.Count > 1)
             {
-                StackPanel stckPerso2 = _listePersos[1].CombatCardDesign();
-                Grid.SetRow(stckPerso2, 1);
-                Grid.SetColumn(stckPerso2, 1);
-                grdMatch.Children.Add(stckPerso2);
-                
+                if (_listePersos[1].PvGame <= 0)
+                {
+                    TextBlock txtDefaite = new TextBlock();
+                    txtDefaite.Text = "Ce personnage est vaincu !";
+                    txtDefaite.FontSize = 16;
+                    txtDefaite.TextAlignment = System.Windows.TextAlignment.Center;
+                    Grid.SetRow(txtDefaite, 1);
+                    Grid.SetColumn(txtDefaite, 1);
+                    grdMatch.Children.Add(txtDefaite);
+                }
+                else
+                {
+                    StackPanel stckPerso2 = _listePersos[1].CombatCardDesign();
+                    Grid.SetRow(stckPerso2, 1);
+                    Grid.SetColumn(stckPerso2, 1);
+                    grdMatch.Children.Add(stckPerso2);
+                } 
                 if (_listePersos.Count > 2)
                 {
-                
-                    StackPanel stckPerso3 = _listePersos[2].CombatCardDesign();
-                    Grid.SetRow(stckPerso3, 2);
-                    Grid.SetColumn(stckPerso3, 0);
-                    grdMatch.Children.Add(stckPerso3);
-
+                    if (_listePersos[2].PvGame <= 0)
+                    {
+                        TextBlock txtDefaite = new TextBlock();
+                        txtDefaite.Text = "Ce personnage est vaincu !";
+                        txtDefaite.FontSize = 16;
+                        txtDefaite.TextAlignment = System.Windows.TextAlignment.Center;
+                        Grid.SetRow(txtDefaite, 2);
+                        Grid.SetColumn(txtDefaite, 0);
+                        grdMatch.Children.Add(txtDefaite);
+                    }
+                    else
+                    {
+                        StackPanel stckPerso3 = _listePersos[2].CombatCardDesign();
+                        Grid.SetRow(stckPerso3, 2);
+                        Grid.SetColumn(stckPerso3, 0);
+                        grdMatch.Children.Add(stckPerso3);
+                    }
                     if (_listePersos.Count > 3)
                     {
-                
-                        StackPanel stckPerso4 = _listePersos[3].CombatCardDesign();
-                        Grid.SetRow(stckPerso4, 3);
-                        Grid.SetColumn(stckPerso4, 1);
-                        grdMatch.Children.Add(stckPerso4);
-
+                        if (_listePersos[3].PvGame <= 0)
+                        {
+                            TextBlock txtDefaite = new TextBlock();
+                            txtDefaite.Text = "Ce personnage est vaincu !";
+                            txtDefaite.FontSize = 16;
+                            txtDefaite.TextAlignment = System.Windows.TextAlignment.Center;
+                            Grid.SetRow(txtDefaite, 3);
+                            Grid.SetColumn(txtDefaite, 1);
+                            grdMatch.Children.Add(txtDefaite);
+                        }
+                        else
+                        {
+                            StackPanel stckPerso4 = _listePersos[3].CombatCardDesign();
+                            Grid.SetRow(stckPerso4, 3);
+                            Grid.SetColumn(stckPerso4, 1);
+                            grdMatch.Children.Add(stckPerso4);
+                        }
                         if (_listePersos.Count > 4)
                         {
-                            StackPanel stckPerso5 = _listePersos[4].CombatCardDesign();
-                            Grid.SetRow(stckPerso5, 4);
-                            Grid.SetColumn(stckPerso5, 0);
-                            grdMatch.Children.Add(stckPerso5);
+                            if (_listePersos[4].PvGame <= 0)
+                            {
+                                TextBlock txtDefaite = new TextBlock();
+                                txtDefaite.Text = "Ce personnage est vaincu !";
+                                txtDefaite.FontSize = 16;
+                                txtDefaite.TextAlignment = System.Windows.TextAlignment.Center;
+                                Grid.SetRow(txtDefaite, 4);
+                                Grid.SetColumn(txtDefaite, 0);
+                                grdMatch.Children.Add(txtDefaite);
+                            }
+                            else
+                            {
+                                StackPanel stckPerso5 = _listePersos[4].CombatCardDesign();
+                                Grid.SetRow(stckPerso5, 4);
+                                Grid.SetColumn(stckPerso5, 0);
+                                grdMatch.Children.Add(stckPerso5);
+                            }
                         }
                     }
                 }
@@ -163,15 +295,35 @@ namespace ProgrammeMartyr
 
         public void PrepNextTurn()
         {
+            _isPlayerTurn = true;
             if(_turnSelector > _listePersos.Count - 1)
             {
-                _turnSelector = 0;
-                foreach(Personnage perso in _listeEnemis)
+                _isPlayerTurn = false;
+                foreach (Personnage perso in _listeEnemis)
                 {
                     //section de l'ia
+                    Random rand = new Random();
+                    int target;
+                    do
+                    {
+                        target = rand.Next(0, _listePersos.Count);
+                    } while (isCharacterAlive[target] == false);
 
+                    int attaqueIndex;
+                    do
+                    {
+                        attaqueIndex = rand.Next(0, 3);
+                    } while (perso.ListeAttaque[attaqueIndex].Cooldown != 0);
+
+                    TourJoue(attaqueIndex, _listePersos[target], perso);
                 }
+                _isPlayerTurn = true;
+                _turnSelector = 0;
             }
+
+
+            ClearGridExceptLastRow();
+            PrepBoard();
 
             BtnAttaque1.Content = $"{_listePersos[_turnSelector].ListeAttaque[0].Nom}\n{_listePersos[_turnSelector].ListeAttaque[0].Puissance} degats";
             BtnAttaque1.IsEnabled = true;
@@ -271,7 +423,7 @@ namespace ProgrammeMartyr
             }
         }
 
-        public bool CheckEndGame()
+        public bool CheckEndGame(out Image imgFin)
         {
             bool allEnemisDefeated = true;
             foreach (var ennemi in _listeEnemis)
@@ -290,16 +442,16 @@ namespace ProgrammeMartyr
                     allPersosDefeated = false;
                 }
             }
-
+            imgFin = new Image();
             if (allEnemisDefeated)
             {
-                MessageBox.Show("Victoire !");
+                imgFin.Source = new BitmapImage(new Uri("Images/victoire.png", UriKind.Relative));
                 return true;
 
             }
             else if (allPersosDefeated)
             {
-                MessageBox.Show("Défaite !");
+                imgFin.Source = new BitmapImage(new Uri("Images/defaite.png", UriKind.Relative));
                 return true;
             }
             else
@@ -344,60 +496,93 @@ namespace ProgrammeMartyr
             }
         }
 
-        private void TourJoue(int attaque, int ennemiChoisi)
+        private void TourJoue(int attaque, Personnage ennemiChoisi, Personnage attaquant)
         {
             CooldownUpdate();
             
-            _listeEnemis[ennemiChoisi].PvGame -= _listePersos[_turnSelector].ListeAttaque[attaque].Puissance;
+            ennemiChoisi.PvGame -= attaquant.ListeAttaque[attaque].Puissance;
 
             if(attaque > 0)
             {
-                _listePersos[_turnSelector].ListeAttaque[attaque].Cooldown = _listePersos[_turnSelector].ListeAttaque[attaque].Role * 2;
+                attaquant.ListeAttaque[attaque].Cooldown = attaquant.ListeAttaque[attaque].Role * 2;
             }
 
             _turnSelector++;
 
-            if (!CheckEndGame())
+            if (!CheckEndGame(out Image imgFin))
             {
-                ClearGridExceptLastRow();
-                PrepBoard();
-                PrepNextTurn();
+                if (_isPlayerTurn)
+                {
+                    PrepNextTurn();
+                }
             }
             else
             {
                 GiveReward();
                 //Retour au menu
-                Application.Current.MainWindow.Close();
-                Jeu pageJeu = new Jeu(_user, _listG);
+                MessageBox.Show("Le match est terminé ! Vous allez être redirigé vers le menu.");
+                var parent = Window.GetWindow(this) as Jeu;
+                parent.RemoveChildrenAt(1, 1);
+                parent.OuvrirePageMenu();
             }
         }
 
-        private void BtnAttaque1_Click(object sender, RoutedEventArgs e)
+        private int checkTarget()
         {
             int ennemiChoisi = -1;
-
             if (rdbAttaque1.IsChecked == true)
             {
                 ennemiChoisi = 0;
             }
-            else if (rdbAttaque2.IsChecked == true)
+            else
             {
-                ennemiChoisi = 1;
-            }
-            else if (rdbAttaque3.IsChecked == true)
-            {
-                ennemiChoisi = 2;
-            }
-            else if (rdbAttaque4.IsChecked == true)
-            {
-                ennemiChoisi = 3;
-            }
-            else if (rdbAttaque5.IsChecked == true)
-            {
-                ennemiChoisi = 4;
+                if (_listeEnemis.Count > 1)
+                {
+                    if (rdbAttaque2.IsChecked == true)
+                    {
+                        ennemiChoisi = 1;
+                    }
+                    else
+                    {
+                        if (_listeEnemis.Count > 2)
+                        {
+                            if (rdbAttaque3.IsChecked == true)
+                            {
+                                ennemiChoisi = 2;
+                            }
+                            else
+                            {
+                                if (_listeEnemis.Count > 3)
+                                {
+                                    if (rdbAttaque4.IsChecked == true)
+                                    {
+                                        ennemiChoisi = 3;
+                                    }
+                                    else
+                                    {
+                                        if (_listeEnemis.Count > 4)
+                                        {
+                                            if (rdbAttaque5.IsChecked == true)
+                                            {
+                                                ennemiChoisi = 4;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
-            if(ennemiChoisi == -1)
+            return ennemiChoisi;
+        }
+
+        private void BtnAttaque1_Click(object sender, RoutedEventArgs e)
+        {
+            int ennemiChoisi = checkTarget();
+
+            if (ennemiChoisi == -1)
             {
                 MessageBox.Show("Veuillez sélectionner un ennemi à attaquer.");
                 return;
@@ -405,34 +590,13 @@ namespace ProgrammeMartyr
             else
             {
                 int attaqueIndex = 0;
-                TourJoue(attaqueIndex, ennemiChoisi);
+                TourJoue(attaqueIndex, _listeEnemis[ennemiChoisi], _listePersos[_turnSelector]);
             }
         }
 
         private void BtnAttaque2_Click(object sender, RoutedEventArgs e)
         {
-            int ennemiChoisi = -1;
-
-            if (rdbAttaque1.IsChecked == true)
-            {
-                ennemiChoisi = 0;
-            }
-            else if (rdbAttaque2.IsChecked == true)
-            {
-                ennemiChoisi = 1;
-            }
-            else if (rdbAttaque3.IsChecked == true)
-            {
-                ennemiChoisi = 2;
-            }
-            else if (rdbAttaque4.IsChecked == true)
-            {
-                ennemiChoisi = 3;
-            }
-            else if (rdbAttaque5.IsChecked == true)
-            {
-                ennemiChoisi = 4;
-            }
+            int ennemiChoisi = checkTarget();
 
             if (ennemiChoisi == -1)
             {
@@ -442,34 +606,13 @@ namespace ProgrammeMartyr
             else
             {
                 int attaqueIndex = 1;
-                TourJoue(attaqueIndex, ennemiChoisi);
+                TourJoue(attaqueIndex, _listeEnemis[ennemiChoisi], _listePersos[_turnSelector]);
             }
         }
 
         private void BtnAttaque3_Click(object sender, RoutedEventArgs e)
         {
-            int ennemiChoisi = -1;
-
-            if (rdbAttaque1.IsChecked == true)
-            {
-                ennemiChoisi = 0;
-            }
-            else if (rdbAttaque2.IsChecked == true)
-            {
-                ennemiChoisi = 1;
-            }
-            else if (rdbAttaque3.IsChecked == true)
-            {
-                ennemiChoisi = 2;
-            }
-            else if (rdbAttaque4.IsChecked == true)
-            {
-                ennemiChoisi = 3;
-            }
-            else if (rdbAttaque5.IsChecked == true)
-            {
-                ennemiChoisi = 4;
-            }
+            int ennemiChoisi = checkTarget();
 
             if (ennemiChoisi == -1)
             {
@@ -479,7 +622,7 @@ namespace ProgrammeMartyr
             else
             {
                 int attaqueIndex = 2;
-                TourJoue(attaqueIndex, ennemiChoisi);
+                TourJoue(attaqueIndex, _listeEnemis[ennemiChoisi], _listePersos[_turnSelector]);
             }
         }
 
