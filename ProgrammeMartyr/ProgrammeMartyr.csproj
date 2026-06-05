@@ -65,6 +65,24 @@
     <None Remove="Assets\shutdown_def.png" />
     <None Remove="Assets\shutdown_mo.jpg" />
     <None Remove="Assets\shutdown_mo.png" />
+    <None Remove="images\buff-debuff\comouflage.jpg" />
+    <None Remove="images\buff-debuff\contreAttaque.jpg" />
+    <None Remove="images\buff-debuff\Entrave.jpg" />
+    <None Remove="images\buff-debuff\esquive.jpg" />
+    <None Remove="images\buff-debuff\exposition.jpg" />
+    <None Remove="images\buff-debuff\heal.jpg" />
+    <None Remove="images\buff-debuff\incontournable.jpg" />
+    <None Remove="images\buff-debuff\invinsibilite.jpg" />
+    <None Remove="images\buff-debuff\luck.jpg" />
+    <None Remove="images\buff-debuff\pasDeBuffs.jpg" />
+    <None Remove="images\buff-debuff\protection.jpg" />
+    <None Remove="images\buff-debuff\Ressistance.jpg" />
+    <None Remove="images\buff-debuff\slowed.jpg" />
+    <None Remove="images\buff-debuff\tanking.jpg" />
+    <None Remove="images\buff-debuff\vitesse.jpg" />
+    <None Remove="images\buff-debuff\weakness.jpg" />
+    <None Remove="images\credit.PNG" />
+    <None Remove="images\cristal.PNG" />
     <None Remove="images\personnages\Amixem.jpg" />
     <None Remove="images\personnages\Charles_Leclerc.jpg" />
     <None Remove="images\personnages\Mastu.jpg" />
@@ -166,6 +184,60 @@
     <Resource Include="Assets\shutdown_mo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\buff-debuff\comouflage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\contreAttaque.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\Entrave.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\esquive.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\exposition.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\heal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\incontournable.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\invinsibilite.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\luck.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\pasDeBuffs.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\protection.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\Ressistance.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\slowed.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\tanking.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\vitesse.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\buff-debuff\weakness.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\credit.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\cristal.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\personnages\Amixem.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -196,6 +268,10 @@
     <Resource Include="images\personnages\Teddy_riner.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="images\attaques\" />
   </ItemGroup>
 
 </Project>

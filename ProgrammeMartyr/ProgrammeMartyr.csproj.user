@@ -5,6 +5,9 @@
     <Compile Update="Jeu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Match.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MenuJeu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

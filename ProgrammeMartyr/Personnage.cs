@@ -14,6 +14,7 @@ namespace ProgrammeMartyr
         private string _nom, _role, _img;
         private int _rarete, _niveauMax, _PvMax, _PvGame, _id;
         double _niveauActuel;
+        List<Attaque> _listeAttaque;
 
 
         // Propriétés
@@ -56,6 +57,21 @@ namespace ProgrammeMartyr
             set { _niveauActuel = value; }
         }
 
+        public List<Attaque> ListeAttaque
+        {
+            get { return _listeAttaque; }
+            set { _listeAttaque = value; }
+        }
+
+        private List<Modifiers> _listeModifiersActifs;
+
+        public List<Modifiers> ListeModifiersActifs
+        {
+            get { return _listeModifiersActifs; }
+            set { _listeModifiersActifs = value; }
+        }
+
+
         // Constructeur
         public Personnage(string nom, string role, int rarete, int niveauMax, int PvMax, string img, int Id)
         {
@@ -68,6 +84,8 @@ namespace ProgrammeMartyr
             _niveauActuel = 0;
             _img = $"images/personnages/{img}";
             _id = Id;
+            _listeAttaque = new List<Attaque>();
+            _listeModifiersActifs = new List<Modifiers>();
         }
 
         // Méthodes
@@ -173,6 +191,11 @@ namespace ProgrammeMartyr
             cardPanel.Children.Add(txtPv);
 
             return cardPanel;
+        }
+
+        public void AssignAttaques(List<Attaque> listeAttaques)
+        {
+            
         }
     }
 }

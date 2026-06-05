@@ -24,19 +24,9 @@ namespace ProgrammeMartyr
 
         private List<Personnage> _listeEnemis;
 
-        public List<Personnage> ListeEnemis
-        {
-            get { return _listeEnemis; }
-        }
-
         private List<Personnage> _listPerso;
 
-        public List<Personnage> ListPerso
-        {
-            get { return _listPerso; }
-            set { _listPerso = value; }
-        }
-
+        private Utilisateur _user;
 
         private Grid _grdJeu;
 
@@ -48,6 +38,7 @@ namespace ProgrammeMartyr
             ChoisirEnemis(Glist);
             _Glist = Glist;
             _grdJeu = grdJeu;
+            _user = user;
             RemplireCmb(user);
         }
 
@@ -63,23 +54,23 @@ namespace ProgrammeMartyr
             {
                 if (i == 0 && CmbPerso1.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso1.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso1.SelectedValue.ToString());
                 }
                 else if (i == 1 && CmbPerso2.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso2.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso2.SelectedValue.ToString());
                 }
                 else if (i == 2 && CmbPerso3.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso3.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso3.SelectedValue.ToString());
                 }
                 else if (i == 3 && CmbPerso4.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso4.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso4.SelectedValue.ToString());
                 }
                 else if (i == 4 && CmbPerso5.SelectedIndex != -1)
                 {
-                    listChoix.Add(CmbPerso5.SelectedIndex.ToString());
+                    listChoix.Add(CmbPerso5.SelectedValue.ToString());
                 }
             }
 
@@ -106,7 +97,7 @@ namespace ProgrammeMartyr
                 {
                     for(int j = 0; j < _Glist.ListePerso.Count; j++)
                     {
-                        if(listChoix[i] == _Glist.ListePerso[j].Nom)
+                        if(listChoix[i] == _Glist.ListePerso[j].Nom.ToString())
                         {
                             _listPerso.Add(_Glist.ListePerso[j]);
                         }
@@ -115,7 +106,7 @@ namespace ProgrammeMartyr
 
                 var parent = Window.GetWindow(this) as Jeu;
                 parent.RemoveChildrenAt(1, 1);
-                PageMatch pageMatch = new PageMatch(_listeEnemis, _listPerso);
+                Match pageMatch = new Match(_listeEnemis, _listPerso, _Glist, _user);
                 Grid.SetColumn(pageMatch, 1);
                 Grid.SetRow(pageMatch, 1);
                 _grdJeu.Children.Add(pageMatch);
@@ -144,9 +135,13 @@ namespace ProgrammeMartyr
             _listeEnemis = new List<Personnage>();
             Random rand = new Random();
             int nbrEnemis = rand.Next(1, 6);
+            int enemi = 0;
             for (int i = 0; i < nbrEnemis; i++)
             {
-                int enemi = rand.Next(0, Glist.ListePerso.Count);
+                do
+                {
+                    enemi = rand.Next(1, Glist.ListePerso.Count);
+                } while (enemi == 10);
                 _listeEnemis.Add(Glist.ListePerso[enemi]);
                 TextBlock Perso = new TextBlock();
                 Perso.Text = Glist.ListePerso[enemi].Nom;

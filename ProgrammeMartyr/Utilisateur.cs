@@ -70,7 +70,11 @@ namespace ProgrammeMartyr
 
             DataSet temp = bdd.DownloadInventaire(_id);
 
-			ConvertPersoIds(temp, GList);
+			_inventaire.Items[0] = int.Parse(temp.Tables[0].Rows[0]["UserItemMoney"].ToString());
+			_inventaire.Items[1] = int.Parse(temp.Tables[0].Rows[0]["UserItemCrystal"].ToString());
+			_inventaire.Items[2] = int.Parse(temp.Tables[0].Rows[0]["UserItemUpgradeAbility"].ToString());
+
+            ConvertPersoIds(temp, GList);
 
             Console.WriteLine("Récupération de l'inventaire de l'utilisateur " + _nom + " :");
         }

@@ -111,7 +111,7 @@ namespace ProgrammeMartyr
         public void CreateInventaire(int userId, Personnage perso)
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserItemPersonnagesId) VALUES (0, 0, 0, {perso.Id})"; 
+            string query = $"INSERT INTO useritem (UserItemMoney, UserItemCrystal, UserItemUpgradeAbility, UserItemPersonnagesId) VALUES (0, 0, 0, {perso.Id})";
             try
             {
                 connexion.Open();
@@ -126,7 +126,8 @@ namespace ProgrammeMartyr
             }
             int lastInsertedId;
             query = $"SELECT LAST_INSERT_ID()";
-            try { 
+            try
+            {
                 connexion.Open();
                 MySqlCommand cmd = new MySqlCommand(query, connexion);
                 lastInsertedId = Convert.ToInt32(cmd.ExecuteScalar());
@@ -163,7 +164,7 @@ namespace ProgrammeMartyr
         public DataSet DownloadInventaire(int userID)
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
-            string query = $"select * from useritem where UserItemId like (select UserUserItemId from user where userId = {userID})";
+            string query = $"select * from useritem where UserItemId like (select UserItemId from user where userId = {userID})";
             DataSet Inventaire = new DataSet();
             try
             {
@@ -172,7 +173,7 @@ namespace ProgrammeMartyr
                 da.Fill(Inventaire, "inventaire");
                 connexion.Close();
             }
-            
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -207,7 +208,7 @@ namespace ProgrammeMartyr
             //récupération de l'utilisateur nouvellement créé
             if (successfullAction)
             {
-                if(ConnectUser(mail, password, Glist, out DataSet userData))
+                if (ConnectUser(mail, password, Glist, out DataSet userData))
                 {
                     CreateInventaire(int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), Glist.ListePerso[0]);
 
@@ -253,6 +254,85 @@ namespace ProgrammeMartyr
         {
             user = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), Glist);
 
+        }
+
+        public DataSet DownloadModifiers()
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = "SELECT * FROM modifyer";
+            DataSet Modifiers = new DataSet();
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                da.Fill(Modifiers, "modifyer");
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            return Modifiers;
+        }
+
+        public DataSet DownloadAttacks()
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = "SELECT * FROM attaque";
+            DataSet Attacks = new DataSet();
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                da.Fill(Attacks, "attaque");
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            return Attacks;
+        }
+
+        public DataSet DownloadPossede()
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = "SELECT * FROM possede";
+            DataSet Possede = new DataSet();
+            try
+            {
+                connexion.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, connexion);
+                da.Fill(Possede, "possede");
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            return Possede;
+        }
+
+        public void UpdateInventaire(int userId, int money, int crystal, int upgrade)
+        {
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = $"UPDATE useritem SET UserItemMoney = {money}, UserItemCrystal = {crystal}, UserItemUpgradeAbility = {upgrade} WHERE UserItemId = (select UserUserItemId from user where UserId = {userId})";
+            try
+            {
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
     }
 }
