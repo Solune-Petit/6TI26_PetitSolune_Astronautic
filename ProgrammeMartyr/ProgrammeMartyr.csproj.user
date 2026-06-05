@@ -20,5 +20,8 @@
     <Compile Update="PagePrep.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="PageShop.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

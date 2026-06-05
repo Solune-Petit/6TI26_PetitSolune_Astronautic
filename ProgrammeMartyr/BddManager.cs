@@ -253,7 +253,6 @@ namespace ProgrammeMartyr
         public void assignUser(DataSet userData, ListeGenerale Glist, out Utilisateur user)
         {
             user = new Utilisateur(userData.Tables[0].Rows[0]["UserName"].ToString(), userData.Tables[0].Rows[0]["UserMail"].ToString(), userData.Tables[0].Rows[0]["UserPassword"].ToString(), int.Parse(userData.Tables[0].Rows[0]["UserId"].ToString()), Glist);
-
         }
 
         public DataSet DownloadModifiers()
@@ -321,6 +320,38 @@ namespace ProgrammeMartyr
         {
             MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
             string query = $"UPDATE useritem SET UserItemMoney = {money}, UserItemCrystal = {crystal}, UserItemUpgradeAbility = {upgrade} WHERE UserItemId = (select UserUserItemId from user where UserId = {userId})";
+            try
+            {
+                connexion.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connexion);
+                cmd.ExecuteNonQuery();
+                connexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        public void AddPersoToUser(Utilisateur user, List<Personnage> listePersos)
+        {
+            string persosIds = null;
+            foreach(Personnage perso in listePersos)
+            {
+                if (persosIds == null)
+                {
+                    persosIds = $"{perso.Id}";
+                }
+                else
+                {
+                    persosIds += $", {perso.Id}";
+                }
+            }
+
+
+            MySqlConnection connexion = new MySqlConnection(ConnexionBdd());
+            string query = $"UPDATE userItem useritem SET UserItemPersonnagesId = '{persosIds}' WHERE UserItemId = (select UserUserItemId from user where UserId = {user.Id})";
             try
             {
                 connexion.Open();

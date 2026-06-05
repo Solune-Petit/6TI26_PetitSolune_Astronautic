@@ -65,7 +65,12 @@ namespace ProgrammeMartyr
 
         private void ShopBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var parent = Window.GetWindow(this) as Jeu;
+            parent.RemoveChildrenAt(1, 1);
+            PageShop pageShop = new PageShop(_Glist, _user, _grdJeu);
+            Grid.SetRow(pageShop, 1);
+            Grid.SetColumn(pageShop, 1);
+            _grdJeu.Children.Add(pageShop);
         }
     }
 }
