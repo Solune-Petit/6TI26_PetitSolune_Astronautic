@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="ProgrammeMartyr.PageShop"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProgrammeMartyr"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="grdShop">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnShop1" Grid.Column="0" Grid.Row="0" Margin="150,25" Click="btnShop1_Click" Background="Transparent" BorderThickness="0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/images/items/normalChest.png" Width="80" Height="80"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="100" HorizontalAlignment="Left" Margin="0,0,10,0"/>
+                    <Image Source="/images/credit.PNG" Width="20" Height="20"/>
+                </StackPanel>
+            </StackPanel>
+        </Button>
+        <WrapPanel x:Name="stkShop1" Grid.Column="1" Grid.Row="0" Margin="20" Orientation="Horizontal"/>
+
+        <Button x:Name="btnShop2" Grid.Column="0" Grid.Row="1" Margin="100,25" Click="btnShop2_Click" Background="Transparent" BorderThickness="0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/images/items/rareChest.png" Width="80" Height="80"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="250" HorizontalAlignment="Left" Margin="0,0,10,0"/>
+                    <Image Source="/images/credit.PNG" Width="20" Height="20"/>
+                </StackPanel>
+            </StackPanel>
+        </Button>
+        <WrapPanel x:Name="stkShop2" Grid.Column="1" Grid.Row="1" Margin="25" Orientation="Horizontal"/>
+
+        <Button x:Name="btnShop3" Grid.Column="0" Grid.Row="2" Margin="100,25" Click="btnShop3_Click" Background="Transparent" BorderThickness="0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/images/items/epicChest.png" Width="80" Height="80"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="500" HorizontalAlignment="Left" Margin="0,0,10,0"/>
+                    <Image Source="/images/credit.PNG" Width="20" Height="20"/>
+                </StackPanel>
+            </StackPanel>
+        </Button>
+        <WrapPanel x:Name="stkShop3" Grid.Column="1" Grid.Row="2" Margin="25" Orientation="Horizontal"/>
+
+    </Grid>
+</UserControl>

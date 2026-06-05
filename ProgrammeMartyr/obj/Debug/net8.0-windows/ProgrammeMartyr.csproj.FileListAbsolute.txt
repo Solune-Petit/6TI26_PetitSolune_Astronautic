@@ -130,3 +130,5 @@ C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\D
 C:\Users\PetitSolune\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\PagePrep.baml
 C:\Users\petit\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\Match.g.cs
 C:\Users\petit\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\Match.baml
+C:\Users\petit\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\PageShop.g.cs
+C:\Users\petit\Desktop\6TI26_PetitSolune_Astronautic\ProgrammeMartyr\obj\Debug\net8.0-windows\PageShop.baml

@@ -57,7 +57,6 @@ namespace ProgrammeMartyr
         public void OuvrirePageMenu()
         {
             MenuJeu pageMenu = new MenuJeu(_user, GrdJeu, _Glist);
-            //pageMenu.User = _user;
             Grid.SetColumn(pageMenu, 1);
             Grid.SetRow(pageMenu, 1);
             GrdJeu.Children.Add(pageMenu);

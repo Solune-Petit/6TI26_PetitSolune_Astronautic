@@ -238,6 +238,15 @@
     <Resource Include="images\cristal.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\items\normalChest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\items\epicChest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\items\rareChest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\personnages\Amixem.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
