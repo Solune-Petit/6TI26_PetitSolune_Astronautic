@@ -1,4 +1,6 @@
 #Creation des tables
+drop schema if exists solune;
+CREATE SCHEMA `solune` ;
 
 DROP TABLE IF EXISTS Personnage ;
 CREATE TABLE Personnage (PersonnageId INT AUTO_INCREMENT NOT NULL,

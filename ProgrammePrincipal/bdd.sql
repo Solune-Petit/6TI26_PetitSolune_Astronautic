@@ -1,1 +1,0 @@
-#fichier qui contiens notre base de données. Elle se devra aussi sur le serveur prof pour accès aux mêmes informations lors de la présentation
