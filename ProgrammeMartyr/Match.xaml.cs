@@ -39,6 +39,8 @@ namespace ProgrammeMartyr
 
         private bool _isPlayerTurn;
 
+        private bool _endGame;
+
         private RadioButton rdbAttaque1;
         private RadioButton rdbAttaque2;
         private RadioButton rdbAttaque3;
@@ -48,12 +50,13 @@ namespace ProgrammeMartyr
         public Match(List<Personnage> listeEnemis, List<Personnage> listePersos, ListeGenerale Glist, Utilisateur user)
         {
             InitializeComponent();
-            GetPersos(listeEnemis, listePersos);
             _listG = Glist;
             _user = user;
+            _endGame = false;
             BtnAttaque1.Click += new RoutedEventHandler(BtnAttaque1_Click);
             BtnAttaque2.Click += new RoutedEventHandler(BtnAttaque2_Click);
             BtnAttaque3.Click += new RoutedEventHandler(BtnAttaque3_Click);
+            GetPersos(listeEnemis, listePersos);
             PrepBoard();
             GetMods();
             PrepNextTurn();
@@ -66,7 +69,11 @@ namespace ProgrammeMartyr
             {
                 string[] img = ennemi.Img.ToString().Split('/');
                 Personnage ennemiCopy = new Personnage(ennemi.Nom, ennemi.Role, ennemi.Rarete, ennemi.NiveauMax, ennemi.PvMax, img[2], ennemi.Id);
-                ennemiCopy.ListeAttaque = ennemi.ListeAttaque;
+                foreach (var attaque in ennemi.ListeAttaque)
+                {
+                    Attaque attaqueCopy = new Attaque(attaque.Id, attaque.Nom, attaque.Puissance, attaque.Description, attaque.Role, _listG.Modifiers, _listG);
+                    ennemiCopy.ListeAttaque.Add(attaqueCopy);
+                }
                 _listeEnemis.Add(ennemiCopy);
             }
 
@@ -75,7 +82,11 @@ namespace ProgrammeMartyr
             {
                 string[] img = perso.Img.ToString().Split('/');
                 Personnage persoCopy = new Personnage(perso.Nom, perso.Role, perso.Rarete, perso.NiveauMax, perso.PvMax, img[2], perso.Id);
-                persoCopy.ListeAttaque = perso.ListeAttaque;
+                foreach(var attaque in perso.ListeAttaque)
+                {
+                    Attaque attaqueCopy = new Attaque(attaque.Id, attaque.Nom, attaque.Puissance, attaque.Description, attaque.Role, _listG.Modifiers, _listG);
+                    persoCopy.ListeAttaque.Add(attaqueCopy);
+                }
                 _listePersos.Add(persoCopy);
             }
         }
@@ -177,18 +188,24 @@ namespace ProgrammeMartyr
                 }
             }
 
+            //reorganisation de _listePersos sans les personnages morts
+            List<Personnage> tempList = new List<Personnage>();
+            tempList = _listePersos.ToList();
+            _listePersos.Clear();
+
 
             //Affichage des personnages
-            isCharacterAlive = new bool[_listePersos.Count];
-            foreach (var perso in _listePersos)
+            isCharacterAlive = new bool[tempList.Count];
+            foreach (var perso in tempList)
             {
                 if (perso.PvGame > 0)
                 {
-                    isCharacterAlive[_listePersos.IndexOf(perso)] = true;
+                    isCharacterAlive[tempList.IndexOf(perso)] = true;
+                    _listePersos.Add(perso);
                 }
                 else
                 {
-                    isCharacterAlive[_listePersos.IndexOf(perso)] = false;
+                    isCharacterAlive[tempList.IndexOf(perso)] = false;
                 }
             }
 
@@ -296,77 +313,86 @@ namespace ProgrammeMartyr
         public void PrepNextTurn()
         {
             _isPlayerTurn = true;
-            if(_turnSelector > _listePersos.Count - 1)
+            if (_turnSelector > _listePersos.Count - 1)
             {
                 _isPlayerTurn = false;
                 foreach (Personnage perso in _listeEnemis)
                 {
                     //section de l'ia
-                    Random rand = new Random();
-                    int target;
-                    do
+                    if (!_endGame)
                     {
-                        target = rand.Next(0, _listePersos.Count);
-                    } while (isCharacterAlive[target] == false);
+                        Random rand = new Random();
+                        int target;
+                        do
+                        {
+                            target = rand.Next(0, _listePersos.Count);
+                        } while (isCharacterAlive[target] == false);
 
-                    int attaqueIndex;
-                    do
-                    {
-                        attaqueIndex = rand.Next(0, 3);
-                    } while (perso.ListeAttaque[attaqueIndex].Cooldown != 0);
+                        int attaqueIndex;
+                        do
+                        {
+                            attaqueIndex = rand.Next(0, 3);
+                        } while (perso.ListeAttaque[attaqueIndex].Cooldown != 0);
 
-                    TourJoue(attaqueIndex, _listePersos[target], perso);
+                        TourJoue(attaqueIndex, _listePersos[target], perso);
+                    }
                 }
                 _isPlayerTurn = true;
                 _turnSelector = 0;
-            }
-
-
-            ClearGridExceptLastRow();
-            PrepBoard();
-
-            BtnAttaque1.Content = $"{_listePersos[_turnSelector].ListeAttaque[0].Nom}\n{_listePersos[_turnSelector].ListeAttaque[0].Puissance} degats";
-            BtnAttaque1.IsEnabled = true;
-            BtnAttaque2.Content = $"{_listePersos[_turnSelector].ListeAttaque[1].Nom}\n{_listePersos[_turnSelector].ListeAttaque[1].Puissance} degats";
-            BtnAttaque2.IsEnabled = true;
-            BtnAttaque3.Content = $"{_listePersos[_turnSelector].ListeAttaque[2].Nom}\n{_listePersos[_turnSelector].ListeAttaque[2].Puissance} degats";
-            BtnAttaque3.IsEnabled = true;
-
-            if (_listePersos[_turnSelector].ListeAttaque[1].Cooldown != 0)
-            {
-                BtnAttaque2.IsEnabled = false;
-            }
-
-            if(_listePersos[_turnSelector].ListeAttaque[2].Cooldown != 0)
-            {
-                BtnAttaque3.IsEnabled = false;
-            }
-
-            Image imgJoueurActif = new Image();
-            imgJoueurActif.Name = "imgJoueurActif";
-            imgJoueurActif.Source = new BitmapImage(new Uri(_listePersos[_turnSelector].Img, UriKind.Relative));
-            imgJoueurActif.Height = 50;
-            imgJoueurActif.Width = 50;
-            imgJoueurActif.VerticalAlignment = VerticalAlignment.Top; 
-            imgJoueurActif.HorizontalAlignment = HorizontalAlignment.Left;
-            Grid.SetRow(imgJoueurActif, 5);
-            Grid.SetColumn(imgJoueurActif, 0);
-            grdMatch.Children.Add(imgJoueurActif);
-
-            if (_listePersos[_turnSelector].ListeModifiersActifs.Count > 0)
-            {
-                foreach(var mod in _listePersos[_turnSelector].ListeModifiersActifs)
+                if (!_endGame)
                 {
-                    Image imgMod = new Image();
-                    imgMod.Name = "imgMod";
-                    imgMod.Source = new BitmapImage(new Uri(mod.Image, UriKind.Relative));
-                    imgMod.Height = 50;
-                    imgMod.Width = 50;
-                    imgMod.HorizontalAlignment = HorizontalAlignment.Right;
-                    imgMod.VerticalAlignment = VerticalAlignment.Bottom;
-                    Grid.SetRow(imgMod, 5);
-                    Grid.SetColumn(imgMod, 1);
-                    grdMatch.Children.Add(imgMod);
+                    MessageBox.Show("Attention, l'ia viens de finir de jouer. regardez bien vos PV");
+                }
+            }
+
+            if (!_endGame)
+            {
+                ClearGridExceptLastRow();
+                PrepBoard();
+
+                BtnAttaque1.Content = $"{_listePersos[_turnSelector].ListeAttaque[0].Nom}\n{_listePersos[_turnSelector].ListeAttaque[0].Puissance} degats";
+                BtnAttaque1.IsEnabled = true;
+                BtnAttaque2.Content = $"{_listePersos[_turnSelector].ListeAttaque[1].Nom}\n{_listePersos[_turnSelector].ListeAttaque[1].Puissance} degats";
+                BtnAttaque2.IsEnabled = true;
+                BtnAttaque3.Content = $"{_listePersos[_turnSelector].ListeAttaque[2].Nom}\n{_listePersos[_turnSelector].ListeAttaque[2].Puissance} degats";
+                BtnAttaque3.IsEnabled = true;
+
+                if (_listePersos[_turnSelector].ListeAttaque[1].Cooldown != 0)
+                {
+                    BtnAttaque2.IsEnabled = false;
+                }
+
+                if (_listePersos[_turnSelector].ListeAttaque[2].Cooldown != 0)
+                {
+                    BtnAttaque3.IsEnabled = false;
+                }
+
+                Image imgJoueurActif = new Image();
+                imgJoueurActif.Name = "imgJoueurActif";
+                imgJoueurActif.Source = new BitmapImage(new Uri(_listePersos[_turnSelector].Img, UriKind.Relative));
+                imgJoueurActif.Height = 50;
+                imgJoueurActif.Width = 50;
+                imgJoueurActif.VerticalAlignment = VerticalAlignment.Top;
+                imgJoueurActif.HorizontalAlignment = HorizontalAlignment.Left;
+                Grid.SetRow(imgJoueurActif, 5);
+                Grid.SetColumn(imgJoueurActif, 0);
+                grdMatch.Children.Add(imgJoueurActif);
+
+                if (_listePersos[_turnSelector].ListeModifiersActifs.Count > 0)
+                {
+                    foreach (var mod in _listePersos[_turnSelector].ListeModifiersActifs)
+                    {
+                        Image imgMod = new Image();
+                        imgMod.Name = "imgMod";
+                        imgMod.Source = new BitmapImage(new Uri(mod.Image, UriKind.Relative));
+                        imgMod.Height = 50;
+                        imgMod.Width = 50;
+                        imgMod.HorizontalAlignment = HorizontalAlignment.Right;
+                        imgMod.VerticalAlignment = VerticalAlignment.Bottom;
+                        Grid.SetRow(imgMod, 5);
+                        Grid.SetColumn(imgMod, 1);
+                        grdMatch.Children.Add(imgMod);
+                    }
                 }
             }
         }
@@ -409,16 +435,13 @@ namespace ProgrammeMartyr
             }
         }
 
-        public void CooldownUpdate()
+        public void CooldownUpdate(Personnage perso)
         {
-            foreach (var perso in _listePersos)
+            foreach (var attaque in perso.ListeAttaque)
             {
-                foreach (var attaque in perso.ListeAttaque)
+                if (attaque.Cooldown > 0)
                 {
-                    if (attaque.Cooldown > 0)
-                    {
-                        attaque.Cooldown--;
-                    }
+                    attaque.Cooldown--;
                 }
             }
         }
@@ -460,7 +483,7 @@ namespace ProgrammeMartyr
             }
         }
 
-        public void GiveReward()
+        public void GiveReward(bool victory)
         {
             int nbrMoney = 0;
             int nbrCrystal = 0;
@@ -478,6 +501,11 @@ namespace ProgrammeMartyr
                 {
                     nbrUpgrade += 1;
                 }
+            }
+            if (!victory)
+            {
+                nbrMoney /= 2;
+                nbrCrystal /= 2;
             }
 
             _user.Inventaire.Items[0] += nbrMoney;
@@ -498,7 +526,7 @@ namespace ProgrammeMartyr
 
         private void TourJoue(int attaque, Personnage ennemiChoisi, Personnage attaquant)
         {
-            CooldownUpdate();
+            CooldownUpdate(attaquant);
             
             ennemiChoisi.PvGame -= attaquant.ListeAttaque[attaque].Puissance;
 
@@ -518,7 +546,16 @@ namespace ProgrammeMartyr
             }
             else
             {
-                GiveReward();
+                _endGame = true;
+                if(imgFin.Source.ToString() == "Images/victoire.png")
+                {
+                    MessageBox.Show("Félicitations ! Vous avez vaincu tous les ennemis !");
+                    GiveReward(true);
+                }
+                else
+                {
+                    MessageBox.Show("Vous avez été vaincu... N'abandonnez pas, retentez votre chance !");
+                }
                 //Retour au menu
                 MessageBox.Show("Le match est terminé ! Vous allez être redirigé vers le menu.");
                 var parent = Window.GetWindow(this) as Jeu;
